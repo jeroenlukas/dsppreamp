@@ -50,7 +50,9 @@
 #define COMM_PATCH_MID      5
 #define COMM_PATCH_HIGH     6
 #define COMM_PATCH_PRES     7
-#define COMM_PATCH_VOL      8
+#define COMM_PATCH_VOLUME   8
+
+#define COMM_MODEL_POSTGAIN_BYPASS  19
 
 // LCD stuff
 #define LCD_CC_BAR_1    0

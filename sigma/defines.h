@@ -1,8 +1,8 @@
 /*
  * File:           defines.h
  *
- * Created:        Tuesday, February 27, 2018 7:13:36 PM
- * Description:    phaser4 IC default download data definitions.
+ * Created:        Saturday, August 29, 2020 8:21:05 PM
+ * Description:    DSPPreamp IC default download data definitions.
  *
  * This software is distributed in the hope that it will be useful,
  * but is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
@@ -14,7 +14,7 @@
  * are intended for resale to audio product end users. This software
  * may not be distributed whole or in any part to third parties.
  *
- * Copyright ©2018 Analog Devices, Inc. All rights reserved.
+ * Copyright ©2020 Analog Devices, Inc. All rights reserved.
  */
 #ifndef __DEFINES_H__
 #define __DEFINES_H__

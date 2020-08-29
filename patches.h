@@ -54,6 +54,7 @@ typedef struct patch
 void patch_current_set_gain(uint8_t gain);
 void patch_current_set_low(uint8_t low);
 void patch_current_set_mid(uint8_t value);
+void patch_current_set_volume(uint8_t value);
 // TODO Insert appropriate #include <>
 
 // TODO Insert C++ class definitions if appropriate

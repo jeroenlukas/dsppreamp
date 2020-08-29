@@ -15,6 +15,7 @@
 #include "config.h"
 #include "pccomm.h"
 #include "patches.h"
+#include "models.h"
 #include "lcd_pcf8574.h"
 
 #define STATE_IDLE      0
@@ -135,6 +136,9 @@ void pccomm_parse_command(void)
                     case COMM_PATCH_MID:
                         patch_current_set_mid(received_command.payload[2]);
                         break;
+                    case COMM_PATCH_VOLUME:
+                        patch_current_set_volume(received_command.payload[2]);
+                        break;
                     default:
                         LCD_SetCursor(0, 2);
                         LCD_Write_Str("?");
@@ -146,6 +150,18 @@ void pccomm_parse_command(void)
             {
                 // Write to eeprom...
             }
+            break;
+        case COMMAND_SET_MODEL_VALUE:
+            if(received_command.payload[0] = 0xFF) // Current model
+            {
+                switch(received_command.payload[1])
+                {
+                    case COMM_MODEL_POSTGAIN_BYPASS:
+                        model_current_set_postgain_bypass(received_command.payload[2]);
+                        break;
+                }
+            }
+            
     }
 }
      
@@ -153,12 +169,13 @@ void pccomm_log_message(char * text)
 {
     //frame_t frame;
     transmit_command.command = COMMAND_LOG_MESSAGE;
-    transmit_command.length = strlen(text);
+    transmit_command.length = strlen(text) + 1;
     
     int i = 0;
     while(*text)
     {
         transmit_command.payload[i++] = *text++;
     }
+    transmit_command.payload[i] = '\0';
     pccomm_send_command();
 }

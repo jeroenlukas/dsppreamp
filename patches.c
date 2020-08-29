@@ -17,7 +17,7 @@
 #include "config.h"
 #include "lcd_pcf8574.h"
 #include "misc_func.h"
-
+#include "sigma/DSPPreamp_IC_1_PARAM.h"
 
 patch_t current_patch;
 
@@ -108,6 +108,37 @@ void patch_current_set_low(uint8_t value)
     
     // Calculate coeffs here
     adau1701_write(666, scaled_value);
+}
+
+
+void patch_current_set_volume(uint8_t value)
+{    
+    current_patch.volume = value;
+    
+    float scaled_value;
+    scaled_value = (float)value / 100; // Should be logarithmic    
+    
+    // Update bar
+    LCD_SetCursor(19, 1);
+    if(value > 88)
+    {
+        LCD_Write_Char(LCD_CC_BAR_8);
+    }
+    else
+    {
+        LCD_Write_Char(value / 13);
+    }
+    
+    // Show on LCD
+    LCD_SetCursor(0, 1);
+    LCD_Write_Str("Vol: ");
+    LCD_SetCursor(6, 1);
+    uitoa(value, strbuf);
+    LCD_Write_Str_Padded_Right(strbuf, 3);
+    
+    // Calculate coeffs here
+    adau1701_write(MOD_PO_VOLUME_ALG0_TARGET_ADDR, scaled_value);
+    adau1701_write(MOD_PO_VOLUME_ALG0_STEP_ADDR, 0.000244140625);
 }
 
 void patch_current_set_mid(uint8_t value)

@@ -8,21 +8,30 @@
 
 #include "xc.h"
 #include "config.h"
+#include <stdint.h>
 
-#include "sigma/phaser4_IC_1.h"
-#include "sigma/phaser4_IC_1_PARAM.h"
-#include "sigma/phaser4_IC_1_REG.h"
+#include "sigma/DSPPreamp_IC_1.h"
+#include "sigma/DSPPreamp_IC_1_PARAM.h"
+#include "sigma/DSPPreamp_IC_1_REG.h"
 
-void adau1701_write( uint16_t address, uint32_t value)
+void adau1701_write( uint16_t address, float value)
 {
     float dp;    
             
     uint32_t dp_fixed;
     
 
-    dp = (float)value / (float)255;
+    dp = value / (float)255;
 
-    dp_fixed = dp * 0x800000;    
+    dp_fixed = dp * 0x80000000;    // TEST used to be 0x800000
 
     SIGMA_WRITE_SAFELOAD(0, address, dp_fixed);
+}
+
+
+// This function is easier for binary values such as setting switches etc
+void adau1701_write_fixed( uint16_t address, uint32_t value)
+{
+    
+    SIGMA_WRITE_SAFELOAD(0, address, value);
 }

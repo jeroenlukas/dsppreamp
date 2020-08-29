@@ -31,9 +31,9 @@
       <logicalFolder name="sigma" displayName="sigma" projectFiles="true">
         <itemPath>sigma/SigmaStudioFW.h</itemPath>
         <itemPath>sigma/SigmaStudioFW.c</itemPath>
-        <itemPath>sigma/phaser4_IC_1.h</itemPath>
-        <itemPath>sigma/phaser4_IC_1_PARAM.h</itemPath>
-        <itemPath>sigma/phaser4_IC_1_REG.h</itemPath>
+        <itemPath>sigma/DSPPreamp_IC_1.h</itemPath>
+        <itemPath>sigma/DSPPreamp_IC_1_PARAM.h</itemPath>
+        <itemPath>sigma/DSPPreamp_IC_1_REG.h</itemPath>
       </logicalFolder>
       <itemPath>config.h</itemPath>
       <itemPath>models.h</itemPath>

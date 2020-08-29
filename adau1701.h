@@ -34,7 +34,8 @@
 #include <xc.h> // include processor files - each processor file is guarded.  
 #include <stdint.h>
 
-void adau1701_write( uint16_t address, uint32_t value);
+void adau1701_write( uint16_t address, float value);
+void adau1701_write_fixed( uint16_t address, uint32_t value);
 
 
 #endif	/* XC_HEADER_TEMPLATE_H */
