@@ -18,6 +18,7 @@
 #include "lcd_pcf8574.h"
 #include "misc_func.h"
 #include "sigma/DSPPreamp_IC_1_PARAM.h"
+#include <math.h>
 
 patch_t current_patch;
 
@@ -86,6 +87,11 @@ void patch_current_set_low(uint8_t value)
     current_patch.low = value;
     
     uint32_t scaled_value;
+    
+    // Test
+    //current_patch.model.post_low_cutoff_freq = 400;
+    //current_patch.
+    
     scaled_value = patch_scale_value(current_patch.model.post_low_gain_min, current_patch.model.post_low_gain_max, value);
     
     // Update bar
@@ -106,9 +112,137 @@ void patch_current_set_low(uint8_t value)
     uitoa(value, strbuf);
     LCD_Write_Str_Padded_Right(strbuf, 3);
     
-    // Calculate coeffs here
-    adau1701_write(666, scaled_value);
+    double bassboost =  (double)value / 10;
+    double Fs = 48000;   
+    double freq_t = 400;
+    double freq_b = 400;
+    double cell_gain = 1;
+    double boost_t = pow(10, ((double)current_patch.high / 10)/20); // unchanged
+    double boost_b = pow(10, bassboost/20);
+    double A_T = tan(M_PI * freq_t / Fs);
+    double A_B = tan(M_PI * freq_b / Fs);
+    double Knum_T = 2 / (1 + (1 / boost_t));
+    double Kden_T = 2 / (1 + boost_t);
+    double Knum_B = 2 / (1 + (1 / boost_b));
+    double Kden_B = 2 / (1 + boost_b);
+    double a10 = A_T + Kden_T;
+    double a11 = A_T - Kden_T;
+    double a20 = (A_B * Kden_B) + 1;
+    double a21 = (A_B * Kden_B) - 1;
+    double b10 = A_T + Knum_T;
+    double b11 = A_T - Knum_T;
+    double b20 = (A_B * Knum_B) - 1;
+    double b21 = (A_B * Knum_B) + 1;
+    double a0 = a10 * a20;
+    double A1 = ((a10 * a21) + (a11 * a20)) / a0;
+    double A2 = a11 * a21 / a0;
+    double gainlinear = pow(10, (cell_gain / 20));
+    double B0 = (b10 * b20) / a0 * gainlinear;
+    double B1 = ((b10 * b21) + (b11 * b20)) / a0 * gainlinear;
+    double B2 = (b11 * b21) / a0 * gainlinear;
+    
+    adau1701_write(MOD_PO_TONECONTROL_ALG0_STAGE0_B0_ADDR, B0);
+    adau1701_write(MOD_PO_TONECONTROL_ALG0_STAGE0_B1_ADDR, B1);
+    adau1701_write(MOD_PO_TONECONTROL_ALG0_STAGE0_B2_ADDR, B2);
+    adau1701_write(MOD_PO_TONECONTROL_ALG0_STAGE0_A1_ADDR, A1*-1);
+    adau1701_write(MOD_PO_TONECONTROL_ALG0_STAGE0_A2_ADDR, A2*-1);
 }
+
+
+
+void patch_current_set_high(uint8_t value)
+{    
+    current_patch.high = value;
+    
+    uint32_t scaled_value;
+    
+    // Test
+    current_patch.model.post_high_gain_min = 0;
+    current_patch.model.post_high_gain_max = 15; // dB?
+    //current_patch.
+    
+    scaled_value = patch_scale_value(current_patch.model.post_high_gain_min, current_patch.model.post_high_gain_max, value);
+    
+    // Update bar
+    LCD_SetCursor(16, 1);
+    if(value > 88)
+    {
+        LCD_Write_Char(LCD_CC_BAR_8);
+    }
+    else
+    {
+        LCD_Write_Char(value / 13);
+    }
+    
+    // Show on LCD
+    LCD_SetCursor(0, 1);
+    LCD_Write_Str("High: ");
+    LCD_SetCursor(6, 1);
+    uitoa(value, strbuf);
+    LCD_Write_Str_Padded_Right(strbuf, 3);
+    
+    // Calculate coeffs here
+    //adau1701_write(666, scaled_value);
+    /* Parametric EQ calc example */
+    /*double boost = scaled_value;
+    double freq = 400;current_patch.model.po;
+    double Q = 6;
+    double gain=1;
+    double Fs = 48000;    
+    double a0, omega, sn, cs, alpha, Ax, A1, A2, B0, B1, B2, gainlinear;
+
+    Ax = pow(10, boost/40); //ok
+    omega = 2*M_PI*freq / Fs; //ok
+    sn = sin(omega);// ok < RADIANS! not degrees
+    cs = cos(omega); // ok
+    alpha = sn / (2 * Q);//ok
+
+    a0 = 1 + (alpha/Ax);//ok
+    A1 = -(2 * cs) / a0;//ok
+    A2 = (1-(alpha / Ax)) / a0; //ok
+    gainlinear = pow(10, gain/20) / a0;//ok
+    B0 = (1+(alpha*Ax))*gainlinear;//ok
+    B1 = -(2*cs)*gainlinear;
+    B2 = (1-(alpha*Ax))*gainlinear;
+    // Took about 6.7 ms*/
+   // value = value / 10;
+    double trebleboost =  (double)value / 10;
+    double Fs = 48000;   
+    double freq_t = 400;
+    double freq_b = 400;
+    double cell_gain = 1;
+    double boost_t = pow(10, trebleboost/20);
+    double boost_b = pow(10, ((double)current_patch.low / 10) / 20); // unchanged
+    double A_T = tan(M_PI * freq_t / Fs);
+    double A_B = tan(M_PI * freq_b / Fs);
+    double Knum_T = 2 / (1 + (1 / boost_t));
+    double Kden_T = 2 / (1 + boost_t);
+    double Knum_B = 2 / (1 + (1 / boost_b));
+    double Kden_B = 2 / (1 + boost_b);
+    double a10 = A_T + Kden_T;
+    double a11 = A_T - Kden_T;
+    double a20 = (A_B * Kden_B) + 1;
+    double a21 = (A_B * Kden_B) - 1;
+    double b10 = A_T + Knum_T;
+    double b11 = A_T - Knum_T;
+    double b20 = (A_B * Knum_B) - 1;
+    double b21 = (A_B * Knum_B) + 1;
+    double a0 = a10 * a20;
+    double A1 = ((a10 * a21) + (a11 * a20)) / a0;
+    double A2 = a11 * a21 / a0;
+    double gainlinear = pow(10, (cell_gain / 20));
+    double B0 = (b10 * b20) / a0 * gainlinear;
+    double B1 = ((b10 * b21) + (b11 * b20)) / a0 * gainlinear;
+    double B2 = (b11 * b21) / a0 * gainlinear;
+    
+    adau1701_write(MOD_PO_TONECONTROL_ALG0_STAGE0_B0_ADDR, B0);
+    adau1701_write(MOD_PO_TONECONTROL_ALG0_STAGE0_B1_ADDR, B1);
+    adau1701_write(MOD_PO_TONECONTROL_ALG0_STAGE0_B2_ADDR, B2);
+    adau1701_write(MOD_PO_TONECONTROL_ALG0_STAGE0_A1_ADDR, A1*-1);
+    adau1701_write(MOD_PO_TONECONTROL_ALG0_STAGE0_A2_ADDR, A2*-1);
+}
+
+
 
 
 void patch_current_set_volume(uint8_t value)

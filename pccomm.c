@@ -139,6 +139,8 @@ void pccomm_parse_command(void)
                     case COMM_PATCH_VOLUME:
                         patch_current_set_volume(received_command.payload[2]);
                         break;
+                    case COMM_PATCH_HIGH:
+                        patch_current_set_high(received_command.payload[2]);
                     default:
                         LCD_SetCursor(0, 2);
                         LCD_Write_Str("?");
