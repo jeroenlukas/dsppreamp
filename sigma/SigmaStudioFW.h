@@ -89,6 +89,8 @@ typedef const unsigned char  ADI_REG_TYPE; // JLU: Added const
 
 void SIGMA_WRITE_SAFELOAD(uint8_t safeLoadReg, uint16_t address, uint32_t data);
 
+void SIGMA_WRITE_SAFELOAD_MULTI(uint8_t count, uint16_t address[], uint32_t data[]);
+
 //extern I2C1_MESSAGE_STATUS status;
 
 void SIGMA_WRITE_REGISTER_BLOCK(int devAddress, int memAddress, int length, ADI_REG_TYPE *pData );

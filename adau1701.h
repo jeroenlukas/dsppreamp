@@ -37,6 +37,7 @@
 void adau1701_write( uint16_t address, double value);
 void adau1701_write_orig( uint16_t address, float value);
 void adau1701_write_fixed( uint16_t address, uint32_t value);
+void adau1701_write_multi(uint8_t count, uint16_t address[], double data[]);
 
 
 #endif	/* XC_HEADER_TEMPLATE_H */

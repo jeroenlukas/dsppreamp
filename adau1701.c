@@ -29,6 +29,18 @@ void adau1701_write( uint16_t address, double value)
     SIGMA_WRITE_SAFELOAD(0, address, dp_fixed);
 }
 
+void adau1701_write_multi(uint8_t count, uint16_t address[], double data[])
+{
+    uint32_t data_fixed[5];
+    
+    for(int i = 0; i < count; i++)
+    {
+        data_fixed[i] = data[i] * 0x00800000;
+    }
+    
+    SIGMA_WRITE_SAFELOAD_MULTI(count, address, data_fixed);
+}
+
 void adau1701_write_orig( uint16_t address, float value)
 {
     float dp;    

@@ -141,11 +141,28 @@ void patch_current_set_low(uint8_t value)
     double B1 = ((b10 * b21) + (b11 * b20)) / a0 * gainlinear;
     double B2 = (b11 * b21) / a0 * gainlinear;
     
-    adau1701_write(MOD_PO_TONECONTROL_ALG0_STAGE0_B0_ADDR, B0);
+    /*adau1701_write(MOD_PO_TONECONTROL_ALG0_STAGE0_B0_ADDR, B0);
     adau1701_write(MOD_PO_TONECONTROL_ALG0_STAGE0_B1_ADDR, B1);
     adau1701_write(MOD_PO_TONECONTROL_ALG0_STAGE0_B2_ADDR, B2);
     adau1701_write(MOD_PO_TONECONTROL_ALG0_STAGE0_A1_ADDR, A1*-1);
-    adau1701_write(MOD_PO_TONECONTROL_ALG0_STAGE0_A2_ADDR, A2*-1);
+    adau1701_write(MOD_PO_TONECONTROL_ALG0_STAGE0_A2_ADDR, A2*-1);*/
+    
+    uint16_t sigma_address[5];
+    double sigma_data[5];
+    
+    sigma_address[0] = MOD_PO_TONECONTROL_ALG0_STAGE0_B0_ADDR;
+    sigma_address[1] = MOD_PO_TONECONTROL_ALG0_STAGE0_B1_ADDR;
+    sigma_address[2] = MOD_PO_TONECONTROL_ALG0_STAGE0_B2_ADDR;
+    sigma_address[3] = MOD_PO_TONECONTROL_ALG0_STAGE0_A1_ADDR;
+    sigma_address[4] = MOD_PO_TONECONTROL_ALG0_STAGE0_A2_ADDR;
+    
+    sigma_data[0] = B0;
+    sigma_data[1] = B1  ;
+    sigma_data[2] = B2  ;
+    sigma_data[3] = (A1*-1)  ;
+    sigma_data[4] = (A2*-1) ;
+    
+    adau1701_write_multi(5, sigma_address, sigma_data);
 }
 
 
@@ -235,11 +252,22 @@ void patch_current_set_high(uint8_t value)
     double B1 = ((b10 * b21) + (b11 * b20)) / a0 * gainlinear;
     double B2 = (b11 * b21) / a0 * gainlinear;
     
-    adau1701_write(MOD_PO_TONECONTROL_ALG0_STAGE0_B0_ADDR, B0);
-    adau1701_write(MOD_PO_TONECONTROL_ALG0_STAGE0_B1_ADDR, B1);
-    adau1701_write(MOD_PO_TONECONTROL_ALG0_STAGE0_B2_ADDR, B2);
-    adau1701_write(MOD_PO_TONECONTROL_ALG0_STAGE0_A1_ADDR, A1*-1);
-    adau1701_write(MOD_PO_TONECONTROL_ALG0_STAGE0_A2_ADDR, A2*-1);
+    uint16_t sigma_address[5];
+    double sigma_data[5];
+    
+    sigma_address[0] = MOD_PO_TONECONTROL_ALG0_STAGE0_B0_ADDR;
+    sigma_address[1] = MOD_PO_TONECONTROL_ALG0_STAGE0_B1_ADDR;
+    sigma_address[2] = MOD_PO_TONECONTROL_ALG0_STAGE0_B2_ADDR;
+    sigma_address[3] = MOD_PO_TONECONTROL_ALG0_STAGE0_A1_ADDR;
+    sigma_address[4] = MOD_PO_TONECONTROL_ALG0_STAGE0_A2_ADDR;
+    
+    sigma_data[0] = B0;
+    sigma_data[1] = B1  ;
+    sigma_data[2] = B2  ;
+    sigma_data[3] = (A1*-1)  ;
+    sigma_data[4] = (A2*-1) ;
+    
+    adau1701_write_multi(5, sigma_address, sigma_data);
 }
 
 

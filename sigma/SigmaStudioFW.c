@@ -25,6 +25,36 @@ void SIGMA_WRITE_SAFELOAD(uint8_t safeLoadReg, uint16_t address, uint32_t data)
     
 }
 
+// count <= 5 !
+void SIGMA_WRITE_SAFELOAD_MULTI(uint8_t count, uint16_t address[], uint32_t data[])
+{
+    uint16_t slar[5] = { 2069, 2070, 2071, 2072, 2073 }; // Safeload address registers
+    uint16_t sldr[5] = { 2064, 2065, 2066, 2067, 2068 }; // Safeload data registers    
+    uint8_t slcc[2] = {0,60};
+    
+    uint8_t addr_broken[2];    
+    uint8_t data_broken[5];
+    
+    for(int i = 0; i < count; i++)
+    {
+        addr_broken[0] = (address[i] >> 8) & 0xFF;
+        addr_broken[1] = (address[i]) & 0xFF;    
+
+        data_broken[0] = 0;
+        data_broken[1] = (data[i] >> 24) & 0xFF;
+        data_broken[2] = (data[i] >> 16) & 0xFF;
+        data_broken[3] = (data[i] >> 8) & 0xFF;
+        data_broken[4] = (data[i]) & 0xFF;
+
+        SIGMA_WRITE_REGISTER_BLOCK(0x68, slar[i], 2, addr_broken); // Write the safeload ADDRESS (2 bytes)
+        __delay_ms(1);
+        SIGMA_WRITE_REGISTER_BLOCK(0x68, sldr[i], 5, data_broken); // Write the safeload DATA
+    }
+    __delay_ms(1);
+    SIGMA_WRITE_REGISTER_BLOCK(0x68, 2076, 2, slcc); // Flip IST bit
+    
+}
+
 void SIGMA_WRITE_REGISTER_BLOCK(int devAddress, int memAddress, int length, ADI_REG_TYPE *pData )
 {
     uint8_t     writeBuffer[CHUNK_SIZE + 2];
