@@ -25,16 +25,20 @@ patch_t current_patch;
 //
 char strbuf[20];
 
-patch_load(uint8_t patch_no)
+void patch_load(uint8_t patch_no)
 {
     current_patch.model_id = 3;
     current_patch.model = model_read_model_from_eeprom(current_patch.model_id);    
     
+    current_patch.model.post_low_gain_min = -10;
+    current_patch.model.post_low_gain_max = 15;
+    current_patch.model.post_high_gain_min = -15;
+    current_patch.model.post_high_gain_max = 15;
     
     
-    current_patch.gain = 50; // read all this from eeprom
+    //current_patch.gain = 50; // read all this from eeprom
     
-    current_patch.low = 2;
+    //current_patch.low = 2;
     
     
     // Load model first
@@ -49,7 +53,9 @@ int16_t patch_scale_value(int16_t min, int16_t max, int16_t perc)
 {
     int16_t ret = 0;
     
-    ret = ((max - min) / 100) * perc + min;
+    double interm =  (double)(max - min) / 100;
+    
+    ret = interm * perc + min;
     return ret;            
 }
 
@@ -86,13 +92,9 @@ void patch_current_set_low(uint8_t value)
 {    
     current_patch.low = value;
     
-    uint32_t scaled_value;
+    int16_t scaled_value;
     
-    // Test
-    //current_patch.model.post_low_cutoff_freq = 400;
-    //current_patch.
-    
-    scaled_value = patch_scale_value(current_patch.model.post_low_gain_min, current_patch.model.post_low_gain_max, value);
+    scaled_value = patch_scale_value(current_patch.model.post_low_gain_min, current_patch.model.post_low_gain_max, value);     
     
     // Update bar
     LCD_SetCursor(14, 1);
@@ -112,12 +114,12 @@ void patch_current_set_low(uint8_t value)
     uitoa(value, strbuf);
     LCD_Write_Str_Padded_Right(strbuf, 3);
     
-    double bassboost =  (double)value / 10;
+    double bassboost =  (double)scaled_value;
     double Fs = 48000;   
     double freq_t = 400;
     double freq_b = 400;
     double cell_gain = 1;
-    double boost_t = pow(10, ((double)current_patch.high / 10)/20); // unchanged
+    double boost_t = pow(10, (double)patch_scale_value(current_patch.model.post_high_gain_min, current_patch.model.post_high_gain_max, current_patch.high) / 20); // unchanged
     double boost_b = pow(10, bassboost/20);
     double A_T = tan(M_PI * freq_t / Fs);
     double A_B = tan(M_PI * freq_b / Fs);
@@ -140,13 +142,7 @@ void patch_current_set_low(uint8_t value)
     double B0 = (b10 * b20) / a0 * gainlinear;
     double B1 = ((b10 * b21) + (b11 * b20)) / a0 * gainlinear;
     double B2 = (b11 * b21) / a0 * gainlinear;
-    
-    /*adau1701_write(MOD_PO_TONECONTROL_ALG0_STAGE0_B0_ADDR, B0);
-    adau1701_write(MOD_PO_TONECONTROL_ALG0_STAGE0_B1_ADDR, B1);
-    adau1701_write(MOD_PO_TONECONTROL_ALG0_STAGE0_B2_ADDR, B2);
-    adau1701_write(MOD_PO_TONECONTROL_ALG0_STAGE0_A1_ADDR, A1*-1);
-    adau1701_write(MOD_PO_TONECONTROL_ALG0_STAGE0_A2_ADDR, A2*-1);*/
-    
+        
     uint16_t sigma_address[5];
     double sigma_data[5];
     
@@ -171,12 +167,7 @@ void patch_current_set_high(uint8_t value)
 {    
     current_patch.high = value;
     
-    uint32_t scaled_value;
-    
-    // Test
-    current_patch.model.post_high_gain_min = 0;
-    current_patch.model.post_high_gain_max = 15; // dB?
-    //current_patch.
+    int16_t scaled_value;    
     
     scaled_value = patch_scale_value(current_patch.model.post_high_gain_min, current_patch.model.post_high_gain_max, value);
     
@@ -223,13 +214,13 @@ void patch_current_set_high(uint8_t value)
     B2 = (1-(alpha*Ax))*gainlinear;
     // Took about 6.7 ms*/
    // value = value / 10;
-    double trebleboost =  (double)value / 10;
+    double trebleboost =  (double)scaled_value;
     double Fs = 48000;   
     double freq_t = 400;
     double freq_b = 400;
     double cell_gain = 1;
     double boost_t = pow(10, trebleboost/20);
-    double boost_b = pow(10, ((double)current_patch.low / 10) / 20); // unchanged
+    double boost_b = pow(10, (double)patch_scale_value(current_patch.model.post_low_gain_min, current_patch.model.post_low_gain_max, current_patch.low) / 20); // unchanged
     double A_T = tan(M_PI * freq_t / Fs);
     double A_B = tan(M_PI * freq_b / Fs);
     double Knum_T = 2 / (1 + (1 / boost_t));

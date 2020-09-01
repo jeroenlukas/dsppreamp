@@ -39,8 +39,8 @@ typedef struct model
     char name[8];
     uint8_t channel;
     uint8_t zinput;
-    uint8_t gain_min;
-    uint8_t gain_max;
+    int8_t gain_min;
+    int8_t gain_max;
     
     uint16_t pre_cutoff_freq;
     uint8_t pre_order;
@@ -48,14 +48,14 @@ typedef struct model
     uint16_t post_low_cutoff_freq;
     uint8_t post_low_order;
     
-    uint8_t post_low_gain_min;
-    uint8_t post_low_gain_max;
+    int8_t post_low_gain_min;
+    int8_t post_low_gain_max;
     
-    uint8_t post_mid_gain_min;
-    uint8_t post_mid_gain_max;
+    int8_t post_mid_gain_min;
+    int8_t post_mid_gain_max;
     
-    uint8_t post_high_gain_min;
-    uint8_t post_high_gain_max;
+    int8_t post_high_gain_min;
+    int8_t post_high_gain_max;
     
     //uint8_t post_pres_gain_min;
     

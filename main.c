@@ -117,7 +117,10 @@ void main(void)
     
     pccomm_log_message("Algorithm loaded");
     
-    __delay_ms(100);
+    
+     __delay_ms(100);
+     
+    patch_load(0); // dummy
     
     while(1)
     {            

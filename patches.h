@@ -49,7 +49,7 @@ typedef struct patch
     uint8_t noise_gate;
 } patch_t;
 
-
+void patch_load(uint8_t patch_no);
 
 void patch_current_set_gain(uint8_t gain);
 void patch_current_set_low(uint8_t low);
