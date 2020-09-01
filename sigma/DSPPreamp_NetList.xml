@@ -18,100 +18,118 @@
     <IC name=" IC 1 " type="DSPSigma100">
         <Schematic>
             <Algorithm name="ICSigma100In1" friendlyname="170x\140x input" cell="Input1 ">
-                <Link pin="O_C0_A0_P1_out" dir="out" link="Link18" />
+                <Link pin="O_C0_A0_P1_out" dir="out" link="Link17" />
                 <Link pin="O_C0_A0_P2_out" dir="out" link="Link16" />
             </Algorithm>
-            <Algorithm name="DCBlockAlgDoublePrec1" friendlyname="DC Blocking" cell="DCB1 ">
-                <Link pin="I_C64_A0_P1_in" dir="in" link="Link16" />
-                <Link pin="O_C64_A0_P2_out" dir="out" link="Link15" />
-            </Algorithm>
-            <Algorithm name="DCBlockAlgDoublePrec2" friendlyname="DC Blocking" cell="DCB2 ">
-                <Link pin="I_C82_A0_P1_in" dir="in" link="Link18" />
-                <Link pin="O_C82_A0_P2_out" dir="out" link="Link17" />
-            </Algorithm>
             <Algorithm name="Gain1940AlgNS2" friendlyname="Gain (no slew)" cell="Gain2 ">
-                <Link pin="I_C52_A0_P1_in" dir="in" link="Link15" />
-                <Link pin="O_C52_A0_P2_out" dir="out" link="Link20" />
+                <Link pin="I_C52_A0_P1_in" dir="in" link="Link16" />
+                <Link pin="O_C52_A0_P2_out" dir="out" link="Link24" />
             </Algorithm>
             <Algorithm name="Gain1940AlgNS1" friendlyname="Gain (no slew)" cell="Gain1 ">
                 <Link pin="I_C14_A0_P1_in" dir="in" link="Link17" />
-                <Link pin="O_C14_A0_P2_out" dir="out" link="Link19" />
+                <Link pin="O_C14_A0_P2_out" dir="out" link="Link23" />
             </Algorithm>
             <Algorithm name="monomux1940ns1" friendlyname="Mono" cell="Nx1-1 ">
-                <Link pin="I_C16_A0_P2_in" dir="in" link="Link19" />
-                <Link pin="I_C16_A0_P3_in" dir="in" link="Link20" />
-                <Link pin="O_C16_A0_P1_out" dir="out" link="Link5" />
+                <Link pin="I_C16_A0_P2_in" dir="in" link="Link23" />
+                <Link pin="I_C16_A0_P3_in" dir="in" link="Link24" />
+                <Link pin="O_C16_A0_P1_out" dir="out" link="Link15" />
             </Algorithm>
             <Algorithm name="MonoRunAvgDetectAlg1" friendlyname="Average Envelope" cell="AvgEnv1 ">
-                <Link pin="I_C11_A0_P1_in" dir="in" link="Link5" />
-                <Link pin="O_C11_A0_P2_out" dir="out" link="Link4" />
+                <Link pin="I_C11_A0_P1_in" dir="in" link="Link15" />
+                <Link pin="O_C11_A0_P2_out" dir="out" link="Link14" />
             </Algorithm>
-            <Algorithm name="NthOrderDouble2" friendlyname="1 Channel - Double Precision" cell="NFilter1_2 ">
-                <Link pin="I_C97_A0_P1_in" dir="in" link="Link20" />
-                <Link pin="O_C97_A0_P2_out" dir="out" link="Link8" />
-            </Algorithm>
-            <Algorithm name="NthOrderDouble1" friendlyname="1 Channel - Double Precision" cell="NFilter1 ">
-                <Link pin="I_C26_A0_P1_in" dir="in" link="Link19" />
-                <Link pin="O_C26_A0_P2_out" dir="out" link="Link1" />
-            </Algorithm>
-            <Algorithm name="EQ1940Single1" friendlyname="1 Channel - Double Precision" cell="Gen Filter1 ">
-                <Link pin="I_C89_A0_P1_in" dir="in" link="Link1" />
-                <Link pin="O_C89_A0_P2_out" dir="out" link="Link12" />
+            <Algorithm name="NthOrderDouble1" friendlyname="1 Channel - Double Precision" cell="PreGain.NFilter1 ">
+                <Link pin="I_C35_A0_P1_in" dir="in" link="Link23" />
+                <Link pin="O_C35_A0_P2_out" dir="out" link="Link11" />
             </Algorithm>
             <Algorithm name="ICSigma100Out3" friendlyname="170x\140x output" cell="Output3 ">
-                <Link pin="I_C72_A0_P1_in" dir="in" link="Link4" />
+                <Link pin="I_C72_A0_P1_in" dir="in" link="Link14" />
             </Algorithm>
-            <Algorithm name="EQ1940SingleS2" friendlyname="1 Channel - Single Precision" cell="Gen Filter2 ">
-                <Link pin="I_C45_A0_P1_in" dir="in" link="Link8" />
-                <Link pin="O_C45_A0_P2_out" dir="out" link="Link9" />
+            <Algorithm name="EQ1940Single1" friendlyname="1 Channel - Double Precision" cell="PreGain.Gen Filter1 ">
+                <Link pin="I_C58_A0_P1_in" dir="in" link="Link11" />
+                <Link pin="O_C58_A0_P2_out" dir="out" link="Link12" />
             </Algorithm>
-            <Algorithm name="monomux1940ns2" friendlyname="Mono" cell="PREGAIN_BYPASS ">
-                <Link pin="I_C71_A0_P2_in" dir="in" link="Link12" />
-                <Link pin="I_C71_A0_P3_in" dir="in" link="Link19" />
-                <Link pin="O_C71_A0_P1_out" dir="out" link="Link10" />
+            <Algorithm name="monomux1940ns2" friendlyname="Mono" cell="PreGain.PREGAIN_BYPASS ">
+                <Link pin="I_C178_A0_P2_in" dir="in" link="Link12" />
+                <Link pin="I_C178_A0_P3_in" dir="in" link="Link23" />
+                <Link pin="O_C178_A0_P1_out" dir="out" link="Link22" />
             </Algorithm>
-            <Algorithm name="EQ1940SingleS1" friendlyname="1 Channel - Single Precision" cell="PO_LOW ">
-                <Link pin="I_C143_A0_P1_in" dir="in" link="Link9" />
-                <Link pin="O_C143_A0_P2_out" dir="out" link="Link6" />
+            <Algorithm name="Gain1940AlgNS3" friendlyname="Gain (no slew)" cell="DSPDistortion.Gain3 ">
+                <Link pin="I_C163_A0_P1_in" dir="in" link="Link22" />
+                <Link pin="O_C163_A0_P2_out" dir="out" link="Link9" />
             </Algorithm>
-            <Algorithm name="EQ1940Single2" friendlyname="1 Channel - Double Precision" cell="Mid EQ1 ">
-                <Link pin="I_C100_A0_P1_in" dir="in" link="Link6" />
-                <Link pin="O_C100_A0_P2_out" dir="out" link="Link2" />
+            <Algorithm name="Gain1940AlgNS5" friendlyname="Gain (no slew)" cell="DSPDistortion.Gain3_2 ">
+                <Link pin="I_C325_A0_P1_in" dir="in" link="Link9" />
+                <Link pin="O_C325_A0_P2_out" dir="out" link="Link10" />
+            </Algorithm>
+            <Algorithm name="SoftClipAlgG21" friendlyname="Soft Clip" cell="DSPDistortion.SoftClip1 ">
+                <Link pin="I_C156_A0_P1_in" dir="in" link="Link10" />
+                <Link pin="O_C156_A0_P2_out" dir="out" link="Link7" />
+            </Algorithm>
+            <Algorithm name="Gain1940AlgNS4" friendlyname="Gain (no slew)" cell="DSPDistortion.Single 1 ">
+                <Link pin="I_C169_A0_P1_in" dir="in" link="Link7" />
+                <Link pin="O_C169_A0_P2_out" dir="out" link="Link8" />
+            </Algorithm>
+            <Algorithm name="monoMuxSwSlew1" friendlyname="Mono SW Slew" cell="DSPDistortion.DSPDIST_BYPASS ">
+                <Link pin="I_C195_A0_P2_in" dir="in" link="Link8" />
+                <Link pin="I_C195_A0_P3_in" dir="in" link="Link22" />
+                <Link pin="O_C195_A0_P1_out" dir="out" link="Link21" />
             </Algorithm>
             <Algorithm name="SWGain1940DBAlg1" friendlyname="Gain (RC Slew)" cell="SW vol 1 ">
-                <Link pin="I_C39_A0_P1_in" dir="in" link="Link10" />
-                <Link pin="O_C39_A0_P2_out" dir="out" link="Link0" />
+                <Link pin="I_C39_A0_P1_in" dir="in" link="Link21" />
+                <Link pin="O_C39_A0_P2_out" dir="out" link="Link25" />
+            </Algorithm>
+            <Algorithm name="monoMuxSwSlew2" friendlyname="Mono SW Slew" cell="ANALOG_BYPASS ">
+                <Link pin="I_C304_A0_P2_in" dir="in" link="Link25" />
+                <Link pin="I_C304_A0_P3_in" dir="in" link="Link24" />
+                <Link pin="O_C304_A0_P1_out" dir="out" link="Link19" />
             </Algorithm>
             <Algorithm name="ICSigma100Out1" friendlyname="170x\140x output" cell="Output1 ">
-                <Link pin="I_C22_A0_P1_in" dir="in" link="Link0" />
+                <Link pin="I_C22_A0_P1_in" dir="in" link="Link25" />
             </Algorithm>
-            <Algorithm name="EQ1940Single3" friendlyname="1 Channel - Double Precision" cell="Mid EQ1_2 ">
-                <Link pin="I_C107_A0_P1_in" dir="in" link="Link2" />
-                <Link pin="O_C107_A0_P2_out" dir="out" link="Link7" />
+            <Algorithm name="NthOrderDouble2" friendlyname="1 Channel - Double Precision" cell="PostGain.NFilter1_2 ">
+                <Link pin="I_C226_A0_P1_in" dir="in" link="Link19" />
+                <Link pin="O_C226_A0_P2_out" dir="out" link="Link5" />
             </Algorithm>
-            <Algorithm name="EQ1940SingleS3" friendlyname="1 Channel - Single Precision" cell="PO_HIGH ">
-                <Link pin="I_C151_A0_P1_in" dir="in" link="Link7" />
-                <Link pin="O_C151_A0_P2_out" dir="out" link="Link14" />
+            <Algorithm name="EQ1940SingleS3" friendlyname="1 Channel - Single Precision" cell="PostGain.Gen Filter2 ">
+                <Link pin="I_C254_A0_P1_in" dir="in" link="Link5" />
+                <Link pin="O_C254_A0_P2_out" dir="out" link="Link6" />
             </Algorithm>
-            <Algorithm name="EQ1940SingleS4" friendlyname="1 Channel - Single Precision" cell="PO_TONECONTROL ">
-                <Link pin="I_C37_A0_P1_in" dir="in" link="Link14" />
-                <Link pin="O_C37_A0_P2_out" dir="out" link="Link13" />
+            <Algorithm name="EQ1940SingleS1" friendlyname="1 Channel - Single Precision" cell="PostGain.PO_LOW ">
+                <Link pin="I_C245_A0_P1_in" dir="in" link="Link6" />
+                <Link pin="O_C245_A0_P2_out" dir="out" link="Link4" />
             </Algorithm>
-            <Algorithm name="NthOrderDouble3" friendlyname="1 Channel - Double Precision" cell="PO_PRESENCE ">
-                <Link pin="I_C158_A0_P1_in" dir="in" link="Link13" />
-                <Link pin="O_C158_A0_P2_out" dir="out" link="Link21" />
+            <Algorithm name="EQ1940Single2" friendlyname="1 Channel - Double Precision" cell="PostGain.Mid EQ1 ">
+                <Link pin="I_C229_A0_P1_in" dir="in" link="Link4" />
+                <Link pin="O_C229_A0_P2_out" dir="out" link="Link1" />
             </Algorithm>
-            <Algorithm name="monomux1940ns3" friendlyname="Mono" cell="PO_BYPASS ">
-                <Link pin="I_C116_A0_P2_in" dir="in" link="Link21" />
-                <Link pin="I_C116_A0_P3_in" dir="in" link="Link20" />
-                <Link pin="O_C116_A0_P1_out" dir="out" link="Link11" />
+            <Algorithm name="EQ1940Single3" friendlyname="1 Channel - Double Precision" cell="PostGain.Mid EQ1_2 ">
+                <Link pin="I_C232_A0_P1_in" dir="in" link="Link1" />
+                <Link pin="O_C232_A0_P2_out" dir="out" link="Link3" />
+            </Algorithm>
+            <Algorithm name="EQ1940SingleS2" friendlyname="1 Channel - Single Precision" cell="PostGain.PO_HIGH ">
+                <Link pin="I_C248_A0_P1_in" dir="in" link="Link3" />
+                <Link pin="O_C248_A0_P2_out" dir="out" link="Link0" />
+            </Algorithm>
+            <Algorithm name="EQ1940SingleS4" friendlyname="1 Channel - Single Precision" cell="PostGain.PO_TONECONTROL ">
+                <Link pin="I_C257_A0_P1_in" dir="in" link="Link0" />
+                <Link pin="O_C257_A0_P2_out" dir="out" link="Link2" />
+            </Algorithm>
+            <Algorithm name="NthOrderDouble3" friendlyname="1 Channel - Double Precision" cell="PostGain.PO_PRESENCE ">
+                <Link pin="I_C251_A0_P1_in" dir="in" link="Link2" />
+                <Link pin="O_C251_A0_P2_out" dir="out" link="Link18" />
+            </Algorithm>
+            <Algorithm name="monomux1940ns3" friendlyname="Mono" cell="PostGain.PO_BYPASS ">
+                <Link pin="I_C260_A0_P2_in" dir="in" link="Link18" />
+                <Link pin="I_C260_A0_P3_in" dir="in" link="Link19" />
+                <Link pin="O_C260_A0_P1_out" dir="out" link="Link20" />
             </Algorithm>
             <Algorithm name="SWGain1940DBAlg2" friendlyname="Gain (RC Slew)" cell="PO_VOLUME ">
-                <Link pin="I_C133_A0_P1_in" dir="in" link="Link11" />
-                <Link pin="O_C133_A0_P2_out" dir="out" link="Link3" />
+                <Link pin="I_C133_A0_P1_in" dir="in" link="Link20" />
+                <Link pin="O_C133_A0_P2_out" dir="out" link="Link13" />
             </Algorithm>
             <Algorithm name="ICSigma100Out2" friendlyname="170x\140x output" cell="Output2 ">
-                <Link pin="I_C24_A0_P1_in" dir="in" link="Link3" />
+                <Link pin="I_C24_A0_P1_in" dir="in" link="Link13" />
             </Algorithm>
         </Schematic>
     </IC>

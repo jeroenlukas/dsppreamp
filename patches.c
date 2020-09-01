@@ -146,11 +146,11 @@ void patch_current_set_low(uint8_t value)
     uint16_t sigma_address[5];
     double sigma_data[5];
     
-    sigma_address[0] = MOD_PO_TONECONTROL_ALG0_STAGE0_B0_ADDR;
-    sigma_address[1] = MOD_PO_TONECONTROL_ALG0_STAGE0_B1_ADDR;
-    sigma_address[2] = MOD_PO_TONECONTROL_ALG0_STAGE0_B2_ADDR;
-    sigma_address[3] = MOD_PO_TONECONTROL_ALG0_STAGE0_A1_ADDR;
-    sigma_address[4] = MOD_PO_TONECONTROL_ALG0_STAGE0_A2_ADDR;
+    sigma_address[0] = MOD_POSTGAIN_PO_TONECONTROL_ALG0_STAGE0_B0_ADDR;
+    sigma_address[1] = MOD_POSTGAIN_PO_TONECONTROL_ALG0_STAGE0_B1_ADDR;
+    sigma_address[2] = MOD_POSTGAIN_PO_TONECONTROL_ALG0_STAGE0_B2_ADDR;
+    sigma_address[3] = MOD_POSTGAIN_PO_TONECONTROL_ALG0_STAGE0_A1_ADDR;
+    sigma_address[4] = MOD_POSTGAIN_PO_TONECONTROL_ALG0_STAGE0_A2_ADDR;
     
     sigma_data[0] = B0;
     sigma_data[1] = B1  ;
@@ -234,7 +234,7 @@ void patch_current_set_high(uint8_t value)
     double b10 = A_T + Knum_T;
     double b11 = A_T - Knum_T;
     double b20 = (A_B * Knum_B) - 1;
-    double b21 = (A_B * Knum_B) + 1;
+    double b21 = (A_B * Knum_B) + 1; 
     double a0 = a10 * a20;
     double A1 = ((a10 * a21) + (a11 * a20)) / a0;
     double A2 = a11 * a21 / a0;
@@ -246,11 +246,11 @@ void patch_current_set_high(uint8_t value)
     uint16_t sigma_address[5];
     double sigma_data[5];
     
-    sigma_address[0] = MOD_PO_TONECONTROL_ALG0_STAGE0_B0_ADDR;
-    sigma_address[1] = MOD_PO_TONECONTROL_ALG0_STAGE0_B1_ADDR;
-    sigma_address[2] = MOD_PO_TONECONTROL_ALG0_STAGE0_B2_ADDR;
-    sigma_address[3] = MOD_PO_TONECONTROL_ALG0_STAGE0_A1_ADDR;
-    sigma_address[4] = MOD_PO_TONECONTROL_ALG0_STAGE0_A2_ADDR;
+    sigma_address[0] = MOD_POSTGAIN_PO_TONECONTROL_ALG0_STAGE0_B0_ADDR;
+    sigma_address[1] = MOD_POSTGAIN_PO_TONECONTROL_ALG0_STAGE0_B1_ADDR;
+    sigma_address[2] = MOD_POSTGAIN_PO_TONECONTROL_ALG0_STAGE0_B2_ADDR;
+    sigma_address[3] = MOD_POSTGAIN_PO_TONECONTROL_ALG0_STAGE0_A1_ADDR;
+    sigma_address[4] = MOD_POSTGAIN_PO_TONECONTROL_ALG0_STAGE0_A2_ADDR;
     
     sigma_data[0] = B0;
     sigma_data[1] = B1  ;

@@ -1,51 +1,564 @@
-Cell Name         = NFilter1
+Cell Name         = PostGain.NFilter1_2
+Parameter Name    = NthOrderDouble20B1
+Parameter Address = 30
+Parameter Value   = 1
+Parameter Data :
+0x00 ,	0x80 ,	0x00 ,	0x00 ,	
+
+
+
+Cell Name         = PostGain.NFilter1_2
+Parameter Name    = NthOrderDouble21B1
+Parameter Address = 31
+Parameter Value   = 0
+Parameter Data :
+0x00 ,	0x00 ,	0x00 ,	0x00 ,	
+
+
+
+Cell Name         = PostGain.NFilter1_2
+Parameter Name    = NthOrderDouble22B1
+Parameter Address = 32
+Parameter Value   = 0
+Parameter Data :
+0x00 ,	0x00 ,	0x00 ,	0x00 ,	
+
+
+
+Cell Name         = PostGain.NFilter1_2
+Parameter Name    = NthOrderDouble21A1
+Parameter Address = 33
+Parameter Value   = 0
+Parameter Data :
+0x00 ,	0x00 ,	0x00 ,	0x00 ,	
+
+
+
+Cell Name         = PostGain.NFilter1_2
+Parameter Name    = NthOrderDouble22A1
+Parameter Address = 34
+Parameter Value   = 0
+Parameter Data :
+0x00 ,	0x00 ,	0x00 ,	0x00 ,	
+
+
+
+Cell Name         = PostGain.Mid EQ1
+Parameter Name    = EQ1940Single20B1
+Parameter Address = 45
+Parameter Value   = 0.982219457626343
+Parameter Data :
+0x00 ,	0x7D ,	0xB9 ,	0x5E ,	
+
+
+
+Cell Name         = PostGain.Mid EQ1
+Parameter Name    = EQ1940Single21B1
+Parameter Address = 46
+Parameter Value   = -1.92606544494629
+Parameter Data :
+0x0F ,	0x09 ,	0x76 ,	0xB0 ,	
+
+
+
+Cell Name         = PostGain.Mid EQ1
+Parameter Name    = EQ1940Single22B1
+Parameter Address = 47
+Parameter Value   = 0.946489214897156
+Parameter Data :
+0x00 ,	0x79 ,	0x26 ,	0x8F ,	
+
+
+
+Cell Name         = PostGain.Mid EQ1
+Parameter Name    = EQ1940Single21A1
+Parameter Address = 48
+Parameter Value   = 1.92606544494629
+Parameter Data :
+0x00 ,	0xF6 ,	0x89 ,	0x50 ,	
+
+
+
+Cell Name         = PostGain.Mid EQ1
+Parameter Name    = EQ1940Single22A1
+Parameter Address = 49
+Parameter Value   = -0.928708672523499
+Parameter Data :
+0x0F ,	0x89 ,	0x20 ,	0x13 ,	
+
+
+
+Cell Name         = PostGain.Mid EQ1_2
+Parameter Name    = EQ1940Single30B1
+Parameter Address = 50
+Parameter Value   = 0.991780519485474
+Parameter Data :
+0x00 ,	0x7E ,	0xF2 ,	0xAA ,	
+
+
+
+Cell Name         = PostGain.Mid EQ1_2
+Parameter Name    = EQ1940Single31B1
+Parameter Address = 51
+Parameter Value   = -1.93768548965454
+Parameter Data :
+0x0F ,	0x07 ,	0xF9 ,	0xEC ,	
+
+
+
+Cell Name         = PostGain.Mid EQ1_2
+Parameter Name    = EQ1940Single32B1
+Parameter Address = 52
+Parameter Value   = 0.948564171791077
+Parameter Data :
+0x00 ,	0x79 ,	0x6A ,	0x8D ,	
+
+
+
+Cell Name         = PostGain.Mid EQ1_2
+Parameter Name    = EQ1940Single31A1
+Parameter Address = 53
+Parameter Value   = 1.93768548965454
+Parameter Data :
+0x00 ,	0xF8 ,	0x06 ,	0x14 ,	
+
+
+
+Cell Name         = PostGain.Mid EQ1_2
+Parameter Name    = EQ1940Single32A1
+Parameter Address = 54
+Parameter Value   = -0.94034469127655
+Parameter Data :
+0x0F ,	0x87 ,	0xA2 ,	0xC9 ,	
+
+
+
+Cell Name         = PostGain.PO_LOW
+Parameter Name    = EQ1940SingleS10B1
+Parameter Address = 40
+Parameter Value   = 1.41796696186066
+Parameter Data :
+0x00 ,	0xB5 ,	0x7F ,	0xF1 ,	
+
+
+
+Cell Name         = PostGain.PO_LOW
+Parameter Name    = EQ1940SingleS11B1
+Parameter Address = 41
+Parameter Value   = -2.72540867328644
+Parameter Data :
+0x0E ,	0xA3 ,	0x25 ,	0xCF ,	
+
+
+
+Cell Name         = PostGain.PO_LOW
+Parameter Name    = EQ1940SingleS12B1
+Parameter Address = 42
+Parameter Value   = 1.31159067153931
+Parameter Data :
+0x00 ,	0xA7 ,	0xE2 ,	0x34 ,	
+
+
+
+Cell Name         = PostGain.PO_LOW
+Parameter Name    = EQ1940SingleS11A1
+Parameter Address = 43
+Parameter Value   = 1.92971646785736
+Parameter Data :
+0x00 ,	0xF7 ,	0x00 ,	0xF3 ,	
+
+
+
+Cell Name         = PostGain.PO_LOW
+Parameter Name    = EQ1940SingleS12A1
+Parameter Address = 44
+Parameter Value   = -0.932103872299194
+Parameter Data :
+0x0F ,	0x88 ,	0xB0 ,	0xD2 ,	
+
+
+
+Cell Name         = PostGain.PO_HIGH
+Parameter Name    = EQ1940SingleS20B1
+Parameter Address = 55
+Parameter Value   = 1.84065055847168
+Parameter Data :
+0x00 ,	0xEB ,	0x9A ,	0x70 ,	
+
+
+
+Cell Name         = PostGain.PO_HIGH
+Parameter Name    = EQ1940SingleS21B1
+Parameter Address = 56
+Parameter Value   = -3.56436288356781
+Parameter Data :
+0x0E ,	0x37 ,	0xC2 ,	0xF5 ,	
+
+
+
+Cell Name         = PostGain.PO_HIGH
+Parameter Name    = EQ1940SingleS22B1
+Parameter Address = 57
+Parameter Value   = 1.72731423377991
+Parameter Data :
+0x00 ,	0xDD ,	0x18 ,	0xA2 ,	
+
+
+
+Cell Name         = PostGain.PO_HIGH
+Parameter Name    = EQ1940SingleS21A1
+Parameter Address = 58
+Parameter Value   = 1.91334247589111
+Parameter Data :
+0x00 ,	0xF4 ,	0xE8 ,	0x68 ,	
+
+
+
+Cell Name         = PostGain.PO_HIGH
+Parameter Name    = EQ1940SingleS22A1
+Parameter Address = 59
+Parameter Value   = -0.91694438457489
+Parameter Data :
+0x0F ,	0x8A ,	0xA1 ,	0x91 ,	
+
+
+
+Cell Name         = PostGain.PO_PRESENCE
+Parameter Name    = NthOrderDouble30B1
+Parameter Address = 65
+Parameter Value   = 0.0604984760284424
+Parameter Data :
+0x00 ,	0x07 ,	0xBE ,	0x6A ,	
+
+
+
+Cell Name         = PostGain.PO_PRESENCE
+Parameter Name    = NthOrderDouble31B1
+Parameter Address = 66
+Parameter Value   = 0.120997071266174
+Parameter Data :
+0x00 ,	0x0F ,	0x7C ,	0xD5 ,	
+
+
+
+Cell Name         = PostGain.PO_PRESENCE
+Parameter Name    = NthOrderDouble32B1
+Parameter Address = 67
+Parameter Value   = 0.0604984760284424
+Parameter Data :
+0x00 ,	0x07 ,	0xBE ,	0x6A ,	
+
+
+
+Cell Name         = PostGain.PO_PRESENCE
+Parameter Name    = NthOrderDouble31A1
+Parameter Address = 68
+Parameter Value   = 1.19391334056854
+Parameter Data :
+0x00 ,	0x98 ,	0xD2 ,	0x27 ,	
+
+
+
+Cell Name         = PostGain.PO_PRESENCE
+Parameter Name    = NthOrderDouble32A1
+Parameter Address = 69
+Parameter Value   = -0.435907363891602
+Parameter Data :
+0x0F ,	0xC8 ,	0x34 ,	0x30 ,	
+
+
+
+Cell Name         = PostGain.Gen Filter2
+Parameter Name    = EQ1940SingleS30B1
+Parameter Address = 35
+Parameter Value   = 0.994819521903992
+Parameter Data :
+0x00 ,	0x7F ,	0x56 ,	0x3F ,	
+
+
+
+Cell Name         = PostGain.Gen Filter2
+Parameter Name    = EQ1940SingleS31B1
+Parameter Address = 36
+Parameter Value   = -1.98963916301727
+Parameter Data :
+0x0F ,	0x01 ,	0x53 ,	0x81 ,	
+
+
+
+Cell Name         = PostGain.Gen Filter2
+Parameter Name    = EQ1940SingleS32B1
+Parameter Address = 37
+Parameter Value   = 0.994819521903992
+Parameter Data :
+0x00 ,	0x7F ,	0x56 ,	0x3F ,	
+
+
+
+Cell Name         = PostGain.Gen Filter2
+Parameter Name    = EQ1940SingleS31A1
+Parameter Address = 38
+Parameter Value   = 1.98962569236755
+Parameter Data :
+0x00 ,	0xFE ,	0xAC ,	0x0E ,	
+
+
+
+Cell Name         = PostGain.Gen Filter2
+Parameter Name    = EQ1940SingleS32A1
+Parameter Address = 39
+Parameter Value   = -0.989652633666992
+Parameter Data :
+0x0F ,	0x81 ,	0x53 ,	0x10 ,	
+
+
+
+Cell Name         = PostGain.PO_TONECONTROL
+Parameter Name    = EQ1940SingleS40B1
+Parameter Address = 60
+Parameter Value   = -1.32835578918457
+Parameter Data :
+0x0F ,	0x55 ,	0xF8 ,	0x70 ,	
+
+
+
+Cell Name         = PostGain.PO_TONECONTROL
+Parameter Name    = EQ1940SingleS41B1
+Parameter Address = 61
+Parameter Value   = 2.67426550388336
+Parameter Data :
+0x01 ,	0x56 ,	0x4E ,	0x55 ,	
+
+
+
+Cell Name         = PostGain.PO_TONECONTROL
+Parameter Name    = EQ1940SingleS42B1
+Parameter Address = 62
+Parameter Value   = -1.34259974956512
+Parameter Data :
+0x0F ,	0x54 ,	0x25 ,	0xB1 ,	
+
+
+
+Cell Name         = PostGain.PO_TONECONTROL
+Parameter Name    = EQ1940SingleS41A1
+Parameter Address = 63
+Parameter Value   = 1.89058840274811
+Parameter Data :
+0x00 ,	0xF1 ,	0xFE ,	0xCD ,	
+
+
+
+Cell Name         = PostGain.PO_TONECONTROL
+Parameter Name    = EQ1940SingleS42A1
+Parameter Address = 64
+Parameter Value   = -0.893538355827332
+Parameter Data :
+0x0F ,	0x8D ,	0xA0 ,	0x89 ,	
+
+
+
+Cell Name         = PostGain.PO_BYPASS
+Parameter Name    = monomux1940ns3_0
+Parameter Address = 70
+Parameter Value   = 1
+Parameter Data :
+0x00, 0x80, 0x00, 0x00, 
+
+
+
+Cell Name         = PostGain.PO_BYPASS
+Parameter Name    = monomux1940ns3_1
+Parameter Address = 71
+Parameter Value   = 0
+Parameter Data :
+0x00, 0x00, 0x00, 0x00, 
+
+
+
+Cell Name         = DSPDistortion.SoftClip1
+Parameter Name    = SoftClipAlgG21alpha
+Parameter Address = 21
+Parameter Value   = 0.600000023841858
+Parameter Data :
+0x00, 0x4C, 0xCC, 0xCD, 
+
+
+
+Cell Name         = DSPDistortion.SoftClip1
+Parameter Name    = SoftClipAlgG21alpham1
+Parameter Address = 22
+Parameter Value   = 1.66666662693024
+Parameter Data :
+0x00, 0xD5, 0x55, 0x55, 
+
+
+
+Cell Name         = DSPDistortion.SoftClip1
+Parameter Name    = SoftClipAlgG21onethird
+Parameter Address = 23
+Parameter Value   = 0.333333373069763
+Parameter Data :
+0x00, 0x2A, 0xAA, 0xAB, 
+
+
+
+Cell Name         = DSPDistortion.SoftClip1
+Parameter Name    = SoftClipAlgG21twothird
+Parameter Address = 24
+Parameter Value   = 0.666666626930237
+Parameter Data :
+0x00, 0x55, 0x55, 0x55, 
+
+
+
+Cell Name         = DSPDistortion.Gain3
+Parameter Name    = Gain1940AlgNS3
+Parameter Address = 19
+Parameter Value   = 5.62341320514679
+Parameter Data :
+0x02, 0xCF, 0xCC, 0x01, 
+
+
+
+Cell Name         = DSPDistortion.Single 1
+Parameter Name    = Gain1940AlgNS4
+Parameter Address = 25
+Parameter Value   = 0.794328212738037
+Parameter Data :
+0x00, 0x65, 0xAC, 0x8C, 
+
+
+
+Cell Name         = DSPDistortion.DSPDIST_BYPASS
+Parameter Name    = monoMuxSwSlew1coeffname
+Parameter Address = 26
+Parameter Value   = 1
+Parameter Data :
+0x00, 0x00, 0x00, 0x01, 
+
+
+
+Cell Name         = DSPDistortion.Gain3_2
+Parameter Name    = Gain1940AlgNS5
+Parameter Address = 20
+Parameter Value   = 5.62341320514679
+Parameter Data :
+0x02, 0xCF, 0xCC, 0x01, 
+
+
+
+Cell Name         = PreGain.NFilter1
 Parameter Name    = NthOrderDouble10B1
-Parameter Address = 14
-Parameter Value   = 0.99815046787262
+Parameter Address = 7
+Parameter Value   = 0.992622494697571
 Parameter Data :
-0x00 ,	0x7F ,	0xC3 ,	0x65 ,	
+0x00 ,	0x7F ,	0x0E ,	0x41 ,	
 
 
 
-Cell Name         = NFilter1
+Cell Name         = PreGain.NFilter1
 Parameter Name    = NthOrderDouble11B1
-Parameter Address = 15
-Parameter Value   = -1.99630105495453
+Parameter Address = 8
+Parameter Value   = -1.98524510860443
 Parameter Data :
-0x0F ,	0x00 ,	0x79 ,	0x35 ,	
+0x0F ,	0x01 ,	0xE3 ,	0x7D ,	
 
 
 
-Cell Name         = NFilter1
+Cell Name         = PreGain.NFilter1
 Parameter Name    = NthOrderDouble12B1
-Parameter Address = 16
-Parameter Value   = 0.99815046787262
+Parameter Address = 9
+Parameter Value   = 0.992622494697571
 Parameter Data :
-0x00 ,	0x7F ,	0xC3 ,	0x65 ,	
+0x00 ,	0x7F ,	0x0E ,	0x41 ,	
 
 
 
-Cell Name         = NFilter1
+Cell Name         = PreGain.NFilter1
 Parameter Name    = NthOrderDouble11A1
-Parameter Address = 17
-Parameter Value   = 1.99629759788513
+Parameter Address = 10
+Parameter Value   = 1.98519062995911
 Parameter Data :
-0x00 ,	0xFF ,	0x86 ,	0xAE ,	
+0x00 ,	0xFE ,	0x1A ,	0xBA ,	
 
 
 
-Cell Name         = NFilter1
+Cell Name         = PreGain.NFilter1
 Parameter Name    = NthOrderDouble12A1
-Parameter Address = 18
-Parameter Value   = -0.996304392814636
+Parameter Address = 11
+Parameter Value   = -0.985299468040466
 Parameter Data :
-0x0F ,	0x80 ,	0x79 ,	0x19 ,	
+0x0F ,	0x81 ,	0xE1 ,	0xB5 ,	
+
+
+
+Cell Name         = PreGain.Gen Filter1
+Parameter Name    = EQ1940Single10B1
+Parameter Address = 12
+Parameter Value   = 1
+Parameter Data :
+0x00 ,	0x80 ,	0x00 ,	0x00 ,	
+
+
+
+Cell Name         = PreGain.Gen Filter1
+Parameter Name    = EQ1940Single11B1
+Parameter Address = 13
+Parameter Value   = 0
+Parameter Data :
+0x00 ,	0x00 ,	0x00 ,	0x00 ,	
+
+
+
+Cell Name         = PreGain.Gen Filter1
+Parameter Name    = EQ1940Single12B1
+Parameter Address = 14
+Parameter Value   = 0
+Parameter Data :
+0x00 ,	0x00 ,	0x00 ,	0x00 ,	
+
+
+
+Cell Name         = PreGain.Gen Filter1
+Parameter Name    = EQ1940Single11A1
+Parameter Address = 15
+Parameter Value   = 0
+Parameter Data :
+0x00 ,	0x00 ,	0x00 ,	0x00 ,	
+
+
+
+Cell Name         = PreGain.Gen Filter1
+Parameter Name    = EQ1940Single12A1
+Parameter Address = 16
+Parameter Value   = 0
+Parameter Data :
+0x00 ,	0x00 ,	0x00 ,	0x00 ,	
+
+
+
+Cell Name         = PreGain.PREGAIN_BYPASS
+Parameter Name    = monomux1940ns2_0
+Parameter Address = 17
+Parameter Value   = 1
+Parameter Data :
+0x00, 0x80, 0x00, 0x00, 
+
+
+
+Cell Name         = PreGain.PREGAIN_BYPASS
+Parameter Name    = monomux1940ns2_1
+Parameter Address = 18
+Parameter Value   = 0
+Parameter Data :
+0x00, 0x00, 0x00, 0x00, 
 
 
 
 Cell Name         = SW vol 1
 Parameter Name    = SWGain1940DBAlg1target
-Parameter Address = 41
+Parameter Address = 27
 Parameter Value   = 1
 Parameter Data :
 0x00 ,	0x80 ,	0x00 ,	0x00 ,	
@@ -54,196 +567,16 @@ Parameter Data :
 
 Cell Name         = SW vol 1
 Parameter Name    = SWGain1940DBAlg1step
-Parameter Address = 42
+Parameter Address = 28
 Parameter Value   = 0.000244140625
 Parameter Data :
 0x00 ,	0x00 ,	0x08 ,	0x00 ,	
 
 
 
-Cell Name         = Gen Filter1
-Parameter Name    = EQ1940Single10B1
-Parameter Address = 19
-Parameter Value   = 1
-Parameter Data :
-0x00 ,	0x80 ,	0x00 ,	0x00 ,	
-
-
-
-Cell Name         = Gen Filter1
-Parameter Name    = EQ1940Single11B1
-Parameter Address = 20
-Parameter Value   = 0
-Parameter Data :
-0x00 ,	0x00 ,	0x00 ,	0x00 ,	
-
-
-
-Cell Name         = Gen Filter1
-Parameter Name    = EQ1940Single12B1
-Parameter Address = 21
-Parameter Value   = 0
-Parameter Data :
-0x00 ,	0x00 ,	0x00 ,	0x00 ,	
-
-
-
-Cell Name         = Gen Filter1
-Parameter Name    = EQ1940Single11A1
-Parameter Address = 22
-Parameter Value   = 0
-Parameter Data :
-0x00 ,	0x00 ,	0x00 ,	0x00 ,	
-
-
-
-Cell Name         = Gen Filter1
-Parameter Name    = EQ1940Single12A1
-Parameter Address = 23
-Parameter Value   = 0
-Parameter Data :
-0x00 ,	0x00 ,	0x00 ,	0x00 ,	
-
-
-
-Cell Name         = NFilter1_2
-Parameter Name    = NthOrderDouble20B1
-Parameter Address = 9
-Parameter Value   = 1
-Parameter Data :
-0x00 ,	0x80 ,	0x00 ,	0x00 ,	
-
-
-
-Cell Name         = NFilter1_2
-Parameter Name    = NthOrderDouble21B1
-Parameter Address = 10
-Parameter Value   = 0
-Parameter Data :
-0x00 ,	0x00 ,	0x00 ,	0x00 ,	
-
-
-
-Cell Name         = NFilter1_2
-Parameter Name    = NthOrderDouble22B1
-Parameter Address = 11
-Parameter Value   = 0
-Parameter Data :
-0x00 ,	0x00 ,	0x00 ,	0x00 ,	
-
-
-
-Cell Name         = NFilter1_2
-Parameter Name    = NthOrderDouble21A1
-Parameter Address = 12
-Parameter Value   = 0
-Parameter Data :
-0x00 ,	0x00 ,	0x00 ,	0x00 ,	
-
-
-
-Cell Name         = NFilter1_2
-Parameter Name    = NthOrderDouble22A1
-Parameter Address = 13
-Parameter Value   = 0
-Parameter Data :
-0x00 ,	0x00 ,	0x00 ,	0x00 ,	
-
-
-
-Cell Name         = Mid EQ1
-Parameter Name    = EQ1940Single20B1
-Parameter Address = 36
-Parameter Value   = 0.982219457626343
-Parameter Data :
-0x00 ,	0x7D ,	0xB9 ,	0x5E ,	
-
-
-
-Cell Name         = Mid EQ1
-Parameter Name    = EQ1940Single21B1
-Parameter Address = 37
-Parameter Value   = -1.92606544494629
-Parameter Data :
-0x0F ,	0x09 ,	0x76 ,	0xB0 ,	
-
-
-
-Cell Name         = Mid EQ1
-Parameter Name    = EQ1940Single22B1
-Parameter Address = 38
-Parameter Value   = 0.946489214897156
-Parameter Data :
-0x00 ,	0x79 ,	0x26 ,	0x8F ,	
-
-
-
-Cell Name         = Mid EQ1
-Parameter Name    = EQ1940Single21A1
-Parameter Address = 39
-Parameter Value   = 1.92606544494629
-Parameter Data :
-0x00 ,	0xF6 ,	0x89 ,	0x50 ,	
-
-
-
-Cell Name         = Mid EQ1
-Parameter Name    = EQ1940Single22A1
-Parameter Address = 40
-Parameter Value   = -0.928708672523499
-Parameter Data :
-0x0F ,	0x89 ,	0x20 ,	0x13 ,	
-
-
-
-Cell Name         = Mid EQ1_2
-Parameter Name    = EQ1940Single30B1
-Parameter Address = 43
-Parameter Value   = 0.991780519485474
-Parameter Data :
-0x00 ,	0x7E ,	0xF2 ,	0xAA ,	
-
-
-
-Cell Name         = Mid EQ1_2
-Parameter Name    = EQ1940Single31B1
-Parameter Address = 44
-Parameter Value   = -1.93768548965454
-Parameter Data :
-0x0F ,	0x07 ,	0xF9 ,	0xEC ,	
-
-
-
-Cell Name         = Mid EQ1_2
-Parameter Name    = EQ1940Single32B1
-Parameter Address = 45
-Parameter Value   = 0.948564171791077
-Parameter Data :
-0x00 ,	0x79 ,	0x6A ,	0x8D ,	
-
-
-
-Cell Name         = Mid EQ1_2
-Parameter Name    = EQ1940Single31A1
-Parameter Address = 46
-Parameter Value   = 1.93768548965454
-Parameter Data :
-0x00 ,	0xF8 ,	0x06 ,	0x14 ,	
-
-
-
-Cell Name         = Mid EQ1_2
-Parameter Name    = EQ1940Single32A1
-Parameter Address = 47
-Parameter Value   = -0.94034469127655
-Parameter Data :
-0x0F ,	0x87 ,	0xA2 ,	0xC9 ,	
-
-
-
 Cell Name         = PO_VOLUME
 Parameter Name    = SWGain1940DBAlg2target
-Parameter Address = 65
+Parameter Address = 72
 Parameter Value   = 0.478630065917969
 Parameter Data :
 0x00 ,	0x3D ,	0x43 ,	0xC0 ,	
@@ -252,7 +585,7 @@ Parameter Data :
 
 Cell Name         = PO_VOLUME
 Parameter Name    = SWGain1940DBAlg2step
-Parameter Address = 66
+Parameter Address = 73
 Parameter Value   = 0.000244140625
 Parameter Data :
 0x00 ,	0x00 ,	0x08 ,	0x00 ,	
@@ -261,7 +594,7 @@ Parameter Data :
 
 Cell Name         = AvgEnv1
 Parameter Name    = MonoRunAvgDetectAlg1RMS
-Parameter Address = 6
+Parameter Address = 4
 Parameter Value   = 0.000575780868530273
 Parameter Data :
 0x00 ,	0x00 ,	0x12 ,	0xDE ,	
@@ -270,7 +603,7 @@ Parameter Data :
 
 Cell Name         = AvgEnv1
 Parameter Name    = MonoRunAvgDetectAlg1hold
-Parameter Address = 7
+Parameter Address = 5
 Parameter Value   = 0
 Parameter Data :
 0x00 ,	0x00 ,	0x00 ,	0x00 ,	
@@ -279,7 +612,7 @@ Parameter Data :
 
 Cell Name         = AvgEnv1
 Parameter Name    = MonoRunAvgDetectAlg1decay
-Parameter Address = 8
+Parameter Address = 6
 Parameter Value   = 2.14576721191406E-06
 Parameter Data :
 0x00 ,	0x00 ,	0x00 ,	0x12 ,	
@@ -288,7 +621,7 @@ Parameter Data :
 
 Cell Name         = Nx1-1
 Parameter Name    = monomux1940ns1_0
-Parameter Address = 4
+Parameter Address = 2
 Parameter Value   = 1
 Parameter Data :
 0x00, 0x80, 0x00, 0x00, 
@@ -297,196 +630,16 @@ Parameter Data :
 
 Cell Name         = Nx1-1
 Parameter Name    = monomux1940ns1_1
-Parameter Address = 5
+Parameter Address = 3
 Parameter Value   = 0
 Parameter Data :
 0x00, 0x00, 0x00, 0x00, 
 
 
 
-Cell Name         = PO_LOW
-Parameter Name    = EQ1940SingleS10B1
-Parameter Address = 31
-Parameter Value   = 1.41796696186066
-Parameter Data :
-0x00 ,	0xB5 ,	0x7F ,	0xF1 ,	
-
-
-
-Cell Name         = PO_LOW
-Parameter Name    = EQ1940SingleS11B1
-Parameter Address = 32
-Parameter Value   = -2.72540867328644
-Parameter Data :
-0x0E ,	0xA3 ,	0x25 ,	0xCF ,	
-
-
-
-Cell Name         = PO_LOW
-Parameter Name    = EQ1940SingleS12B1
-Parameter Address = 33
-Parameter Value   = 1.31159067153931
-Parameter Data :
-0x00 ,	0xA7 ,	0xE2 ,	0x34 ,	
-
-
-
-Cell Name         = PO_LOW
-Parameter Name    = EQ1940SingleS11A1
-Parameter Address = 34
-Parameter Value   = 1.92971646785736
-Parameter Data :
-0x00 ,	0xF7 ,	0x00 ,	0xF3 ,	
-
-
-
-Cell Name         = PO_LOW
-Parameter Name    = EQ1940SingleS12A1
-Parameter Address = 35
-Parameter Value   = -0.932103872299194
-Parameter Data :
-0x0F ,	0x88 ,	0xB0 ,	0xD2 ,	
-
-
-
-Cell Name         = PO_HIGH
-Parameter Name    = EQ1940SingleS30B1
-Parameter Address = 48
-Parameter Value   = 1.84065055847168
-Parameter Data :
-0x00 ,	0xEB ,	0x9A ,	0x70 ,	
-
-
-
-Cell Name         = PO_HIGH
-Parameter Name    = EQ1940SingleS31B1
-Parameter Address = 49
-Parameter Value   = -3.56436288356781
-Parameter Data :
-0x0E ,	0x37 ,	0xC2 ,	0xF5 ,	
-
-
-
-Cell Name         = PO_HIGH
-Parameter Name    = EQ1940SingleS32B1
-Parameter Address = 50
-Parameter Value   = 1.72731423377991
-Parameter Data :
-0x00 ,	0xDD ,	0x18 ,	0xA2 ,	
-
-
-
-Cell Name         = PO_HIGH
-Parameter Name    = EQ1940SingleS31A1
-Parameter Address = 51
-Parameter Value   = 1.91334247589111
-Parameter Data :
-0x00 ,	0xF4 ,	0xE8 ,	0x68 ,	
-
-
-
-Cell Name         = PO_HIGH
-Parameter Name    = EQ1940SingleS32A1
-Parameter Address = 52
-Parameter Value   = -0.91694438457489
-Parameter Data :
-0x0F ,	0x8A ,	0xA1 ,	0x91 ,	
-
-
-
-Cell Name         = PO_PRESENCE
-Parameter Name    = NthOrderDouble30B1
-Parameter Address = 58
-Parameter Value   = 0.103834271430969
-Parameter Data :
-0x00 ,	0x0D ,	0x4A ,	0x71 ,	
-
-
-
-Cell Name         = PO_PRESENCE
-Parameter Name    = NthOrderDouble31B1
-Parameter Address = 59
-Parameter Value   = 0.207668542861938
-Parameter Data :
-0x00 ,	0x1A ,	0x94 ,	0xE2 ,	
-
-
-
-Cell Name         = PO_PRESENCE
-Parameter Name    = NthOrderDouble32B1
-Parameter Address = 60
-Parameter Value   = 0.103834271430969
-Parameter Data :
-0x00 ,	0x0D ,	0x4A ,	0x71 ,	
-
-
-
-Cell Name         = PO_PRESENCE
-Parameter Name    = NthOrderDouble31A1
-Parameter Address = 61
-Parameter Value   = 0.904892563819885
-Parameter Data :
-0x00 ,	0x73 ,	0xD3 ,	0x85 ,	
-
-
-
-Cell Name         = PO_PRESENCE
-Parameter Name    = NthOrderDouble32A1
-Parameter Address = 62
-Parameter Value   = -0.320229530334473
-Parameter Data :
-0x0F ,	0xD7 ,	0x02 ,	0xB8 ,	
-
-
-
-Cell Name         = Gen Filter2
-Parameter Name    = EQ1940SingleS20B1
-Parameter Address = 24
-Parameter Value   = 0.994819521903992
-Parameter Data :
-0x00 ,	0x7F ,	0x56 ,	0x3F ,	
-
-
-
-Cell Name         = Gen Filter2
-Parameter Name    = EQ1940SingleS21B1
-Parameter Address = 25
-Parameter Value   = -1.98963916301727
-Parameter Data :
-0x0F ,	0x01 ,	0x53 ,	0x81 ,	
-
-
-
-Cell Name         = Gen Filter2
-Parameter Name    = EQ1940SingleS22B1
-Parameter Address = 26
-Parameter Value   = 0.994819521903992
-Parameter Data :
-0x00 ,	0x7F ,	0x56 ,	0x3F ,	
-
-
-
-Cell Name         = Gen Filter2
-Parameter Name    = EQ1940SingleS21A1
-Parameter Address = 27
-Parameter Value   = 1.98962569236755
-Parameter Data :
-0x00 ,	0xFE ,	0xAC ,	0x0E ,	
-
-
-
-Cell Name         = Gen Filter2
-Parameter Name    = EQ1940SingleS22A1
-Parameter Address = 28
-Parameter Value   = -0.989652633666992
-Parameter Data :
-0x0F ,	0x81 ,	0x53 ,	0x10 ,	
-
-
-
 Cell Name         = Gain1
 Parameter Name    = Gain1940AlgNS1
-Parameter Address = 3
+Parameter Address = 1
 Parameter Value   = 3
 Parameter Data :
 0x01, 0x80, 0x00, 0x00, 
@@ -495,116 +648,24 @@ Parameter Data :
 
 Cell Name         = Gain2
 Parameter Name    = Gain1940AlgNS2
-Parameter Address = 2
+Parameter Address = 0
 Parameter Value   = 3
 Parameter Data :
 0x01, 0x80, 0x00, 0x00, 
 
 
 
-Cell Name         = PREGAIN_BYPASS
-Parameter Name    = monomux1940ns2_0
+Cell Name         = ANALOG_BYPASS
+Parameter Name    = monoMuxSwSlew2coeffname
 Parameter Address = 29
 Parameter Value   = 1
 Parameter Data :
-0x00, 0x80, 0x00, 0x00, 
-
-
-
-Cell Name         = PREGAIN_BYPASS
-Parameter Name    = monomux1940ns2_1
-Parameter Address = 30
-Parameter Value   = 0
-Parameter Data :
-0x00, 0x00, 0x00, 0x00, 
-
-
-
-Cell Name         = PO_BYPASS
-Parameter Name    = monomux1940ns3_0
-Parameter Address = 63
-Parameter Value   = 1
-Parameter Data :
-0x00, 0x80, 0x00, 0x00, 
-
-
-
-Cell Name         = PO_BYPASS
-Parameter Name    = monomux1940ns3_1
-Parameter Address = 64
-Parameter Value   = 0
-Parameter Data :
-0x00, 0x00, 0x00, 0x00, 
-
-
-
-Cell Name         = PO_TONECONTROL
-Parameter Name    = EQ1940SingleS40B1
-Parameter Address = 53
-Parameter Value   = -1.32835578918457
-Parameter Data :
-0x0F ,	0x55 ,	0xF8 ,	0x70 ,	
-
-
-
-Cell Name         = PO_TONECONTROL
-Parameter Name    = EQ1940SingleS41B1
-Parameter Address = 54
-Parameter Value   = 2.67426550388336
-Parameter Data :
-0x01 ,	0x56 ,	0x4E ,	0x55 ,	
-
-
-
-Cell Name         = PO_TONECONTROL
-Parameter Name    = EQ1940SingleS42B1
-Parameter Address = 55
-Parameter Value   = -1.34259974956512
-Parameter Data :
-0x0F ,	0x54 ,	0x25 ,	0xB1 ,	
-
-
-
-Cell Name         = PO_TONECONTROL
-Parameter Name    = EQ1940SingleS41A1
-Parameter Address = 56
-Parameter Value   = 1.89058840274811
-Parameter Data :
-0x00 ,	0xF1 ,	0xFE ,	0xCD ,	
-
-
-
-Cell Name         = PO_TONECONTROL
-Parameter Name    = EQ1940SingleS42A1
-Parameter Address = 57
-Parameter Value   = -0.893538355827332
-Parameter Data :
-0x0F ,	0x8D ,	0xA0 ,	0x89 ,	
-
-
-
-Cell Name         = DCB1
-Parameter Name    = DCBlockAlgDoublePrec1pole
-Parameter Address = 0
-Parameter Value   = 0.999899983406067
-Parameter Data :
-0x00, 0x7F, 0xFC, 0xB9, 
-
-
-
-Cell Name         = DCB2
-Parameter Name    = DCBlockAlgDoublePrec2pole
-Parameter Address = 1
-Parameter Value   = 0.999899983406067
-Parameter Data :
-0x00, 0x7F, 0xFC, 0xB9, 
+0x00, 0x00, 0x00, 0x01, 
 
 
 
 Parameter data for: IC 1 (Hexadecimal format starting at parameter address 0)
 See also DSPPreamp.hex file
-0x00 , 	0x7F , 	0xFC , 	0xB9 , 	
-0x00 , 	0x7F , 	0xFC , 	0xB9 , 	
 0x01 , 	0x80 , 	0x00 , 	0x00 , 	
 0x01 , 	0x80 , 	0x00 , 	0x00 , 	
 0x00 , 	0x80 , 	0x00 , 	0x00 , 	
@@ -612,16 +673,29 @@ See also DSPPreamp.hex file
 0x00 , 	0x00 , 	0x12 , 	0xDE , 	
 0x00 , 	0x00 , 	0x00 , 	0x00 , 	
 0x00 , 	0x00 , 	0x00 , 	0x12 , 	
+0x00 , 	0x7F , 	0x0E , 	0x41 , 	
+0x0F , 	0x01 , 	0xE3 , 	0x7D , 	
+0x00 , 	0x7F , 	0x0E , 	0x41 , 	
+0x00 , 	0xFE , 	0x1A , 	0xBA , 	
+0x0F , 	0x81 , 	0xE1 , 	0xB5 , 	
 0x00 , 	0x80 , 	0x00 , 	0x00 , 	
 0x00 , 	0x00 , 	0x00 , 	0x00 , 	
 0x00 , 	0x00 , 	0x00 , 	0x00 , 	
 0x00 , 	0x00 , 	0x00 , 	0x00 , 	
 0x00 , 	0x00 , 	0x00 , 	0x00 , 	
-0x00 , 	0x7F , 	0xC3 , 	0x65 , 	
-0x0F , 	0x00 , 	0x79 , 	0x35 , 	
-0x00 , 	0x7F , 	0xC3 , 	0x65 , 	
-0x00 , 	0xFF , 	0x86 , 	0xAE , 	
-0x0F , 	0x80 , 	0x79 , 	0x19 , 	
+0x00 , 	0x80 , 	0x00 , 	0x00 , 	
+0x00 , 	0x00 , 	0x00 , 	0x00 , 	
+0x02 , 	0xCF , 	0xCC , 	0x01 , 	
+0x02 , 	0xCF , 	0xCC , 	0x01 , 	
+0x00 , 	0x4C , 	0xCC , 	0xCD , 	
+0x00 , 	0xD5 , 	0x55 , 	0x55 , 	
+0x00 , 	0x2A , 	0xAA , 	0xAB , 	
+0x00 , 	0x55 , 	0x55 , 	0x55 , 	
+0x00 , 	0x65 , 	0xAC , 	0x8C , 	
+0x00 , 	0x00 , 	0x00 , 	0x01 , 	
+0x00 , 	0x80 , 	0x00 , 	0x00 , 	
+0x00 , 	0x00 , 	0x08 , 	0x00 , 	
+0x00 , 	0x00 , 	0x00 , 	0x01 , 	
 0x00 , 	0x80 , 	0x00 , 	0x00 , 	
 0x00 , 	0x00 , 	0x00 , 	0x00 , 	
 0x00 , 	0x00 , 	0x00 , 	0x00 , 	
@@ -632,8 +706,6 @@ See also DSPPreamp.hex file
 0x00 , 	0x7F , 	0x56 , 	0x3F , 	
 0x00 , 	0xFE , 	0xAC , 	0x0E , 	
 0x0F , 	0x81 , 	0x53 , 	0x10 , 	
-0x00 , 	0x80 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x00 , 	
 0x00 , 	0xB5 , 	0x7F , 	0xF1 , 	
 0x0E , 	0xA3 , 	0x25 , 	0xCF , 	
 0x00 , 	0xA7 , 	0xE2 , 	0x34 , 	
@@ -644,8 +716,6 @@ See also DSPPreamp.hex file
 0x00 , 	0x79 , 	0x26 , 	0x8F , 	
 0x00 , 	0xF6 , 	0x89 , 	0x50 , 	
 0x0F , 	0x89 , 	0x20 , 	0x13 , 	
-0x00 , 	0x80 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x08 , 	0x00 , 	
 0x00 , 	0x7E , 	0xF2 , 	0xAA , 	
 0x0F , 	0x07 , 	0xF9 , 	0xEC , 	
 0x00 , 	0x79 , 	0x6A , 	0x8D , 	
@@ -661,11 +731,11 @@ See also DSPPreamp.hex file
 0x0F , 	0x54 , 	0x25 , 	0xB1 , 	
 0x00 , 	0xF1 , 	0xFE , 	0xCD , 	
 0x0F , 	0x8D , 	0xA0 , 	0x89 , 	
-0x00 , 	0x0D , 	0x4A , 	0x71 , 	
-0x00 , 	0x1A , 	0x94 , 	0xE2 , 	
-0x00 , 	0x0D , 	0x4A , 	0x71 , 	
-0x00 , 	0x73 , 	0xD3 , 	0x85 , 	
-0x0F , 	0xD7 , 	0x02 , 	0xB8 , 	
+0x00 , 	0x07 , 	0xBE , 	0x6A , 	
+0x00 , 	0x0F , 	0x7C , 	0xD5 , 	
+0x00 , 	0x07 , 	0xBE , 	0x6A , 	
+0x00 , 	0x98 , 	0xD2 , 	0x27 , 	
+0x0F , 	0xC8 , 	0x34 , 	0x30 , 	
 0x00 , 	0x80 , 	0x00 , 	0x00 , 	
 0x00 , 	0x00 , 	0x00 , 	0x00 , 	
 0x00 , 	0x3D , 	0x43 , 	0xC0 , 	
@@ -1620,17 +1690,8 @@ See also DSPPreamp.hex file
 0x00 , 	0x00 , 	0x00 , 	0x00 , 	
 0x00 , 	0x00 , 	0x00 , 	0x00 , 	
 0x00 , 	0x00 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x00 , 	
 
 Parameter data for: IC 1 (Binary format starting at parameter address 0)
-00000000	01111111	11111100	10111001	
-00000000	01111111	11111100	10111001	
 00000001	10000000	00000000	00000000	
 00000001	10000000	00000000	00000000	
 00000000	10000000	00000000	00000000	
@@ -1638,16 +1699,29 @@ Parameter data for: IC 1 (Binary format starting at parameter address 0)
 00000000	00000000	00010010	11011110	
 00000000	00000000	00000000	00000000	
 00000000	00000000	00000000	00010010	
+00000000	01111111	00001110	01000001	
+00001111	00000001	11100011	01111101	
+00000000	01111111	00001110	01000001	
+00000000	11111110	00011010	10111010	
+00001111	10000001	11100001	10110101	
 00000000	10000000	00000000	00000000	
 00000000	00000000	00000000	00000000	
 00000000	00000000	00000000	00000000	
 00000000	00000000	00000000	00000000	
 00000000	00000000	00000000	00000000	
-00000000	01111111	11000011	01100101	
-00001111	00000000	01111001	00110101	
-00000000	01111111	11000011	01100101	
-00000000	11111111	10000110	10101110	
-00001111	10000000	01111001	00011001	
+00000000	10000000	00000000	00000000	
+00000000	00000000	00000000	00000000	
+00000010	11001111	11001100	00000001	
+00000010	11001111	11001100	00000001	
+00000000	01001100	11001100	11001101	
+00000000	11010101	01010101	01010101	
+00000000	00101010	10101010	10101011	
+00000000	01010101	01010101	01010101	
+00000000	01100101	10101100	10001100	
+00000000	00000000	00000000	00000001	
+00000000	10000000	00000000	00000000	
+00000000	00000000	00001000	00000000	
+00000000	00000000	00000000	00000001	
 00000000	10000000	00000000	00000000	
 00000000	00000000	00000000	00000000	
 00000000	00000000	00000000	00000000	
@@ -1658,8 +1732,6 @@ Parameter data for: IC 1 (Binary format starting at parameter address 0)
 00000000	01111111	01010110	00111111	
 00000000	11111110	10101100	00001110	
 00001111	10000001	01010011	00010000	
-00000000	10000000	00000000	00000000	
-00000000	00000000	00000000	00000000	
 00000000	10110101	01111111	11110001	
 00001110	10100011	00100101	11001111	
 00000000	10100111	11100010	00110100	
@@ -1670,8 +1742,6 @@ Parameter data for: IC 1 (Binary format starting at parameter address 0)
 00000000	01111001	00100110	10001111	
 00000000	11110110	10001001	01010000	
 00001111	10001001	00100000	00010011	
-00000000	10000000	00000000	00000000	
-00000000	00000000	00001000	00000000	
 00000000	01111110	11110010	10101010	
 00001111	00000111	11111001	11101100	
 00000000	01111001	01101010	10001101	
@@ -1687,22 +1757,15 @@ Parameter data for: IC 1 (Binary format starting at parameter address 0)
 00001111	01010100	00100101	10110001	
 00000000	11110001	11111110	11001101	
 00001111	10001101	10100000	10001001	
-00000000	00001101	01001010	01110001	
-00000000	00011010	10010100	11100010	
-00000000	00001101	01001010	01110001	
-00000000	01110011	11010011	10000101	
-00001111	11010111	00000010	10111000	
+00000000	00000111	10111110	01101010	
+00000000	00001111	01111100	11010101	
+00000000	00000111	10111110	01101010	
+00000000	10011000	11010010	00100111	
+00001111	11001000	00110100	00110000	
 00000000	10000000	00000000	00000000	
 00000000	00000000	00000000	00000000	
 00000000	00111101	01000011	11000000	
 00000000	00000000	00001000	00000000	
-00000000	00000000	00000000	00000000	
-00000000	00000000	00000000	00000000	
-00000000	00000000	00000000	00000000	
-00000000	00000000	00000000	00000000	
-00000000	00000000	00000000	00000000	
-00000000	00000000	00000000	00000000	
-00000000	00000000	00000000	00000000	
 00000000	00000000	00000000	00000000	
 00000000	00000000	00000000	00000000	
 00000000	00000000	00000000	00000000	

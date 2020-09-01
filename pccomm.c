@@ -161,6 +161,12 @@ void pccomm_parse_command(void)
                     case COMM_MODEL_POSTGAIN_BYPASS:
                         model_current_set_postgain_bypass(received_command.payload[2]);
                         break;
+                    case COMM_MODEL_DSPDISTORTION_BYPASS:
+                        model_current_set_dspdistortion_bypass(received_command.payload[2]);
+                        break;
+                    case COMM_MODEL_DSPDISTORTION_ALPHA:
+                        model_current_set_dspdistortion_alpha(received_command.payload[2]);
+                        break;
                 }
             }
             

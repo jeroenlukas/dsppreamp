@@ -66,6 +66,8 @@ typedef struct model
 model_t model_read_model_from_eeprom(uint8_t model_id);
 void model_apply_model(model_t model);
 void model_current_set_postgain_bypass(uint8_t bypass);
+void model_current_set_dspdistortion_bypass(uint8_t bypass);
+void model_current_set_dspdistortion_alpha(uint8_t alpha);
 
 //model_t models[10];
 
