@@ -68,6 +68,9 @@ void model_apply_model(model_t model);
 void model_current_set_postgain_bypass(uint8_t bypass);
 void model_current_set_dspdistortion_bypass(uint8_t bypass);
 void model_current_set_dspdistortion_alpha(uint8_t alpha);
+void model_current_set_dspdistortion_gain(uint8_t gain_db);
+void model_current_set_dspdistortion_volume(uint8_t gain_db);
+void model_current_set_analog_bypass(uint8_t bypass);
 
 //model_t models[10];
 

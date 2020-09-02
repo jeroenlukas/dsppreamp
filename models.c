@@ -7,6 +7,7 @@
 
 
 #include "xc.h"
+#include <math.h>
 #include "config.h"
 #include "models.h"
 #include "cd4052.h"
@@ -54,19 +55,30 @@ void model_current_set_dspdistortion_bypass(uint8_t bypass)
 {
     if(bypass == 0)
     {
-        adau1701_write_fixed(MOD_DSPDISTORTION_DSPDIST_BYPASS_MONOSWSLEW_ADDR, 0);        
+        adau1701_write_fixed(MOD_DSPDISTORTION_BYPASS_MONOSWSLEW_ADDR, 0);        
     }
     else
     {
-        adau1701_write_fixed(MOD_DSPDISTORTION_DSPDIST_BYPASS_MONOSWSLEW_ADDR, 1);        
+        adau1701_write_fixed(MOD_DSPDISTORTION_BYPASS_MONOSWSLEW_ADDR, 1);        
+    }
+}
+
+
+void model_current_set_analog_bypass(uint8_t bypass)
+{
+    if(bypass == 0)
+    {
+        adau1701_write_fixed(MOD_ANALOG_BYPASS_MONOSWSLEW_ADDR, 1);        
+    }
+    else
+    {
+        adau1701_write_fixed(MOD_ANALOG_BYPASS_MONOSWSLEW_ADDR, 0);        
     }
 }
 
 void model_current_set_dspdistortion_alpha(uint8_t alpha)
 {
     // Alpha needs to be divided by 10. The actual alpha range is 0.1 - 10. Function input thus is 1-100
-    
-            
             
     uint16_t sigma_address[2];
     double sigma_data[2];
@@ -74,14 +86,35 @@ void model_current_set_dspdistortion_alpha(uint8_t alpha)
     sigma_address[0] = MOD_DSPDISTORTION_SOFTCLIP1_ALG0_SOFTCLIPALGG21ALPHA_ADDR;
     sigma_address[1] = MOD_DSPDISTORTION_SOFTCLIP1_ALG0_SOFTCLIPALGG21ALPHAM1_ADDR;
     
-    
-    
-    
     sigma_data[0] = (double)alpha / 10;
     sigma_data[1] = 1/((double)alpha / 10);
     
-    
-    
-    
     adau1701_write_multi(2, sigma_address, sigma_data);
+}
+
+void model_current_set_dspdistortion_gain(uint8_t gain_db)
+{
+    // Gain in dB, 1-24 dB
+    if(gain_db > 24)
+    {
+        gain_db = 24;
+    }
+    
+    double gain = pow(10, (double)gain_db / 20);
+    
+    adau1701_write(MOD_DSPDISTORTION_GAIN1_GAIN1940ALGNS3_ADDR, gain);    
+}
+
+void model_current_set_dspdistortion_volume(uint8_t gain_db)
+{
+    // Gain in dB, but must be made negative!
+    /*if(gain_db > 0)
+    {
+        gain_db = 0;
+    }*/
+   // gain_db = gain_db * -1;
+    
+    double gain = pow(10, (double)gain_db*-1 / 20);
+    
+    adau1701_write(MOD_DSPDISTORTION_VOLUME_GAIN1940ALGNS4_ADDR, gain);    
 }
