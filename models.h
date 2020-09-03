@@ -57,6 +57,9 @@ typedef struct model
     int8_t post_high_gain_min;
     int8_t post_high_gain_max;
     
+    int16_t post_presence_freq_min;
+    int16_t post_presence_freq_max;
+    
     //uint8_t post_pres_gain_min;
     
     
@@ -65,6 +68,7 @@ typedef struct model
 
 model_t model_read_model_from_eeprom(uint8_t model_id);
 void model_apply_model(model_t model);
+void model_current_set_pregain_lowcut(uint16_t value);
 void model_current_set_postgain_bypass(uint8_t bypass);
 void model_current_set_dspdistortion_bypass(uint8_t bypass);
 void model_current_set_dspdistortion_alpha(uint8_t alpha);

@@ -141,6 +141,10 @@ void pccomm_parse_command(void)
                         break;
                     case COMM_PATCH_HIGH:
                         patch_current_set_high(received_command.payload[2]);
+                        break;
+                    case COMM_PATCH_PRES:
+                        patch_current_set_presence(received_command.payload[2]);
+                        break;
                     default:
                         LCD_SetCursor(0, 2);
                         LCD_Write_Str("?");
@@ -175,6 +179,9 @@ void pccomm_parse_command(void)
                         break;
                     case COMM_MODEL_ANALOG_BYPASS:
                         model_current_set_analog_bypass(received_command.payload[2]);
+                        break;
+                    case COMM_MODEL_PREGAIN_LOWCUT:
+                        model_current_set_pregain_lowcut((received_command.payload[2] << 8) + received_command.payload[3]);
                         break;
                 }
             }

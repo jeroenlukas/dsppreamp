@@ -30,10 +30,13 @@ void patch_load(uint8_t patch_no)
     current_patch.model_id = 3;
     current_patch.model = model_read_model_from_eeprom(current_patch.model_id);    
     
+    current_patch.model.pre_cutoff_freq = 80;
     current_patch.model.post_low_gain_min = -10;
     current_patch.model.post_low_gain_max = 15;
     current_patch.model.post_high_gain_min = -15;
     current_patch.model.post_high_gain_max = 15;
+    current_patch.model.post_presence_freq_min = 2000;
+    current_patch.model.post_presence_freq_max = 10000;
     
     
     //current_patch.gain = 50; // read all this from eeprom
@@ -323,3 +326,54 @@ void patch_current_set_mid(uint8_t value)
     adau1701_write(666, scaled_value);
 }
 
+void patch_current_set_presence(uint8_t value)
+{    
+    current_patch.presence = value;
+    
+    int16_t scaled_value;    
+    
+    scaled_value = patch_scale_value(current_patch.model.post_presence_freq_min, current_patch.model.post_presence_freq_max, value);
+    
+    // Update bar
+    LCD_SetCursor(17, 1);
+    if(value > 88)
+    {
+        LCD_Write_Char(LCD_CC_BAR_8);
+    }
+    else
+    {
+        LCD_Write_Char(value / 13);
+    }
+    
+    // Show on LCD
+    LCD_SetCursor(0, 1);
+    LCD_Write_Str("Pres: ");
+    LCD_SetCursor(6, 1);
+    uitoa(value, strbuf);
+    LCD_Write_Str_Padded_Right(strbuf, 3);
+    
+    double A1 = pow(2.7, -2 * M_PI * ((double)scaled_value/48000.0));
+    double B0 = 1.0 - A1;
+    double B1 = 0.0;
+   
+    uint16_t sigma_address[5];
+    double sigma_data[5];
+    
+    sigma_address[0] = MOD_POSTGAIN_PO_PRESENCE_ALG0_PARAMB10_ADDR;
+    sigma_address[1] = MOD_POSTGAIN_PO_PRESENCE_ALG0_PARAMB00_ADDR;
+    sigma_address[2] = MOD_POSTGAIN_PO_PRESENCE_ALG0_PARAMA00_ADDR;
+    
+    sigma_data[0] = B1;
+    sigma_data[1] = B0;
+    sigma_data[2] = A1;
+    
+    adau1701_write_multi(3, sigma_address, sigma_data);
+    
+    // Again, for the second presence filter
+    sigma_address[0] = MOD_POSTGAIN_PO_PRESENCE2_ALG0_PARAMB10_ADDR;
+    sigma_address[1] = MOD_POSTGAIN_PO_PRESENCE2_ALG0_PARAMB00_ADDR;
+    sigma_address[2] = MOD_POSTGAIN_PO_PRESENCE2_ALG0_PARAMA00_ADDR;
+    
+    
+    adau1701_write_multi(3, sigma_address, sigma_data);
+}
