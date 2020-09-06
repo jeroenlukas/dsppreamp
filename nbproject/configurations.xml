@@ -12,6 +12,7 @@
         <itemPath>cd4052.h</itemPath>
         <itemPath>24aa64.h</itemPath>
         <itemPath>74hc165.h</itemPath>
+        <itemPath>front.h</itemPath>
       </logicalFolder>
       <logicalFolder name="MCC Generated Files"
                      displayName="MCC Generated Files"
@@ -56,6 +57,7 @@
         <itemPath>cd4052.c</itemPath>
         <itemPath>24aa64.c</itemPath>
         <itemPath>74hc165.c</itemPath>
+        <itemPath>front.c</itemPath>
       </logicalFolder>
       <logicalFolder name="MCC Generated Files"
                      displayName="MCC Generated Files"

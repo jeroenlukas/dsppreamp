@@ -158,7 +158,7 @@ void pccomm_parse_command(void)
             }
             break;
         case COMMAND_SET_MODEL_VALUE:
-            if(received_command.payload[0] = 0xFF) // Current model
+            if(received_command.payload[0] == 0xFF) // Current model
             {
                 switch(received_command.payload[1])
                 {
@@ -177,11 +177,20 @@ void pccomm_parse_command(void)
                     case COMM_MODEL_DSPDISTORTION_VOLUME:
                         model_current_set_dspdistortion_volume(received_command.payload[2]);
                         break;
+                    case COMM_MODEL_DSPDISTORTION_ASYMMETRY:
+                        model_current_set_dspdistortion_asymmetry((double)received_command.payload[2] / 100);
+                        break;
                     case COMM_MODEL_ANALOG_BYPASS:
                         model_current_set_analog_bypass(received_command.payload[2]);
                         break;
                     case COMM_MODEL_PREGAIN_LOWCUT:
                         model_current_set_pregain_lowcut((received_command.payload[2] << 8) + received_command.payload[3]);
+                        break;
+                    case COMM_MODEL_POSTGAIN_MID_Q:                        
+                        model_current_set_postgain_mid_Q((double)received_command.payload[2] / 10); // range 0.1-25.5
+                        break;
+                    case COMM_MODEL_POSTGAIN_MID_FREQ:
+                        model_current_set_postgain_mid_freq((received_command.payload[2] << 8) + received_command.payload[3]);
                         break;
                 }
             }

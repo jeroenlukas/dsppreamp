@@ -53,6 +53,8 @@ typedef struct model
     
     int8_t post_mid_gain_min;
     int8_t post_mid_gain_max;
+    double post_mid_Q;
+    int16_t post_mid_freq;
     
     int8_t post_high_gain_min;
     int8_t post_high_gain_max;
@@ -75,6 +77,10 @@ void model_current_set_dspdistortion_alpha(uint8_t alpha);
 void model_current_set_dspdistortion_gain(uint8_t gain_db);
 void model_current_set_dspdistortion_volume(uint8_t gain_db);
 void model_current_set_analog_bypass(uint8_t bypass);
+void model_current_set_dspdistortion_asymmetry(double asymm);
+void model_current_set_postgain_mid_Q(double Q);
+void model_current_set_postgain_mid_freq(int16_t freq);
+void model_current_set_postgain_mid_boost(int16_t boost);
 
 //model_t models[10];
 

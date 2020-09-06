@@ -120,8 +120,8 @@ void SYSTEM_Initialize(void)
     OSCILLATOR_Initialize();
     I2C1_Initialize();
     ADCC_Initialize();
-    CLKREF_Initialize();
     PWM3_Initialize();
+    CLKREF_Initialize();
     TMR0_Initialize();
     EUSART1_Initialize();
     EUSART2_Initialize();

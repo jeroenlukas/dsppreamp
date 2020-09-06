@@ -20,7 +20,7 @@
 #include "sigma/DSPPreamp_IC_1_PARAM.h"
 #include <math.h>
 
-patch_t current_patch;
+
 
 //
 char strbuf[20];
@@ -30,6 +30,8 @@ void patch_load(uint8_t patch_no)
     current_patch.model_id = 3;
     current_patch.model = model_read_model_from_eeprom(current_patch.model_id);    
     
+    // Load some dummy values. Should be read from eeprom in future
+    
     current_patch.model.pre_cutoff_freq = 80;
     current_patch.model.post_low_gain_min = -10;
     current_patch.model.post_low_gain_max = 15;
@@ -37,17 +39,17 @@ void patch_load(uint8_t patch_no)
     current_patch.model.post_high_gain_max = 15;
     current_patch.model.post_presence_freq_min = 2000;
     current_patch.model.post_presence_freq_max = 10000;
+    current_patch.model.post_mid_Q = 1;
+    current_patch.model.post_mid_freq = 400;
+    current_patch.model.post_mid_gain_min = -10;
+    current_patch.model.post_mid_gain_max  = 10;
     
+    current_patch.gain = 50;
+    current_patch.low = 60;
+    current_patch.mid = 50;
+    current_patch.high = 50;
+    current_patch.presence = 60;
     
-    //current_patch.gain = 50; // read all this from eeprom
-    
-    //current_patch.low = 2;
-    
-    
-    // Load model first
-    
-    
-    //memcpy(&current_patch.model, &model, sizeof(model_t));
     
 }
 
@@ -164,7 +166,10 @@ void patch_current_set_low(uint8_t value)
     adau1701_write_multi(5, sigma_address, sigma_data);
 }
 
-
+patch_t patch_get_current(void)
+{
+    return current_patch;
+}
 
 void patch_current_set_high(uint8_t value)
 {    
@@ -301,7 +306,7 @@ void patch_current_set_mid(uint8_t value)
 {    
      current_patch.mid = value;
     
-    uint32_t scaled_value;
+    int16_t scaled_value;
     scaled_value = patch_scale_value(current_patch.model.post_mid_gain_min, current_patch.model.post_mid_gain_max, value);
     
     // Update bar
@@ -323,7 +328,7 @@ void patch_current_set_mid(uint8_t value)
     LCD_Write_Str_Padded_Right(strbuf, 3);
     
     // Calculate coeffs here
-    adau1701_write(666, scaled_value);
+    model_current_set_postgain_mid_boost(scaled_value);
 }
 
 void patch_current_set_presence(uint8_t value)

@@ -19,10 +19,10 @@ uint32_t sn74hc165_read(void)
     front_SCK_SetLow();
 	//P_SI_PL = LOW;
     front_LOAD_SetLow();
-	__delay_us(5);
+	__delay_us(1);
 	//P_SI_PL = HIGH;	
     front_LOAD_SetHigh();
-	__delay_us(5);
+	__delay_us(1);
 
 	//if(P_SI_Q7) shift_input++;
     if(front_MISO_GetValue()) shift_input++;
@@ -35,7 +35,8 @@ uint32_t sn74hc165_read(void)
 		if(front_MISO_GetValue()) shift_input++;
 		if(i < 8 * 3) shift_input = shift_input << 1;
 		front_SCK_SetLow();
-		__delay_us(5);
+		//__delay_us(1);
+        _delay(1);
 	}
 	return shift_input;
 }

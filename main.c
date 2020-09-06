@@ -12,24 +12,21 @@
 #include "config.h"
 #include "mcc_generated_files/mcc.h"
 #include "lcd_pcf8574.h"
-#include "74hc165.h"
 #include "i2c_simplifier.h"
 #include "patches.h"
 #include "misc_func.h"
 #include "pccomm.h"
+#include "front.h"
 
 
 
 
 /* Flags */
 volatile bool fTimer0 = false;
-volatile bool f_front_event = false;
-volatile bool f_front_btn_models_pressed = false;
-volatile bool f_front_btn_system_pressed = false;
-volatile bool f_front_btn_next_pressed = false;
+
 volatile bool f_tmr_slow = false;
 
-volatile uint32_t shift_register_data;
+
 volatile char strbuff[32];
 
 volatile uint8_t tmr_slow = 0;
@@ -62,9 +59,7 @@ B2 = (1-(alpha*Ax))*gainlinear;
 // Took about 6.7 ms
  * */
 
-bool prev_btn_models = true;
-bool prev_btn_system = true;
-bool prev_btn_next = true;
+
 
 void main(void) 
 {    
@@ -129,9 +124,6 @@ void main(void)
         {
             f_front_event = false;
             // ..
-            LCD_SetCursor(0,3);
-            uitoa((uint16_t)shift_register_data , strbuff);
-            LCD_Write_Str(strbuff);
         }
         
       
@@ -151,6 +143,72 @@ void main(void)
             
             // test
             //EUSART2_Write('H');
+        }
+        
+        if(f_rot_enc_gain_up)
+        {
+            f_rot_enc_gain_up = false;
+            patch_current_set_gain(current_patch.gain + 2);
+        }
+        if(f_rot_enc_gain_down)
+        {
+            f_rot_enc_gain_down = false;
+            patch_current_set_gain(current_patch.gain - 2);
+        }
+        
+        if(f_rot_enc_low_up)
+        {
+            f_rot_enc_low_up = false;
+            patch_current_set_low(current_patch.low + 2);
+        }
+        if(f_rot_enc_low_down)
+        {
+            f_rot_enc_low_down = false;
+            patch_current_set_low(current_patch.low - 2);
+        }
+        
+        if(f_rot_enc_mid_up)
+        {
+            f_rot_enc_mid_up = false;
+            patch_current_set_mid(current_patch.mid + 2);
+        }
+        if(f_rot_enc_mid_down)
+        {
+            f_rot_enc_mid_down = false;
+            patch_current_set_mid(current_patch.mid - 2);
+        }
+        
+        if(f_rot_enc_high_up)
+        {
+            f_rot_enc_high_up = false;
+            patch_current_set_high(current_patch.high + 2);
+        }
+        if(f_rot_enc_high_down)
+        {
+            f_rot_enc_high_down = false;
+            patch_current_set_high(current_patch.high - 2);
+        }
+        
+        if(f_rot_enc_pres_up)
+        {
+            f_rot_enc_pres_up = false;
+            patch_current_set_presence(current_patch.presence + 2);
+        }
+        if(f_rot_enc_pres_down)
+        {
+            f_rot_enc_pres_down = false;
+            patch_current_set_presence(current_patch.presence - 2);
+        }
+        
+        if(f_rot_enc_vol_up)
+        {
+            f_rot_enc_vol_up = false;
+            patch_current_set_volume(current_patch.volume + 2);
+        }
+        if(f_rot_enc_vol_down)
+        {
+            f_rot_enc_vol_down = false;
+            patch_current_set_volume(current_patch.volume - 2);
         }
         
         if(f_front_btn_models_pressed)
@@ -205,33 +263,11 @@ void Tmr0Interrupt(void)
     //IO_LED1_Toggle();
     fTimer0 = true;
     
-    front_led_store_SetHigh();
+    //front_led_store_SetHigh();
     
     // Readout shift registers on front panel
-    shift_register_data = sn74hc165_read();
-    if(shift_register_data != 0xFFFFFF)
-    {
-        f_front_event = true;
-    }  
-    
-    
-    // Poll buttons (models, system and next )
-    if(front_btn_models_GetValue() < prev_btn_models)
-    {
-        f_front_btn_models_pressed = true;        
-    }
-    if(front_btn_system_GetValue() < prev_btn_system)
-    {
-        f_front_btn_system_pressed = true;        
-    }
-    if(front_btn_next_GetValue() < prev_btn_next)
-    {
-        f_front_btn_next_pressed = true;        
-    }
-    
-    prev_btn_models = front_btn_models_GetValue();
-    prev_btn_system = front_btn_system_GetValue();
-    prev_btn_next = front_btn_next_GetValue();
+    front_check_buttons();
+
     
     front_led_store_SetLow();
     
