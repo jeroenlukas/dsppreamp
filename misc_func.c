@@ -10,6 +10,18 @@
 #include <stdint.h>
 #include "mcc_generated_files/mcc.h"
 
+uint32_t millis_since_startup;
+
+uint32_t millis(void)
+{
+    return millis_since_startup;
+}
+
+void millis_inc(void)
+{
+    millis_since_startup++;
+}
+
 void uitoa(uint16_t Value, char * Buffer)
 {
  	uint8_t i;

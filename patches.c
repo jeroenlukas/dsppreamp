@@ -50,6 +50,12 @@ void patch_load(uint8_t patch_no)
     current_patch.high = 50;
     current_patch.presence = 60;
     
+    patch_current_set_gain(current_patch.gain);
+    patch_current_set_low(current_patch.low);
+    patch_current_set_mid(current_patch.mid);
+    patch_current_set_high(current_patch.high);
+    patch_current_set_presence(current_patch.presence);
+    
     
 }
 
@@ -66,6 +72,10 @@ int16_t patch_scale_value(int16_t min, int16_t max, int16_t perc)
 
 void patch_current_set_gain(uint8_t value)
 {
+    if(value > 100)
+    {
+        value = 100;
+    }
     current_patch.gain = value;
     
     uint32_t scaled_value = patch_scale_value(current_patch.model.gain_min, current_patch.model.gain_max, value);
@@ -95,6 +105,10 @@ void patch_current_set_gain(uint8_t value)
 
 void patch_current_set_low(uint8_t value)
 {    
+    if(value > 100)
+    {
+        value = 100;
+    }
     current_patch.low = value;
     
     int16_t scaled_value;
@@ -172,7 +186,11 @@ patch_t patch_get_current(void)
 }
 
 void patch_current_set_high(uint8_t value)
-{    
+{   
+    if(value > 100)
+    {
+        value = 100;
+    }
     current_patch.high = value;
     
     int16_t scaled_value;    
@@ -274,6 +292,10 @@ void patch_current_set_high(uint8_t value)
 
 void patch_current_set_volume(uint8_t value)
 {    
+    if(value > 100)
+    {
+        value = 100;
+    }
     current_patch.volume = value;
     
     float scaled_value;
@@ -304,6 +326,10 @@ void patch_current_set_volume(uint8_t value)
 
 void patch_current_set_mid(uint8_t value)
 {    
+    if(value > 100)
+    {
+        value = 100;
+    }
      current_patch.mid = value;
     
     int16_t scaled_value;
@@ -333,6 +359,10 @@ void patch_current_set_mid(uint8_t value)
 
 void patch_current_set_presence(uint8_t value)
 {    
+    if(value > 100)
+    {
+        value = 100;
+    }
     current_patch.presence = value;
     
     int16_t scaled_value;    

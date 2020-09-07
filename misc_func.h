@@ -35,6 +35,8 @@
 #include <stdint.h>
 
 void uitoa(uint16_t Value, char * Buffer);
+uint32_t millis(void);
+void millis_inc(void);
 
 // TODO Insert appropriate #include <>
 

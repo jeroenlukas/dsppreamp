@@ -8,10 +8,12 @@
 
 #include <xc.h>
 #include "mcc_generated_files/mcc.h"
+#include "config.h"
 #include "74hc165.h"
 #include "stdbool.h"
 #include "front.h"
 #include "pccomm.h"
+#include "misc_func.h"
 
 #define RE_GAIN     0   
 #define RE_LOW      1
@@ -23,6 +25,10 @@
 
 #define RE_UP       1
 #define RE_DOWN     2
+
+#define RE_SLOW     1
+#define RE_FAST     2
+
 
 /* Rotary encoder */
 typedef struct rotary_encoder {
@@ -37,9 +43,9 @@ bool prev_btn_models = true;
 bool prev_btn_system = true;
 bool prev_btn_next = true;
 
+uint32_t last_rot_enc_timestamp = 0;
 
-
-
+uint8_t rot_enc_speed = RE_SLOW;
 
 
 volatile uint32_t shift_register_data = 0;
@@ -196,9 +202,21 @@ uint8_t process_rotary_encoder(uint8_t encoder)
     rot_enc[encoder].prev_rot_enc = a;
 #endif
 
+    if(ret > 0)
+    {
+        if(millis() - last_rot_enc_timestamp < ROT_ENC_FAST_THRESHOLD)
+        {
+            rot_enc_speed = RE_FAST;
+        }
+        else rot_enc_speed = RE_SLOW;
+ 
+        last_rot_enc_timestamp = millis();
+    }
     
     return ret;
 }
+
+
 
 void front_check_buttons(void)
 {
@@ -308,4 +326,13 @@ void front_check_buttons(void)
     prev_btn_models = front_btn_models_GetValue();
     prev_btn_system = front_btn_system_GetValue();
     prev_btn_next = front_btn_next_GetValue();
+}
+
+uint8_t front_rot_enc_increment(void)
+{
+    if(rot_enc_speed == RE_SLOW)
+    {
+        return ROT_ENC_INCREMENT_SLOW;
+    }
+    else return ROT_ENC_INCREMENT_FAST;
 }

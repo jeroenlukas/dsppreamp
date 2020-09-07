@@ -137,78 +137,72 @@ void main(void)
         if(f_tmr_slow)
         {
             f_tmr_slow = false;
-            //test_gain += 1;
-            //if(test_gain > 100) test_gain = 1;
-            //patch_current_set_gain(test_gain);
-            
-            // test
-            //EUSART2_Write('H');
         }
         
         if(f_rot_enc_gain_up)
         {
             f_rot_enc_gain_up = false;
-            patch_current_set_gain(current_patch.gain + 2);
+            patch_current_set_gain(current_patch.gain + front_rot_enc_increment());
         }
         if(f_rot_enc_gain_down)
         {
             f_rot_enc_gain_down = false;
-            patch_current_set_gain(current_patch.gain - 2);
+            patch_current_set_gain(current_patch.gain - front_rot_enc_increment());
         }
         
         if(f_rot_enc_low_up)
         {
             f_rot_enc_low_up = false;
-            patch_current_set_low(current_patch.low + 2);
+            patch_current_set_low(current_patch.low + front_rot_enc_increment());
         }
         if(f_rot_enc_low_down)
         {
             f_rot_enc_low_down = false;
-            patch_current_set_low(current_patch.low - 2);
+            patch_current_set_low(current_patch.low - front_rot_enc_increment());
         }
         
         if(f_rot_enc_mid_up)
         {
             f_rot_enc_mid_up = false;
-            patch_current_set_mid(current_patch.mid + 2);
+            patch_current_set_mid(current_patch.mid + front_rot_enc_increment());
         }
         if(f_rot_enc_mid_down)
         {
             f_rot_enc_mid_down = false;
-            patch_current_set_mid(current_patch.mid - 2);
+            patch_current_set_mid(current_patch.mid - front_rot_enc_increment());
         }
         
         if(f_rot_enc_high_up)
         {
             f_rot_enc_high_up = false;
-            patch_current_set_high(current_patch.high + 2);
+            patch_current_set_high(current_patch.high + front_rot_enc_increment());
         }
         if(f_rot_enc_high_down)
         {
             f_rot_enc_high_down = false;
-            patch_current_set_high(current_patch.high - 2);
+            patch_current_set_high(current_patch.high - front_rot_enc_increment());
         }
         
         if(f_rot_enc_pres_up)
         {
             f_rot_enc_pres_up = false;
-            patch_current_set_presence(current_patch.presence + 2);
+            patch_current_set_presence(current_patch.presence + front_rot_enc_increment());
         }
         if(f_rot_enc_pres_down)
         {
             f_rot_enc_pres_down = false;
-            patch_current_set_presence(current_patch.presence - 2);
+            patch_current_set_presence(current_patch.presence - front_rot_enc_increment());
         }
         
         if(f_rot_enc_vol_up)
         {
             f_rot_enc_vol_up = false;
-            patch_current_set_volume(current_patch.volume + 2);
+            patch_current_set_volume(current_patch.volume + front_rot_enc_increment());
         }
         if(f_rot_enc_vol_down)
         {
             f_rot_enc_vol_down = false;
-            patch_current_set_volume(current_patch.volume - 2);
+            patch_current_set_volume(current_patch.volume - front_rot_enc_increment());
         }
         
         if(f_front_btn_models_pressed)
@@ -246,12 +240,8 @@ void main(void)
         
         if(eusart2RxCount > 0)
         {
-            pccomm_byte_received(EUSART2_Read());
             // USB data
-            //pccomm_byte_received(EUSART2_Read());
-            //LCD_SetCursor(0, 2);
-            //LCD_Write_Str("Comm:");
-            //LCD_Write_Char(EUSART2_Read());            
+            pccomm_byte_received(EUSART2_Read());                        
         }
 
     }
@@ -270,6 +260,9 @@ void Tmr0Interrupt(void)
 
     
     front_led_store_SetLow();
+    
+    // Increase millisecond timer
+    millis_inc();
     
     // slow timer
     tmr_slow++;

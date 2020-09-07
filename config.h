@@ -9,6 +9,11 @@
 #define I2C_ADDRESS_EEPROM_READ         0xA1// last bit is R(1) or W(0)
 #define I2C_ADDRESS_LCD                 0x4E // (0x27<<1)  
 
+// Rotary encoder
+#define ROT_ENC_FAST_THRESHOLD  150 // ms
+#define ROT_ENC_INCREMENT_SLOW  1
+#define ROT_ENC_INCREMENT_FAST  5
+
 // EEPROM model map
 #define EEPROM_SYSTEM_SIZE  255
 #define EEPROM_MODEL_SIZE   30 

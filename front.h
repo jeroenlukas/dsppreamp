@@ -56,6 +56,8 @@ bool f_rot_enc_value_down = false;
 
 void front_check_buttons(void);
 
+uint8_t front_rot_enc_increment(void);
+
 
 
 #endif	/* XC_HEADER_TEMPLATE_H */
