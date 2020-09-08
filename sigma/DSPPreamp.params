@@ -1,51 +1,6 @@
-Cell Name         = PostGain.NFilter1_2
-Parameter Name    = NthOrderDouble20B1
-Parameter Address = 35
-Parameter Value   = 1
-Parameter Data :
-0x00 ,	0x80 ,	0x00 ,	0x00 ,	
-
-
-
-Cell Name         = PostGain.NFilter1_2
-Parameter Name    = NthOrderDouble21B1
-Parameter Address = 36
-Parameter Value   = 0
-Parameter Data :
-0x00 ,	0x00 ,	0x00 ,	0x00 ,	
-
-
-
-Cell Name         = PostGain.NFilter1_2
-Parameter Name    = NthOrderDouble22B1
-Parameter Address = 37
-Parameter Value   = 0
-Parameter Data :
-0x00 ,	0x00 ,	0x00 ,	0x00 ,	
-
-
-
-Cell Name         = PostGain.NFilter1_2
-Parameter Name    = NthOrderDouble21A1
-Parameter Address = 38
-Parameter Value   = 0
-Parameter Data :
-0x00 ,	0x00 ,	0x00 ,	0x00 ,	
-
-
-
-Cell Name         = PostGain.NFilter1_2
-Parameter Name    = NthOrderDouble22A1
-Parameter Address = 39
-Parameter Value   = 0
-Parameter Data :
-0x00 ,	0x00 ,	0x00 ,	0x00 ,	
-
-
-
 Cell Name         = PostGain.MID1
 Parameter Name    = EQ1940Single20B1
-Parameter Address = 50
+Parameter Address = 36
 Parameter Value   = 0.985842704772949
 Parameter Data :
 0x00 ,	0x7E ,	0x30 ,	0x18 ,	
@@ -54,7 +9,7 @@ Parameter Data :
 
 Cell Name         = PostGain.MID1
 Parameter Name    = EQ1940Single21B1
-Parameter Address = 51
+Parameter Address = 37
 Parameter Value   = -1.93065881729126
 Parameter Data :
 0x0F ,	0x08 ,	0xE0 ,	0x2C ,	
@@ -63,7 +18,7 @@ Parameter Data :
 
 Cell Name         = PostGain.MID1
 Parameter Name    = EQ1940Single22B1
-Parameter Address = 52
+Parameter Address = 38
 Parameter Value   = 0.947465658187866
 Parameter Data :
 0x00 ,	0x79 ,	0x46 ,	0x8E ,	
@@ -72,7 +27,7 @@ Parameter Data :
 
 Cell Name         = PostGain.MID1
 Parameter Name    = EQ1940Single21A1
-Parameter Address = 53
+Parameter Address = 39
 Parameter Value   = 1.93065881729126
 Parameter Data :
 0x00 ,	0xF7 ,	0x1F ,	0xD4 ,	
@@ -81,7 +36,7 @@ Parameter Data :
 
 Cell Name         = PostGain.MID1
 Parameter Name    = EQ1940Single22A1
-Parameter Address = 54
+Parameter Address = 40
 Parameter Value   = -0.933308362960815
 Parameter Data :
 0x0F ,	0x88 ,	0x89 ,	0x5A ,	
@@ -90,7 +45,7 @@ Parameter Data :
 
 Cell Name         = PostGain.MID2
 Parameter Name    = EQ1940Single30B1
-Parameter Address = 55
+Parameter Address = 41
 Parameter Value   = 0.991780519485474
 Parameter Data :
 0x00 ,	0x7E ,	0xF2 ,	0xAA ,	
@@ -99,7 +54,7 @@ Parameter Data :
 
 Cell Name         = PostGain.MID2
 Parameter Name    = EQ1940Single31B1
-Parameter Address = 56
+Parameter Address = 42
 Parameter Value   = -1.93768548965454
 Parameter Data :
 0x0F ,	0x07 ,	0xF9 ,	0xEC ,	
@@ -108,7 +63,7 @@ Parameter Data :
 
 Cell Name         = PostGain.MID2
 Parameter Name    = EQ1940Single32B1
-Parameter Address = 57
+Parameter Address = 43
 Parameter Value   = 0.948564171791077
 Parameter Data :
 0x00 ,	0x79 ,	0x6A ,	0x8D ,	
@@ -117,7 +72,7 @@ Parameter Data :
 
 Cell Name         = PostGain.MID2
 Parameter Name    = EQ1940Single31A1
-Parameter Address = 58
+Parameter Address = 44
 Parameter Value   = 1.93768548965454
 Parameter Data :
 0x00 ,	0xF8 ,	0x06 ,	0x14 ,	
@@ -126,151 +81,16 @@ Parameter Data :
 
 Cell Name         = PostGain.MID2
 Parameter Name    = EQ1940Single32A1
-Parameter Address = 59
+Parameter Address = 45
 Parameter Value   = -0.94034469127655
 Parameter Data :
 0x0F ,	0x87 ,	0xA2 ,	0xC9 ,	
 
 
 
-Cell Name         = PostGain.PO_LOW
-Parameter Name    = EQ1940SingleS10B1
-Parameter Address = 45
-Parameter Value   = 1
-Parameter Data :
-0x00 ,	0x80 ,	0x00 ,	0x00 ,	
-
-
-
-Cell Name         = PostGain.PO_LOW
-Parameter Name    = EQ1940SingleS11B1
-Parameter Address = 46
-Parameter Value   = 0
-Parameter Data :
-0x00 ,	0x00 ,	0x00 ,	0x00 ,	
-
-
-
-Cell Name         = PostGain.PO_LOW
-Parameter Name    = EQ1940SingleS12B1
-Parameter Address = 47
-Parameter Value   = 0
-Parameter Data :
-0x00 ,	0x00 ,	0x00 ,	0x00 ,	
-
-
-
-Cell Name         = PostGain.PO_LOW
-Parameter Name    = EQ1940SingleS11A1
-Parameter Address = 48
-Parameter Value   = 0
-Parameter Data :
-0x00 ,	0x00 ,	0x00 ,	0x00 ,	
-
-
-
-Cell Name         = PostGain.PO_LOW
-Parameter Name    = EQ1940SingleS12A1
-Parameter Address = 49
-Parameter Value   = 0
-Parameter Data :
-0x00 ,	0x00 ,	0x00 ,	0x00 ,	
-
-
-
-Cell Name         = PostGain.PO_HIGH
-Parameter Name    = EQ1940SingleS20B1
-Parameter Address = 60
-Parameter Value   = 1
-Parameter Data :
-0x00 ,	0x80 ,	0x00 ,	0x00 ,	
-
-
-
-Cell Name         = PostGain.PO_HIGH
-Parameter Name    = EQ1940SingleS21B1
-Parameter Address = 61
-Parameter Value   = 0
-Parameter Data :
-0x00 ,	0x00 ,	0x00 ,	0x00 ,	
-
-
-
-Cell Name         = PostGain.PO_HIGH
-Parameter Name    = EQ1940SingleS22B1
-Parameter Address = 62
-Parameter Value   = 0
-Parameter Data :
-0x00 ,	0x00 ,	0x00 ,	0x00 ,	
-
-
-
-Cell Name         = PostGain.PO_HIGH
-Parameter Name    = EQ1940SingleS21A1
-Parameter Address = 63
-Parameter Value   = 0
-Parameter Data :
-0x00 ,	0x00 ,	0x00 ,	0x00 ,	
-
-
-
-Cell Name         = PostGain.PO_HIGH
-Parameter Name    = EQ1940SingleS22A1
-Parameter Address = 64
-Parameter Value   = 0
-Parameter Data :
-0x00 ,	0x00 ,	0x00 ,	0x00 ,	
-
-
-
-Cell Name         = PostGain.Gen Filter2
-Parameter Name    = EQ1940SingleS30B1
-Parameter Address = 40
-Parameter Value   = 0.994819521903992
-Parameter Data :
-0x00 ,	0x7F ,	0x56 ,	0x3F ,	
-
-
-
-Cell Name         = PostGain.Gen Filter2
-Parameter Name    = EQ1940SingleS31B1
-Parameter Address = 41
-Parameter Value   = -1.98963916301727
-Parameter Data :
-0x0F ,	0x01 ,	0x53 ,	0x81 ,	
-
-
-
-Cell Name         = PostGain.Gen Filter2
-Parameter Name    = EQ1940SingleS32B1
-Parameter Address = 42
-Parameter Value   = 0.994819521903992
-Parameter Data :
-0x00 ,	0x7F ,	0x56 ,	0x3F ,	
-
-
-
-Cell Name         = PostGain.Gen Filter2
-Parameter Name    = EQ1940SingleS31A1
-Parameter Address = 43
-Parameter Value   = 1.98962569236755
-Parameter Data :
-0x00 ,	0xFE ,	0xAC ,	0x0E ,	
-
-
-
-Cell Name         = PostGain.Gen Filter2
-Parameter Name    = EQ1940SingleS32A1
-Parameter Address = 44
-Parameter Value   = -0.989652633666992
-Parameter Data :
-0x0F ,	0x81 ,	0x53 ,	0x10 ,	
-
-
-
 Cell Name         = PostGain.PO_TONECONTROL
 Parameter Name    = EQ1940SingleS40B1
-Parameter Address = 65
+Parameter Address = 46
 Parameter Value   = -1.32835578918457
 Parameter Data :
 0x0F ,	0x55 ,	0xF8 ,	0x70 ,	
@@ -279,7 +99,7 @@ Parameter Data :
 
 Cell Name         = PostGain.PO_TONECONTROL
 Parameter Name    = EQ1940SingleS41B1
-Parameter Address = 66
+Parameter Address = 47
 Parameter Value   = 2.67426550388336
 Parameter Data :
 0x01 ,	0x56 ,	0x4E ,	0x55 ,	
@@ -288,7 +108,7 @@ Parameter Data :
 
 Cell Name         = PostGain.PO_TONECONTROL
 Parameter Name    = EQ1940SingleS42B1
-Parameter Address = 67
+Parameter Address = 48
 Parameter Value   = -1.34259974956512
 Parameter Data :
 0x0F ,	0x54 ,	0x25 ,	0xB1 ,	
@@ -297,7 +117,7 @@ Parameter Data :
 
 Cell Name         = PostGain.PO_TONECONTROL
 Parameter Name    = EQ1940SingleS41A1
-Parameter Address = 68
+Parameter Address = 49
 Parameter Value   = 1.89058840274811
 Parameter Data :
 0x00 ,	0xF1 ,	0xFE ,	0xCD ,	
@@ -306,7 +126,7 @@ Parameter Data :
 
 Cell Name         = PostGain.PO_TONECONTROL
 Parameter Name    = EQ1940SingleS42A1
-Parameter Address = 69
+Parameter Address = 50
 Parameter Value   = -0.893538355827332
 Parameter Data :
 0x0F ,	0x8D ,	0xA0 ,	0x89 ,	
@@ -315,7 +135,7 @@ Parameter Data :
 
 Cell Name         = PostGain.PO_BYPASS
 Parameter Name    = monomux1940ns3_0
-Parameter Address = 76
+Parameter Address = 57
 Parameter Value   = 1
 Parameter Data :
 0x00, 0x80, 0x00, 0x00, 
@@ -324,7 +144,7 @@ Parameter Data :
 
 Cell Name         = PostGain.PO_BYPASS
 Parameter Name    = monomux1940ns3_1
-Parameter Address = 77
+Parameter Address = 58
 Parameter Value   = 0
 Parameter Data :
 0x00, 0x00, 0x00, 0x00, 
@@ -333,7 +153,7 @@ Parameter Data :
 
 Cell Name         = PostGain.PO_PRESENCE
 Parameter Name    = FistOrderSingle101
-Parameter Address = 70
+Parameter Address = 51
 Parameter Value   = 0.477996945381165
 Parameter Data :
 0x00 ,	0x3D ,	0x2F ,	0x01 ,	
@@ -342,7 +162,7 @@ Parameter Data :
 
 Cell Name         = PostGain.PO_PRESENCE
 Parameter Name    = FistOrderSingle111
-Parameter Address = 71
+Parameter Address = 52
 Parameter Value   = 0
 Parameter Data :
 0x00 ,	0x00 ,	0x00 ,	0x00 ,	
@@ -351,7 +171,7 @@ Parameter Data :
 
 Cell Name         = PostGain.PO_PRESENCE
 Parameter Name    = FistOrderSingle121
-Parameter Address = 72
+Parameter Address = 53
 Parameter Value   = 0.522003054618835
 Parameter Data :
 0x00 ,	0x42 ,	0xD0 ,	0xFF ,	
@@ -360,7 +180,7 @@ Parameter Data :
 
 Cell Name         = PostGain.PO_PRESENCE2
 Parameter Name    = FistOrderSingle201
-Parameter Address = 73
+Parameter Address = 54
 Parameter Value   = 0.477996945381165
 Parameter Data :
 0x00 ,	0x3D ,	0x2F ,	0x01 ,	
@@ -369,7 +189,7 @@ Parameter Data :
 
 Cell Name         = PostGain.PO_PRESENCE2
 Parameter Name    = FistOrderSingle211
-Parameter Address = 74
+Parameter Address = 55
 Parameter Value   = 0
 Parameter Data :
 0x00 ,	0x00 ,	0x00 ,	0x00 ,	
@@ -378,7 +198,7 @@ Parameter Data :
 
 Cell Name         = PostGain.PO_PRESENCE2
 Parameter Name    = FistOrderSingle221
-Parameter Address = 75
+Parameter Address = 56
 Parameter Value   = 0.522003054618835
 Parameter Data :
 0x00 ,	0x42 ,	0xD0 ,	0xFF ,	
@@ -387,15 +207,6 @@ Parameter Data :
 
 Cell Name         = DSPDistortion.SoftClip1
 Parameter Name    = SoftClipAlgG21alpha
-Parameter Address = 25
-Parameter Value   = 1
-Parameter Data :
-0x00, 0x80, 0x00, 0x00, 
-
-
-
-Cell Name         = DSPDistortion.SoftClip1
-Parameter Name    = SoftClipAlgG21alpham1
 Parameter Address = 26
 Parameter Value   = 1
 Parameter Data :
@@ -404,8 +215,17 @@ Parameter Data :
 
 
 Cell Name         = DSPDistortion.SoftClip1
-Parameter Name    = SoftClipAlgG21onethird
+Parameter Name    = SoftClipAlgG21alpham1
 Parameter Address = 27
+Parameter Value   = 1
+Parameter Data :
+0x00, 0x80, 0x00, 0x00, 
+
+
+
+Cell Name         = DSPDistortion.SoftClip1
+Parameter Name    = SoftClipAlgG21onethird
+Parameter Address = 28
 Parameter Value   = 0.333333373069763
 Parameter Data :
 0x00, 0x2A, 0xAA, 0xAB, 
@@ -414,7 +234,7 @@ Parameter Data :
 
 Cell Name         = DSPDistortion.SoftClip1
 Parameter Name    = SoftClipAlgG21twothird
-Parameter Address = 28
+Parameter Address = 29
 Parameter Value   = 0.666666626930237
 Parameter Data :
 0x00, 0x55, 0x55, 0x55, 
@@ -432,7 +252,7 @@ Parameter Data :
 
 Cell Name         = DSPDistortion.VOLUME
 Parameter Name    = Gain1940AlgNS4
-Parameter Address = 30
+Parameter Address = 31
 Parameter Value   = 1
 Parameter Data :
 0x00, 0x80, 0x00, 0x00, 
@@ -441,7 +261,7 @@ Parameter Data :
 
 Cell Name         = DSPDistortion.BYPASS
 Parameter Name    = monoMuxSwSlew1coeffname
-Parameter Address = 31
+Parameter Address = 32
 Parameter Value   = 1
 Parameter Data :
 0x00, 0x00, 0x00, 0x01, 
@@ -460,15 +280,15 @@ Parameter Data :
 Cell Name         = DSPDistortion.ASYMMETRY
 Parameter Name    = DCInpAlg1
 Parameter Address = 0
-Parameter Value   = 0.5
+Parameter Value   = 0.100000023841858
 Parameter Data :
-0x00, 0x40, 0x00, 0x00, 
+0x00, 0x0C, 0xCC, 0xCD, 
 
 
 
 Cell Name         = DSPDistortion.NxM Mixer1
 Parameter Name    = NxNMixer1940Alg1_00_00
-Parameter Address = 23
+Parameter Address = 24
 Parameter Value   = 1
 Parameter Data :
 0x00 ,	0x80 ,	0x00 ,	0x00 ,	
@@ -477,7 +297,7 @@ Parameter Data :
 
 Cell Name         = DSPDistortion.NxM Mixer1
 Parameter Name    = NxNMixer1940Alg1_00_01
-Parameter Address = 24
+Parameter Address = 25
 Parameter Value   = 1
 Parameter Data :
 0x00 ,	0x80 ,	0x00 ,	0x00 ,	
@@ -486,10 +306,19 @@ Parameter Data :
 
 Cell Name         = DSPDistortion.DCB1
 Parameter Name    = DCBlockAlgDoublePrec1pole
-Parameter Address = 29
+Parameter Address = 30
 Parameter Value   = 0.999899983406067
 Parameter Data :
 0x00, 0x7F, 0xFC, 0xB9, 
+
+
+
+Cell Name         = DSPDistortion.GAIN3
+Parameter Name    = Gain1940AlgNS6
+Parameter Address = 23
+Parameter Value   = 1
+Parameter Data :
+0x00, 0x80, 0x00, 0x00, 
 
 
 
@@ -612,7 +441,7 @@ Parameter Data :
 
 Cell Name         = SW vol 1
 Parameter Name    = SWGain1940DBAlg1target
-Parameter Address = 32
+Parameter Address = 33
 Parameter Value   = 1
 Parameter Data :
 0x00 ,	0x80 ,	0x00 ,	0x00 ,	
@@ -621,7 +450,7 @@ Parameter Data :
 
 Cell Name         = SW vol 1
 Parameter Name    = SWGain1940DBAlg1step
-Parameter Address = 33
+Parameter Address = 34
 Parameter Value   = 0.000244140625
 Parameter Data :
 0x00 ,	0x00 ,	0x08 ,	0x00 ,	
@@ -630,7 +459,7 @@ Parameter Data :
 
 Cell Name         = PO_VOLUME
 Parameter Name    = SWGain1940DBAlg2target
-Parameter Address = 78
+Parameter Address = 59
 Parameter Value   = 0.478630065917969
 Parameter Data :
 0x00 ,	0x3D ,	0x43 ,	0xC0 ,	
@@ -639,7 +468,7 @@ Parameter Data :
 
 Cell Name         = PO_VOLUME
 Parameter Name    = SWGain1940DBAlg2step
-Parameter Address = 79
+Parameter Address = 60
 Parameter Value   = 0.000244140625
 Parameter Data :
 0x00 ,	0x00 ,	0x08 ,	0x00 ,	
@@ -711,7 +540,7 @@ Parameter Data :
 
 Cell Name         = ANALOG_BYPASS
 Parameter Name    = monoMuxSwSlew2coeffname
-Parameter Address = 34
+Parameter Address = 35
 Parameter Value   = 1
 Parameter Data :
 0x00, 0x00, 0x00, 0x01, 
@@ -720,7 +549,7 @@ Parameter Data :
 
 Parameter data for: IC 1 (Hexadecimal format starting at parameter address 0)
 See also DSPPreamp.hex file
-0x00 , 	0x40 , 	0x00 , 	0x00 , 	
+0x00 , 	0x0C , 	0xCC , 	0xCD , 	
 0x00 , 	0x80 , 	0x00 , 	0x00 , 	
 0x00 , 	0x80 , 	0x00 , 	0x00 , 	
 0x00 , 	0x80 , 	0x00 , 	0x00 , 	
@@ -747,6 +576,7 @@ See also DSPPreamp.hex file
 0x00 , 	0x80 , 	0x00 , 	0x00 , 	
 0x00 , 	0x80 , 	0x00 , 	0x00 , 	
 0x00 , 	0x80 , 	0x00 , 	0x00 , 	
+0x00 , 	0x80 , 	0x00 , 	0x00 , 	
 0x00 , 	0x2A , 	0xAA , 	0xAB , 	
 0x00 , 	0x55 , 	0x55 , 	0x55 , 	
 0x00 , 	0x7F , 	0xFC , 	0xB9 , 	
@@ -755,21 +585,6 @@ See also DSPPreamp.hex file
 0x00 , 	0x80 , 	0x00 , 	0x00 , 	
 0x00 , 	0x00 , 	0x08 , 	0x00 , 	
 0x00 , 	0x00 , 	0x00 , 	0x01 , 	
-0x00 , 	0x80 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x00 , 	
-0x00 , 	0x7F , 	0x56 , 	0x3F , 	
-0x0F , 	0x01 , 	0x53 , 	0x81 , 	
-0x00 , 	0x7F , 	0x56 , 	0x3F , 	
-0x00 , 	0xFE , 	0xAC , 	0x0E , 	
-0x0F , 	0x81 , 	0x53 , 	0x10 , 	
-0x00 , 	0x80 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x00 , 	
 0x00 , 	0x7E , 	0x30 , 	0x18 , 	
 0x0F , 	0x08 , 	0xE0 , 	0x2C , 	
 0x00 , 	0x79 , 	0x46 , 	0x8E , 	
@@ -780,11 +595,6 @@ See also DSPPreamp.hex file
 0x00 , 	0x79 , 	0x6A , 	0x8D , 	
 0x00 , 	0xF8 , 	0x06 , 	0x14 , 	
 0x0F , 	0x87 , 	0xA2 , 	0xC9 , 	
-0x00 , 	0x80 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x00 , 	
 0x0F , 	0x55 , 	0xF8 , 	0x70 , 	
 0x01 , 	0x56 , 	0x4E , 	0x55 , 	
 0x0F , 	0x54 , 	0x25 , 	0xB1 , 	
@@ -1744,9 +1554,28 @@ See also DSPPreamp.hex file
 0x00 , 	0x00 , 	0x00 , 	0x00 , 	
 0x00 , 	0x00 , 	0x00 , 	0x00 , 	
 0x00 , 	0x00 , 	0x00 , 	0x00 , 	
+0x00 , 	0x00 , 	0x00 , 	0x00 , 	
+0x00 , 	0x00 , 	0x00 , 	0x00 , 	
+0x00 , 	0x00 , 	0x00 , 	0x00 , 	
+0x00 , 	0x00 , 	0x00 , 	0x00 , 	
+0x00 , 	0x00 , 	0x00 , 	0x00 , 	
+0x00 , 	0x00 , 	0x00 , 	0x00 , 	
+0x00 , 	0x00 , 	0x00 , 	0x00 , 	
+0x00 , 	0x00 , 	0x00 , 	0x00 , 	
+0x00 , 	0x00 , 	0x00 , 	0x00 , 	
+0x00 , 	0x00 , 	0x00 , 	0x00 , 	
+0x00 , 	0x00 , 	0x00 , 	0x00 , 	
+0x00 , 	0x00 , 	0x00 , 	0x00 , 	
+0x00 , 	0x00 , 	0x00 , 	0x00 , 	
+0x00 , 	0x00 , 	0x00 , 	0x00 , 	
+0x00 , 	0x00 , 	0x00 , 	0x00 , 	
+0x00 , 	0x00 , 	0x00 , 	0x00 , 	
+0x00 , 	0x00 , 	0x00 , 	0x00 , 	
+0x00 , 	0x00 , 	0x00 , 	0x00 , 	
+0x00 , 	0x00 , 	0x00 , 	0x00 , 	
 
 Parameter data for: IC 1 (Binary format starting at parameter address 0)
-00000000	01000000	00000000	00000000	
+00000000	00001100	11001100	11001101	
 00000000	10000000	00000000	00000000	
 00000000	10000000	00000000	00000000	
 00000000	10000000	00000000	00000000	
@@ -1773,6 +1602,7 @@ Parameter data for: IC 1 (Binary format starting at parameter address 0)
 00000000	10000000	00000000	00000000	
 00000000	10000000	00000000	00000000	
 00000000	10000000	00000000	00000000	
+00000000	10000000	00000000	00000000	
 00000000	00101010	10101010	10101011	
 00000000	01010101	01010101	01010101	
 00000000	01111111	11111100	10111001	
@@ -1781,21 +1611,6 @@ Parameter data for: IC 1 (Binary format starting at parameter address 0)
 00000000	10000000	00000000	00000000	
 00000000	00000000	00001000	00000000	
 00000000	00000000	00000000	00000001	
-00000000	10000000	00000000	00000000	
-00000000	00000000	00000000	00000000	
-00000000	00000000	00000000	00000000	
-00000000	00000000	00000000	00000000	
-00000000	00000000	00000000	00000000	
-00000000	01111111	01010110	00111111	
-00001111	00000001	01010011	10000001	
-00000000	01111111	01010110	00111111	
-00000000	11111110	10101100	00001110	
-00001111	10000001	01010011	00010000	
-00000000	10000000	00000000	00000000	
-00000000	00000000	00000000	00000000	
-00000000	00000000	00000000	00000000	
-00000000	00000000	00000000	00000000	
-00000000	00000000	00000000	00000000	
 00000000	01111110	00110000	00011000	
 00001111	00001000	11100000	00101100	
 00000000	01111001	01000110	10001110	
@@ -1806,11 +1621,6 @@ Parameter data for: IC 1 (Binary format starting at parameter address 0)
 00000000	01111001	01101010	10001101	
 00000000	11111000	00000110	00010100	
 00001111	10000111	10100010	11001001	
-00000000	10000000	00000000	00000000	
-00000000	00000000	00000000	00000000	
-00000000	00000000	00000000	00000000	
-00000000	00000000	00000000	00000000	
-00000000	00000000	00000000	00000000	
 00001111	01010101	11111000	01110000	
 00000001	01010110	01001110	01010101	
 00001111	01010100	00100101	10110001	
@@ -1826,6 +1636,25 @@ Parameter data for: IC 1 (Binary format starting at parameter address 0)
 00000000	00000000	00000000	00000000	
 00000000	00111101	01000011	11000000	
 00000000	00000000	00001000	00000000	
+00000000	00000000	00000000	00000000	
+00000000	00000000	00000000	00000000	
+00000000	00000000	00000000	00000000	
+00000000	00000000	00000000	00000000	
+00000000	00000000	00000000	00000000	
+00000000	00000000	00000000	00000000	
+00000000	00000000	00000000	00000000	
+00000000	00000000	00000000	00000000	
+00000000	00000000	00000000	00000000	
+00000000	00000000	00000000	00000000	
+00000000	00000000	00000000	00000000	
+00000000	00000000	00000000	00000000	
+00000000	00000000	00000000	00000000	
+00000000	00000000	00000000	00000000	
+00000000	00000000	00000000	00000000	
+00000000	00000000	00000000	00000000	
+00000000	00000000	00000000	00000000	
+00000000	00000000	00000000	00000000	
+00000000	00000000	00000000	00000000	
 00000000	00000000	00000000	00000000	
 00000000	00000000	00000000	00000000	
 00000000	00000000	00000000	00000000	

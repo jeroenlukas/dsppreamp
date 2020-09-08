@@ -50,7 +50,9 @@ typedef struct frames
 void pccomm_byte_received(uint8_t data);
 void pccomm_parse_command(void);
 uint8_t pccomm_frame_ready(void);
+
 void pccomm_log_message(char * text);
+void pccomm_set_patch_value(uint8_t property, uint8_t value);
 
 #endif	
 

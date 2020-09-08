@@ -172,7 +172,7 @@ void pccomm_parse_command(void)
                         model_current_set_dspdistortion_alpha(received_command.payload[2]);
                         break;
                     case COMM_MODEL_DSPDISTORTION_GAIN:
-                        model_current_set_dspdistortion_gain(received_command.payload[2]);
+                        model_current_set_dspdistortion_gain((double)received_command.payload[2]);
                         break;
                     case COMM_MODEL_DSPDISTORTION_VOLUME:
                         model_current_set_dspdistortion_volume(received_command.payload[2]);
@@ -210,5 +210,15 @@ void pccomm_log_message(char * text)
         transmit_command.payload[i++] = *text++;
     }
     transmit_command.payload[i] = '\0';
+    pccomm_send_command();
+}
+
+void pccomm_set_patch_value(uint8_t property, uint8_t value)
+{
+    transmit_command.command = COMMAND_SET_PATCH_VALUE;
+    transmit_command.length = 2;
+    
+    transmit_command.payload[0] = property;
+    transmit_command.payload[1] = value;
     pccomm_send_command();
 }

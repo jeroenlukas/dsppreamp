@@ -74,7 +74,7 @@ void model_current_set_pregain_lowcut(uint16_t value);
 void model_current_set_postgain_bypass(uint8_t bypass);
 void model_current_set_dspdistortion_bypass(uint8_t bypass);
 void model_current_set_dspdistortion_alpha(uint8_t alpha);
-void model_current_set_dspdistortion_gain(uint8_t gain_db);
+void model_current_set_dspdistortion_gain(double gain_db);
 void model_current_set_dspdistortion_volume(uint8_t gain_db);
 void model_current_set_analog_bypass(uint8_t bypass);
 void model_current_set_dspdistortion_asymmetry(double asymm);

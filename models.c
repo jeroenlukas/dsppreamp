@@ -208,20 +208,21 @@ void model_current_set_dspdistortion_asymmetry(double asymm)
     adau1701_write_multi(1, sigma_address, sigma_data);
 }
 
-void model_current_set_dspdistortion_gain(uint8_t gain_db)
+void model_current_set_dspdistortion_gain(double gain_db)
 {
-    // Gain in dB, 0-48 dB
-    if(gain_db > 48)
+    // Gain in dB, 0-72 dB
+    if(gain_db > 72.0)
     {
-        gain_db = 48;
+        gain_db = 72;
     }
     
-    double gain = pow(10, (double)gain_db/2 / 20);
+    double gain = pow(10, gain_db/3 / 20);
     
-    // Actually the total gain of 48 dB is spread accross two gain stages with 24 dB max gain
+    // Actually the total gain of 72 dB is spread accross 3 gain stages with 24 dB max gain
     
     adau1701_write(MOD_DSPDISTORTION_GAIN1_GAIN1940ALGNS3_ADDR, gain);    
-    adau1701_write(MOD_DSPDISTORTION_GAIN2_GAIN1940ALGNS5_ADDR, gain);    
+    adau1701_write(MOD_DSPDISTORTION_GAIN2_GAIN1940ALGNS5_ADDR, gain);  
+    adau1701_write(MOD_DSPDISTORTION_GAIN3_GAIN1940ALGNS6_ADDR, gain);
 }
 
 void model_current_set_dspdistortion_volume(uint8_t gain_db)
