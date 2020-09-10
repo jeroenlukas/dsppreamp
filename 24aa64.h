@@ -38,6 +38,9 @@ void eeprom_write_one_byte(uint16_t address, uint8_t value);
 uint8_t eeprom_read_one_byte(uint16_t address);
 uint8_t eeprom_read_model_parameter(uint8_t model_id, uint8_t parameter);
 
+void eeprom_write_multi(uint16_t data_address, uint8_t *pData, uint16_t nCount);
+uint8_t eeprom_read_multi(uint16_t address, uint8_t *pData, uint16_t nCount);
+
 
 #endif	/* XC_HEADER_TEMPLATE_H */
 

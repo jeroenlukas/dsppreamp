@@ -5,8 +5,7 @@
 #define I2C_ADDRESS_ADAU1701            0x68
 #define I2C_ADDRESS_MCP45_PRE_GAIN      0x78 //0b0111100 //0x21;//change this
 #define I2C_ADDRESS_MCP45_POST_GAIN     0x7A //0b0111101 //0x21;//change this
-#define I2C_ADDRESS_EEPROM_WRITE        0xA0// last bit is R(1) or W(0)
-#define I2C_ADDRESS_EEPROM_READ         0xA1// last bit is R(1) or W(0)
+#define I2C_ADDRESS_EEPROM              0x50 
 #define I2C_ADDRESS_LCD                 0x4E // (0x27<<1)  
 
 // Rotary encoder
@@ -17,7 +16,7 @@
 // EEPROM model map
 #define EEPROM_SYSTEM_SIZE  255
 #define EEPROM_MODEL_SIZE   30 
-#define EEPROM_PATCH_SIZE   16 
+#define EEPROM_PATCH_SIZE   sizeof patch_t;
 
 #define EEPROM_SYSTEM_NUM   1
 #define EEPROM_MODEL_NUM    10

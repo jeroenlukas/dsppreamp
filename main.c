@@ -17,7 +17,7 @@
 #include "misc_func.h"
 #include "pccomm.h"
 #include "front.h"
-
+#include "24aa64.h"
 
 
 
@@ -35,29 +35,6 @@ volatile uint8_t test_gain = 1;
 /* Interrupt callbacks */
 void Tmr0Interrupt(void);
 
-/* Parametric EQ calc example 
-double boost = -5;
-double freq = 1100;
-double Q = 6;
-double gain=1;
-double Fs = 48000;    
-double a0, omega, sn, cs, alpha, Ax, A1, A2, B0, B1, B2, gainlinear;
-
-Ax = pow(10, boost/40); //ok
-omega = 2*M_PI*freq / Fs; //ok
-sn = sin(omega);// ok < RADIANS! not degrees
-cs = cos(omega); // ok
-alpha = sn / (2 * Q);//ok
-
-a0 = 1 + (alpha/Ax);//ok
-A1 = -(2 * cs) / a0;//ok
-A2 = (1-(alpha / Ax)) / a0; //ok
-gainlinear = pow(10, gain/20) / a0;//ok
-B0 = (1+(alpha*Ax))*gainlinear;//ok
-B1 = -(2*cs)*gainlinear;
-B2 = (1-(alpha*Ax))*gainlinear;
-// Took about 6.7 ms
- * */
 
 
 
@@ -115,7 +92,14 @@ void main(void)
     
      __delay_ms(100);
      
-    patch_load(0); // dummy
+    patch_load(1); // dummy
+    
+    //eeprom_write_one_byte(4, 'G');
+    //__delay_ms(10);
+    uint8_t test = eeprom_read_one_byte(4);
+    LCD_SetCursor(0,2);
+    LCD_Write_Char(test);
+    
     
     while(1)
     {            
@@ -215,6 +199,20 @@ void main(void)
             f_rot_enc_vol_down = false;
             patch_current_set_volume(current_patch.volume - front_rot_enc_increment());
             pccomm_set_patch_value(COMM_PATCH_VOLUME, current_patch.volume);
+        }
+        
+        if(f_rot_enc_value_up)
+        {
+            f_rot_enc_value_up = false;
+            patch_load(current_patch_no + 1);
+        }
+        if(f_rot_enc_value_down)
+        {
+            f_rot_enc_value_down = false;
+            if(current_patch_no > 1)
+            {
+                patch_load(current_patch_no - 1);
+            }
         }
         
         if(f_front_btn_models_pressed)

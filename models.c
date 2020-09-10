@@ -136,6 +136,9 @@ void model_current_set_postgain_mid_freq(int16_t freq)
         
         int8_t boost = patch_scale_value(current_patch.model.post_mid_gain_min, current_patch.model.post_mid_gain_max, current_patch.mid);
         model_current_set_postgain_mid(boost, freq, current_patch.model.post_mid_Q);
+        
+        // Also update the post gain tonecontrol center frequency
+        patch_current_set_tonecontrol_center_frequency((double)freq);
     }
 }
 

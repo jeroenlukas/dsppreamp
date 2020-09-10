@@ -15,6 +15,7 @@
 #include "mcp45hvx1.h"
 #include "adau1701.h"
 #include "config.h"
+#include "24aa64.h"
 #include "lcd_pcf8574.h"
 #include "misc_func.h"
 #include "sigma/DSPPreamp_IC_1_PARAM.h"
@@ -27,13 +28,21 @@ char strbuf[20];
 
 void patch_load(uint8_t patch_no)
 {
+    current_patch_no = patch_no;
+
+    LCD_SetCursor(0,0);
+    uitoa(current_patch_no, strbuf);
+    LCD_Write_Str_Padded_Right(strbuf, 3);
+    
     current_patch.model_id = 3;
     current_patch.model = model_read_model_from_eeprom(current_patch.model_id);    
     
     // Load some dummy values. Should be read from eeprom in future
     
+    current_patch.model.gain_min = 0;
+    current_patch.model.gain_max = 60;
     current_patch.model.pre_cutoff_freq = 80;
-    current_patch.model.post_low_gain_min = -10;
+    current_patch.model.post_low_gain_min = -15;
     current_patch.model.post_low_gain_max = 15;
     current_patch.model.post_high_gain_min = -15;
     current_patch.model.post_high_gain_max = 15;
@@ -42,20 +51,29 @@ void patch_load(uint8_t patch_no)
     current_patch.model.post_mid_Q = 1;
     current_patch.model.post_mid_freq = 400;
     current_patch.model.post_mid_gain_min = -10;
-    current_patch.model.post_mid_gain_max  = 10;
+    current_patch.model.post_mid_gain_max  = 10;  
     
-    current_patch.gain = 50;
+    //patch_t patch_load;
+    
+    eeprom_read_multi(EEPROM_PATCH_START + patch_no * sizeof(current_patch), &current_patch, sizeof(current_patch));
+            
+/*   
+            
+    current_patch.gain = 20;
     current_patch.low = 60;
     current_patch.mid = 50;
     current_patch.high = 50;
     current_patch.presence = 60;
+    current_patch.volume = 60;*/
+    
+    model_current_set_dspdistortion_bypass(0);
     
     patch_current_set_gain(current_patch.gain);
     patch_current_set_low(current_patch.low);
     patch_current_set_mid(current_patch.mid);
     patch_current_set_high(current_patch.high);
     patch_current_set_presence(current_patch.presence);
-    
+    patch_current_set_volume(current_patch.volume);
     
 }
 
@@ -78,7 +96,7 @@ void patch_current_set_gain(uint8_t value)
     }
     current_patch.gain = value;
     
-    uint32_t scaled_value = patch_scale_value(current_patch.model.gain_min, current_patch.model.gain_max, value);
+    uint16_t scaled_value = patch_scale_value(current_patch.model.gain_min, current_patch.model.gain_max, value);
     
    // mcp45hvx1_set_wiper(I2C_ADDRESS_MCP45_PRE_GAIN, scaled_value);
     
@@ -99,9 +117,67 @@ void patch_current_set_gain(uint8_t value)
     LCD_SetCursor(6, 1);
     uitoa(value, strbuf);
     LCD_Write_Str_Padded_Right(strbuf, 3);
+    
+    model_current_set_dspdistortion_gain((double)scaled_value);
 }
 
 
+// Local function
+patch_current_set_tonecontrol(double bassboost, double trebleboost, double frequency)
+{
+    ;
+    double Fs = 48000;   
+    double freq_t = frequency + 100;
+    double freq_b = frequency;
+    double cell_gain = 1;
+    double boost_t = pow(10, trebleboost/20); // unchanged
+    double boost_b = pow(10, bassboost/20);
+    double A_T = tan(M_PI * freq_t / Fs);
+    double A_B = tan(M_PI * freq_b / Fs);
+    double Knum_T = 2 / (1 + (1 / boost_t));
+    double Kden_T = 2 / (1 + boost_t);
+    double Knum_B = 2 / (1 + (1 / boost_b));
+    double Kden_B = 2 / (1 + boost_b);
+    double a10 = A_T + Kden_T;
+    double a11 = A_T - Kden_T;
+    double a20 = (A_B * Kden_B) + 1;
+    double a21 = (A_B * Kden_B) - 1;
+    double b10 = A_T + Knum_T;
+    double b11 = A_T - Knum_T;
+    double b20 = (A_B * Knum_B) - 1;
+    double b21 = (A_B * Knum_B) + 1;
+    double a0 = a10 * a20;
+    double A1 = ((a10 * a21) + (a11 * a20)) / a0;
+    double A2 = a11 * a21 / a0;
+    double gainlinear = pow(10, (cell_gain / 20));
+    double B0 = (b10 * b20) / a0 * gainlinear;
+    double B1 = ((b10 * b21) + (b11 * b20)) / a0 * gainlinear;
+    double B2 = (b11 * b21) / a0 * gainlinear;
+        
+    uint16_t sigma_address[5];
+    double sigma_data[5];
+    
+    sigma_address[0] = MOD_POSTGAIN_PO_TONECONTROL_ALG0_STAGE0_B0_ADDR;
+    sigma_address[1] = MOD_POSTGAIN_PO_TONECONTROL_ALG0_STAGE0_B1_ADDR;
+    sigma_address[2] = MOD_POSTGAIN_PO_TONECONTROL_ALG0_STAGE0_B2_ADDR;
+    sigma_address[3] = MOD_POSTGAIN_PO_TONECONTROL_ALG0_STAGE0_A1_ADDR;
+    sigma_address[4] = MOD_POSTGAIN_PO_TONECONTROL_ALG0_STAGE0_A2_ADDR;
+    
+    sigma_data[0] = B0;
+    sigma_data[1] = B1  ;
+    sigma_data[2] = B2  ;
+    sigma_data[3] = (A1*-1)  ;
+    sigma_data[4] = (A2*-1) ;
+    
+    adau1701_write_multi(5, sigma_address, sigma_data);
+}
+
+void patch_current_set_tonecontrol_center_frequency(double frequency)
+{
+    double scaled_value_bass = (double)patch_scale_value(current_patch.model.post_low_gain_min, current_patch.model.post_low_gain_max, current_patch.low);     // Unchanged
+    double scaled_value_treble = (double)patch_scale_value(current_patch.model.post_high_gain_min, current_patch.model.post_high_gain_max, current_patch.high);  // Unchanged
+    patch_current_set_tonecontrol(scaled_value_bass, scaled_value_treble, frequency);
+}
 
 void patch_current_set_low(uint8_t value)
 {    
@@ -110,10 +186,11 @@ void patch_current_set_low(uint8_t value)
         value = 100;
     }
     current_patch.low = value;
+   
+   
+    double scaled_value_bass = (double)patch_scale_value(current_patch.model.post_low_gain_min, current_patch.model.post_low_gain_max, value);     
+    double scaled_value_treble = (double)patch_scale_value(current_patch.model.post_high_gain_min, current_patch.model.post_high_gain_max, current_patch.high);  // Unchanged
     
-    int16_t scaled_value;
-    
-    scaled_value = patch_scale_value(current_patch.model.post_low_gain_min, current_patch.model.post_low_gain_max, value);     
     
     // Update bar
     LCD_SetCursor(14, 1);
@@ -133,7 +210,9 @@ void patch_current_set_low(uint8_t value)
     uitoa(value, strbuf);
     LCD_Write_Str_Padded_Right(strbuf, 3);
     
-    double bassboost =  (double)scaled_value;
+    patch_current_set_tonecontrol(scaled_value_bass, scaled_value_treble, (double)current_patch.model.post_mid_freq );
+    
+   /* double bassboost =  (double)scaled_value;
     double Fs = 48000;   
     double freq_t = 400;
     double freq_b = 400;
@@ -177,13 +256,15 @@ void patch_current_set_low(uint8_t value)
     sigma_data[3] = (A1*-1)  ;
     sigma_data[4] = (A2*-1) ;
     
-    adau1701_write_multi(5, sigma_address, sigma_data);
+    adau1701_write_multi(5, sigma_address, sigma_data);*/
 }
+
 
 patch_t patch_get_current(void)
 {
     return current_patch;
 }
+
 
 void patch_current_set_high(uint8_t value)
 {   
@@ -193,9 +274,12 @@ void patch_current_set_high(uint8_t value)
     }
     current_patch.high = value;
     
-    int16_t scaled_value;    
+    //int16_t scaled_value;    
     
-    scaled_value = patch_scale_value(current_patch.model.post_high_gain_min, current_patch.model.post_high_gain_max, value);
+    //scaled_value = patch_scale_value(current_patch.model.post_high_gain_min, current_patch.model.post_high_gain_max, value);
+    double scaled_value_bass = (double)patch_scale_value(current_patch.model.post_low_gain_min, current_patch.model.post_low_gain_max, current_patch.low);     // Unchanged
+    double scaled_value_treble = (double)patch_scale_value(current_patch.model.post_high_gain_min, current_patch.model.post_high_gain_max, value);  
+    
     
     // Update bar
     LCD_SetCursor(16, 1);
@@ -214,6 +298,8 @@ void patch_current_set_high(uint8_t value)
     LCD_SetCursor(6, 1);
     uitoa(value, strbuf);
     LCD_Write_Str_Padded_Right(strbuf, 3);
+    
+    patch_current_set_tonecontrol(scaled_value_bass, scaled_value_treble, (double)current_patch.model.post_mid_freq );
     
     // Calculate coeffs here
     //adau1701_write(666, scaled_value);
@@ -240,7 +326,7 @@ void patch_current_set_high(uint8_t value)
     B2 = (1-(alpha*Ax))*gainlinear;
     // Took about 6.7 ms*/
    // value = value / 10;
-    double trebleboost =  (double)scaled_value;
+    /*double trebleboost =  (double)scaled_value;
     double Fs = 48000;   
     double freq_t = 400;
     double freq_b = 400;
@@ -284,7 +370,7 @@ void patch_current_set_high(uint8_t value)
     sigma_data[3] = (A1*-1)  ;
     sigma_data[4] = (A2*-1) ;
     
-    adau1701_write_multi(5, sigma_address, sigma_data);
+    adau1701_write_multi(5, sigma_address, sigma_data);*/
 }
 
 

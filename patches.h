@@ -51,6 +51,7 @@ typedef struct patch
 
 // Global
 patch_t current_patch;
+uint8_t current_patch_no;
 
 void patch_load(uint8_t patch_no);
 
@@ -62,6 +63,8 @@ void patch_current_set_high(uint8_t value);
 void patch_current_set_presence(uint8_t value);
 int16_t patch_scale_value(int16_t min, int16_t max, int16_t perc);
 patch_t patch_get_current(void);
+
+void patch_current_set_tonecontrol_center_frequency(double frequency);
 // TODO Insert appropriate #include <>
 
 // TODO Insert C++ class definitions if appropriate
