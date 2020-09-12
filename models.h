@@ -45,8 +45,9 @@ typedef struct model
     uint16_t pre_cutoff_freq;
     uint8_t pre_order;
     
-    uint16_t post_low_cutoff_freq;
-    uint8_t post_low_order;
+    /* Post gain*/
+    uint16_t post_low_cutoff_freq; // not implemented yet
+    uint8_t post_low_order; // not implemented yet
     
     int8_t post_low_gain_min;
     int8_t post_low_gain_max;
@@ -68,8 +69,10 @@ typedef struct model
     //...
 } model_t;
 
-model_t model_read_model_from_eeprom(uint8_t model_id);
+void model_read_model_from_eeprom(uint8_t model_id);
 void model_apply_model(model_t model);
+void model_store(uint8_t model_id);
+
 void model_current_set_pregain_lowcut(uint16_t value);
 void model_current_set_postgain_bypass(uint8_t bypass);
 void model_current_set_dspdistortion_bypass(uint8_t bypass);

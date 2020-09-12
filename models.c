@@ -16,17 +16,15 @@
 #include "adau1701.h"
 #include "sigma/DSPPreamp_IC_1_PARAM.h"
 #include "patches.h"
+#include "pccomm.h"
+#include "misc_func.h"
 
-model_t model_read_model_from_eeprom(uint8_t model_id)
+void model_read_model_from_eeprom(uint8_t model_id)
 {
-    // Read model settings from eeprom
-    model_t model;
+    // Read model settings from eeprom    
     
-    model.channel = eeprom_read_model_parameter(model_id, EEPROM_MODEL_INDEX_CHANNEL);
-    model.gain_max = eeprom_read_model_parameter(model_id, EEPROM_MODEL_INDEX_GAIN_MAX);
-    model.gain_min  = eeprom_read_model_parameter(model_id, EEPROM_MODEL_INDEX_GAIN_MIN);
+    eeprom_read_multi(EEPROM_MODEL_START + (model_id * (sizeof current_patch.model)), &(current_patch.model), sizeof current_patch.model);       
     
-    return model;
 }
 
 void model_apply_model(model_t model)
@@ -36,6 +34,19 @@ void model_apply_model(model_t model)
     // Set pre-gain filter
     
     
+}
+
+void model_store(uint8_t model_id)
+{
+    model_t model_data;
+    
+  
+    eeprom_write_multi(EEPROM_MODEL_START + (model_id * (sizeof current_patch.model)), &(current_patch.model), sizeof current_patch.model);
+    
+    pccomm_log_message("Model stored:");
+    char strbuf[10];
+    uitoa(current_patch.model_id, strbuf);
+    pccomm_log_message(strbuf);
 }
 
 void model_current_set_postgain_bypass(uint8_t bypass)
