@@ -92,13 +92,7 @@ void main(void)
     
      __delay_ms(100);
      
-    patch_load(1); // dummy
-    
-    //eeprom_write_one_byte(4, 'G');
-    //__delay_ms(10);
-    uint8_t test = eeprom_read_one_byte(4);
-    LCD_SetCursor(0,2);
-    LCD_Write_Char(test);
+    patch_load(0); 
     
     
     while(1)
@@ -205,35 +199,40 @@ void main(void)
         {
             f_rot_enc_value_up = false;
             patch_load(current_patch_no + 1);
+            pccomm_select_patch(current_patch_no);
         }
         if(f_rot_enc_value_down)
         {
             f_rot_enc_value_down = false;
-            if(current_patch_no > 1)
+            if(current_patch_no > 0)
             {
                 patch_load(current_patch_no - 1);
+                pccomm_select_patch(current_patch_no);
             }
         }
         
         if(f_front_btn_models_pressed)
         {
             f_front_btn_models_pressed = false;
-            LCD_SetCursor(0, 1);
-            LCD_Write_Str_Padded("Models", 8);
+            //LCD_SetCursor(0, 1);
+            //LCD_Write_Str_Padded("Models", 8);
             pccomm_log_message("Models menu");
         }
         if(f_front_btn_system_pressed)
         {
             f_front_btn_system_pressed = false;
-            LCD_SetCursor(0, 1);
-            LCD_Write_Str_Padded("System", 8);
+            //LCD_SetCursor(0, 1);
+            //LCD_Write_Str_Padded("System", 8);
             pccomm_log_message("System menu");
+            
+            // TEST
+            patch_store(current_patch_no);
         }
         if(f_front_btn_next_pressed)
         {
             f_front_btn_next_pressed = false;
-            LCD_SetCursor(0, 1);
-            LCD_Write_Str_Padded("Next", 8);
+            //LCD_SetCursor(0, 1);
+            //LCD_Write_Str_Padded("Next", 8);
             pccomm_log_message("Next parameter");
         }
         

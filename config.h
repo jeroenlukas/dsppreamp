@@ -1,6 +1,8 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
+#include "models.h"
+
 // I2C addresses
 #define I2C_ADDRESS_ADAU1701            0x68
 #define I2C_ADDRESS_MCP45_PRE_GAIN      0x78 //0b0111100 //0x21;//change this
@@ -15,8 +17,8 @@
 
 // EEPROM model map
 #define EEPROM_SYSTEM_SIZE  255
-#define EEPROM_MODEL_SIZE   30 
-#define EEPROM_PATCH_SIZE   sizeof patch_t;
+#define EEPROM_MODEL_SIZE   sizeof (model_t)
+#define EEPROM_PATCH_SIZE   sizeof (eeprom_patch_t)
 
 #define EEPROM_SYSTEM_NUM   1
 #define EEPROM_MODEL_NUM    10
@@ -25,7 +27,7 @@
 #define EEPROM_SYSTEM_START 0
 #define EEPROM_MODEL_START  (EEPROM_SYSTEM_SIZE * EEPROM_SYSTEM_NUM)
 #define EEPROM_PATCH_START  (EEPROM_MODEL_START + (EEPROM_MODEL_SIZE * EEPROM_MODEL_NUM))
-
+/*
 #define EEPROM_MODEL_INDEX_NAME     0
 #define EEPROM_MODEL_SIZE_NAME      8
 #define EEPROM_MODEL_INDEX_CHANNEL  8
@@ -44,7 +46,7 @@
 #define EEPROM_PATCH_INDEX_GAIN     9
 #define EEPROM_PATCH_SIZE_GAIN      1
 #define EEPROM_PATCH_INDEX_LOW      10
-#define EEPROM_PATCH_SIZE_LOW       1
+#define EEPROM_PATCH_SIZE_LOW       1*/
 
 // PCComm stuff
 #define COMM_PATCH_NAME     1

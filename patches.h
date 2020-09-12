@@ -37,9 +37,8 @@
 
 typedef struct patch 
 {
-    char name[8];
-    uint8_t model_id;
-    model_t model;
+    char name[9]; // 8 Characters including 0 at the end
+    uint8_t model_id;    
     uint8_t gain;
     uint8_t low;
     uint8_t mid;
@@ -47,6 +46,8 @@ typedef struct patch
     uint8_t presence;
     uint8_t volume;
     uint8_t noise_gate;
+    
+    model_t model;
 } patch_t;
 
 // Global
@@ -54,6 +55,11 @@ patch_t current_patch;
 uint8_t current_patch_no;
 
 void patch_load(uint8_t patch_no);
+void patch_store(uint8_t patch_no);
+
+void patch_current_set_model(uint8_t model_id);
+
+void patch_current_set_name(char * name);
 
 void patch_current_set_gain(uint8_t gain);
 void patch_current_set_low(uint8_t low);

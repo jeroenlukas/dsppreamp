@@ -16,6 +16,7 @@
 #include "adau1701.h"
 #include "config.h"
 #include "24aa64.h"
+#include "pccomm.h"
 #include "lcd_pcf8574.h"
 #include "misc_func.h"
 #include "sigma/DSPPreamp_IC_1_PARAM.h"
@@ -30,17 +31,38 @@ void patch_load(uint8_t patch_no)
 {
     current_patch_no = patch_no;
 
-    LCD_SetCursor(0,0);
-    uitoa(current_patch_no, strbuf);
-    LCD_Write_Str_Padded_Right(strbuf, 3);
     
-    current_patch.model_id = 3;
-    current_patch.model = model_read_model_from_eeprom(current_patch.model_id);    
+    
+    //current_patch.model_id = 3;
+    //current_patch.model = model_read_model_from_eeprom(current_patch.model_id);    
+    
+    // First read the model
+    
     
     // Load some dummy values. Should be read from eeprom in future
     
+  
+    
+    //patch_t patch_load;
+    
+    eeprom_patch_t patch_data;
+    
+    eeprom_read_multi(EEPROM_PATCH_START + (patch_no * sizeof patch_data), &patch_data, sizeof patch_data);            
+    
+    strcpy(current_patch.name, patch_data.name);
+    current_patch.model_id = patch_data.model_id;
+    current_patch.gain = patch_data.gain;
+    current_patch.low = patch_data.low;
+    current_patch.mid = patch_data.mid;
+    current_patch.high = patch_data.high;
+    current_patch.presence = patch_data.presence;
+    current_patch.volume = patch_data.volume;
+    
+    model_read_model_from_eeprom(current_patch.model_id);
+    
+    // Override some settings
     current_patch.model.gain_min = 0;
-    current_patch.model.gain_max = 60;
+    current_patch.model.gain_max = 50;
     current_patch.model.pre_cutoff_freq = 80;
     current_patch.model.post_low_gain_min = -15;
     current_patch.model.post_low_gain_max = 15;
@@ -49,14 +71,10 @@ void patch_load(uint8_t patch_no)
     current_patch.model.post_presence_freq_min = 2000;
     current_patch.model.post_presence_freq_max = 10000;
     current_patch.model.post_mid_Q = 1;
-    current_patch.model.post_mid_freq = 400;
+    //current_patch.model.post_mid_freq = 550;
     current_patch.model.post_mid_gain_min = -10;
     current_patch.model.post_mid_gain_max  = 10;  
     
-    //patch_t patch_load;
-    
-    eeprom_read_multi(EEPROM_PATCH_START + patch_no * sizeof(current_patch), &current_patch, sizeof(current_patch));
-            
 /*   
             
     current_patch.gain = 20;
@@ -67,14 +85,76 @@ void patch_load(uint8_t patch_no)
     current_patch.volume = 60;*/
     
     model_current_set_dspdistortion_bypass(0);
+    //model_current_set_pregain_lowcut(current_patch.model.pre_cutoff_freq);
+    
+    model_current_set_postgain_mid_freq(current_patch.model.post_mid_freq);
+    
+    patch_current_set_volume(current_patch.volume);
     
     patch_current_set_gain(current_patch.gain);
     patch_current_set_low(current_patch.low);
     patch_current_set_mid(current_patch.mid);
     patch_current_set_high(current_patch.high);
     patch_current_set_presence(current_patch.presence);
-    patch_current_set_volume(current_patch.volume);
     
+    // Update display
+    LCD_SetCursor(0,0);
+    uitoa(current_patch_no + 1, strbuf);
+    LCD_Write_Str_Padded_Right(strbuf, 3);
+    
+    //for(int i = 0; i < 8; i++) LCD_Write_Char(current_patch.name[i]);
+    LCD_Write_Str_Padded(current_patch.name, 8);
+    
+    LCD_SetCursor(0,2);
+    LCD_Write_Str("M");
+    uitoa(current_patch.model_id, strbuf);
+    LCD_Write_Str_Padded_Right(strbuf, 2);
+    
+    // Send info to PC
+    pccomm_set_patch_value_str(COMM_PATCH_NAME, current_patch.name);
+    pccomm_set_patch_value(COMM_PATCH_MODEL, current_patch.model_id);
+    pccomm_set_patch_value(COMM_PATCH_GAIN, current_patch.gain);
+    pccomm_set_patch_value(COMM_PATCH_LOW, current_patch.low);
+    pccomm_set_patch_value(COMM_PATCH_MID, current_patch.mid);
+    pccomm_set_patch_value(COMM_PATCH_HIGH, current_patch.high);
+    pccomm_set_patch_value(COMM_PATCH_PRES, current_patch.presence);
+    pccomm_set_patch_value(COMM_PATCH_VOLUME, current_patch.volume);
+    
+    
+}
+
+void patch_current_set_name(char * name)
+{
+    //for(int i = 0;)
+    if(strlen(name) < 9)
+    {
+        strcpy(current_patch.name, name);
+
+        LCD_SetCursor(3,0);
+        LCD_Write_Str_Padded(current_patch.name, 8);
+    }
+}
+
+void patch_store(uint8_t patch_no)
+{
+    // Prepare eeprom_patch
+    eeprom_patch_t patch_data;
+    
+    for(int i = 0; i < 9; i++)
+        patch_data.name[i] = current_patch.name[i];
+    patch_data.model_id = current_patch.model_id;
+    patch_data.gain = current_patch.gain;
+    patch_data.low = current_patch.low;
+    patch_data.mid = current_patch.mid;
+    patch_data.high = current_patch.high;
+    patch_data.presence = current_patch.presence;
+    patch_data.volume = current_patch.volume;
+    patch_data.noise_gate = current_patch.noise_gate;
+    
+    
+    eeprom_write_multi(EEPROM_PATCH_START + (patch_no * sizeof patch_data), &patch_data, sizeof patch_data);
+    
+    pccomm_log_message("stored");
 }
 
 
@@ -86,6 +166,16 @@ int16_t patch_scale_value(int16_t min, int16_t max, int16_t perc)
     
     ret = interm * perc + min;
     return ret;            
+}
+
+void patch_current_set_model(uint8_t model_id)
+{
+    current_patch.model_id = model_id;
+    LCD_SetCursor(0,3);
+    LCD_Write_Str("Model");
+    uitoa(current_patch.model_id, strbuf);
+    LCD_Write_Str_Padded_Right(strbuf, 2);
+
 }
 
 void patch_current_set_gain(uint8_t value)

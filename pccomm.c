@@ -127,6 +127,9 @@ void pccomm_parse_command(void)
             {
                 switch(received_command.payload[1])
                 {
+                    case COMM_PATCH_NAME:
+                        patch_current_set_name(received_command.payload + 2);
+                        break;
                     case COMM_PATCH_GAIN:
                         patch_current_set_gain(received_command.payload[2]);                        
                         break;
@@ -144,6 +147,9 @@ void pccomm_parse_command(void)
                         break;
                     case COMM_PATCH_PRES:
                         patch_current_set_presence(received_command.payload[2]);
+                        break;
+                    case COMM_PATCH_MODEL:
+                        patch_current_set_model(received_command.payload[2]);
                         break;
                     default:
                         LCD_SetCursor(0, 2);
@@ -194,7 +200,18 @@ void pccomm_parse_command(void)
                         break;
                 }
             }
+            break;
+        case COMMAND_STORE_CURRENT_MODEL:
+            model_store(current_patch.model_id);
+            break;
             
+        case COMMAND_STORE_CURRENT_PATCH:
+            patch_store(current_patch_no);
+            break;
+            
+        case COMMAND_SELECT_PATCH:
+            patch_load(received_command.payload[0]);
+            break;
     }
 }
      
@@ -220,5 +237,28 @@ void pccomm_set_patch_value(uint8_t property, uint8_t value)
     
     transmit_command.payload[0] = property;
     transmit_command.payload[1] = value;
+    pccomm_send_command();
+}
+
+void pccomm_set_patch_value_str(uint8_t property, char * value)
+{
+    transmit_command.command = COMMAND_SET_PATCH_VALUE;
+    transmit_command.length = 1 + strlen(value) + 1;
+    
+    transmit_command.payload[0] = property;
+    int i;
+    for(i = 0; i < strlen(value)+1; i++) transmit_command.payload[1+i] = value[i];
+    transmit_command.payload[i] = 0;
+    //value[i++] = 0;
+    pccomm_send_command();
+}
+
+void pccomm_select_patch(uint8_t patch_no)
+{
+    transmit_command.command = COMMAND_SELECT_PATCH;
+    transmit_command.length = 1;
+    
+    transmit_command.payload[0] = patch_no;
+    
     pccomm_send_command();
 }

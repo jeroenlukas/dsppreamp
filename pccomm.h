@@ -33,11 +33,14 @@
 
 #include <xc.h> // include processor files - each processor file is guarded.  
 
-#define COMMAND_GET_MODEL_VALUE 1
-#define COMMAND_GET_PATCH_VALUE 2
-#define COMMAND_SET_MODEL_VALUE 3
-#define COMMAND_SET_PATCH_VALUE 4
-#define COMMAND_LOG_MESSAGE     9
+#define COMMAND_GET_MODEL_VALUE     1
+#define COMMAND_GET_PATCH_VALUE     2
+#define COMMAND_SET_MODEL_VALUE     3
+#define COMMAND_SET_PATCH_VALUE     4
+#define COMMAND_STORE_CURRENT_MODEL 6
+#define COMMAND_STORE_CURRENT_PATCH 7
+#define COMMAND_LOG_MESSAGE         9
+#define COMMAND_SELECT_PATCH        10
 
 typedef struct frames
 {
@@ -53,6 +56,8 @@ uint8_t pccomm_frame_ready(void);
 
 void pccomm_log_message(char * text);
 void pccomm_set_patch_value(uint8_t property, uint8_t value);
+void pccomm_select_patch(uint8_t patch_no);
+void pccomm_set_patch_value_str(uint8_t property, char * value);
 
 #endif	
 

@@ -11,6 +11,7 @@
             <file>file:/C:/Users/Jeroen/OneDrive/DIY/Elektronica/DSPPreamp/software/firmware/models.c</file>
             <file>file:/C:/Users/Jeroen/OneDrive/DIY/Elektronica/DSPPreamp/software/firmware/main.c</file>
             <file>file:/C:/Users/Jeroen/OneDrive/DIY/Elektronica/DSPPreamp/software/firmware/models.h</file>
+            <file>file:/C:/Users/Jeroen/OneDrive/DIY/Elektronica/DSPPreamp/software/firmware/74hc165.c</file>
             <file>file:/C:/Users/Jeroen/OneDrive/DIY/Elektronica/DSPPreamp/software/firmware/misc_func.c</file>
             <file>file:/C:/Users/Jeroen/OneDrive/DIY/Elektronica/DSPPreamp/software/firmware/pccomm.c</file>
             <file>file:/C:/Users/Jeroen/OneDrive/DIY/Elektronica/DSPPreamp/software/firmware/pccomm.h</file>
@@ -18,6 +19,7 @@
             <file>file:/C:/Users/Jeroen/OneDrive/DIY/Elektronica/DSPPreamp/software/firmware/mcc_generated_files/i2c1.h</file>
             <file>file:/C:/Users/Jeroen/OneDrive/DIY/Elektronica/DSPPreamp/software/firmware/24aa64.c</file>
             <file>file:/C:/Users/Jeroen/OneDrive/DIY/Elektronica/DSPPreamp/software/firmware/patches.h</file>
+            <file>file:/C:/Users/Jeroen/OneDrive/DIY/Elektronica/DSPPreamp/software/firmware/front.c</file>
             <file>file:/C:/Users/Jeroen/OneDrive/DIY/Elektronica/DSPPreamp/software/firmware/config.h</file>
         </group>
     </open-files>
