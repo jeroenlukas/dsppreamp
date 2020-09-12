@@ -34,12 +34,25 @@
 #include <xc.h> // include processor files - each processor file is guarded.  
 #include <stdint.h>
 
+typedef struct patch_eeprom 
+{
+    char name[9];
+    uint8_t model_id;    
+    uint8_t gain;
+    uint8_t low;
+    uint8_t mid;
+    uint8_t high;
+    uint8_t presence;
+    uint8_t volume;
+    uint8_t noise_gate;
+} eeprom_patch_t;
+
 void eeprom_write_one_byte(uint16_t address, uint8_t value);
 uint8_t eeprom_read_one_byte(uint16_t address);
 uint8_t eeprom_read_model_parameter(uint8_t model_id, uint8_t parameter);
 
-void eeprom_write_multi(uint16_t data_address, uint8_t *pData, uint16_t nCount);
-uint8_t eeprom_read_multi(uint16_t address, uint8_t *pData, uint16_t nCount);
+void eeprom_write_multi(uint16_t data_address, void *pData, uint16_t nCount);
+uint8_t eeprom_read_multi(uint16_t address, void *pData, uint16_t nCount);
 
 
 #endif	/* XC_HEADER_TEMPLATE_H */

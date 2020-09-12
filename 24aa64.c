@@ -211,15 +211,16 @@ uint8_t eeprom_read_one_byte(uint16_t address)
 }
 
 
-uint8_t eeprom_read_multi(uint16_t address, uint8_t *pData, uint16_t nCount)
+uint8_t eeprom_read_multi(uint16_t address, void *pData, uint16_t nCount)
 {
     I2C1_MESSAGE_STATUS status;
     uint8_t     writeBuffer[3];
     uint16_t    timeOut;
     uint16_t    counter;
-    uint8_t     *pD, ret;
+    uint8_t     *pD = pData;
+    uint8_t ret;
 
-    pD = pData;
+//    pD = pData;
 
     for (counter = 0; counter < nCount; counter++)
     {
@@ -229,6 +230,8 @@ uint8_t eeprom_read_multi(uint16_t address, uint8_t *pData, uint16_t nCount)
         writeBuffer[0] = (address >> 8);                // high address
         writeBuffer[1] = (uint8_t)(address);            // low low address
 
+        //__delay_ms(2); // Delay a bit
+        
         // Now it is possible that the slave device will be slow.
         // As a work around on these slaves, the application can
         // retry sending the transaction
@@ -309,34 +312,28 @@ uint8_t eeprom_read_multi(uint16_t address, uint8_t *pData, uint16_t nCount)
 }
 
 
-uint16_t dataAddress;
-uint8_t         sourceData[16] = {  0xA0, 0xA1, 0xA2, 0xA3, 
-                                    0xA4, 0xA5, 0xA6, 0xA7, 
-                                    0xA8, 0xA9, 0xAA, 0xAB, 
-                                    0xAC, 0xAD, 0xAE, 0xAF }; 
 
-void eeprom_write_multi(uint16_t data_address, uint8_t *pData, uint16_t nCount)
+
+void eeprom_write_multi(uint16_t data_address, void *pData, uint16_t nCount)
 {
     uint8_t         writeBuffer[3];
-    uint8_t         *pD;
+    uint8_t         *pD = pData;
     uint16_t        counter, timeOut;
 
     I2C1_MESSAGE_STATUS status = I2C1_MESSAGE_PENDING;
-
-    //dataAddress = 0x10;             // starting EEPROM address 
-    pD = sourceData;                // initialize the source of the data
-    nCount = 16;                    // number of bytes to write
 
     for (counter = 0; counter < nCount; counter++)
     {
 
         // build the write buffer first
         // starting address of the EEPROM memory
-        writeBuffer[0] = (dataAddress >> 8);                // high address
-        writeBuffer[1] = (uint8_t)(dataAddress);            // low low address
+        writeBuffer[0] = (data_address >> 8);                // high address
+        writeBuffer[1] = (uint8_t)(data_address);            // low low address
 
         // data to be written
         writeBuffer[2] = *pD++;
+        
+        __delay_ms(5); // Delay a bit
 
         // Now it is possible that the slave device will be slow.
         // As a work around on these slaves, the application can
@@ -373,7 +370,7 @@ void eeprom_write_multi(uint16_t data_address, uint8_t *pData, uint16_t nCount)
         {
             break;
         }
-        dataAddress++;
+        data_address++;
 
     }
 }
