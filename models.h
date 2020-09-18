@@ -38,12 +38,19 @@ typedef struct model
 {
     char name[8];
     uint8_t channel;
-    uint8_t zinput;
-    int8_t gain_min;
-    int8_t gain_max;
+    uint16_t zinput;
     
+    
+    uint8_t pregain_bypass;
     uint16_t pre_cutoff_freq;
     uint8_t pre_order;
+    
+    int8_t dspdistortion_gain_min;
+    int8_t dspdistortion_gain_max;
+    uint8_t dspdistortion_bypass;
+    double dspdistortion_alpha;
+    double dspdistortion_asymmetry;
+    int8_t dspdistortion_volume;
     
     /* Post gain*/
     uint16_t post_low_cutoff_freq; // not implemented yet
@@ -71,14 +78,17 @@ typedef struct model
 
 void model_read_model_from_eeprom(uint8_t model_id);
 void model_apply_model(model_t model);
-void model_store(uint8_t model_id);
+void model_current_store(uint8_t model_id);
+void model_store(uint8_t model_id, model_t model_data);
+void model_initialize(uint8_t code);
 
+void model_current_set_name(char * name);
 void model_current_set_pregain_lowcut(uint16_t value);
 void model_current_set_postgain_bypass(uint8_t bypass);
 void model_current_set_dspdistortion_bypass(uint8_t bypass);
-void model_current_set_dspdistortion_alpha(uint8_t alpha);
+void model_current_set_dspdistortion_alpha(double alpha);
 void model_current_set_dspdistortion_gain(double gain_db);
-void model_current_set_dspdistortion_volume(uint8_t gain_db);
+void model_current_set_dspdistortion_volume(int8_t gain_db);
 void model_current_set_analog_bypass(uint8_t bypass);
 void model_current_set_dspdistortion_asymmetry(double asymm);
 void model_current_set_postgain_mid_Q(double Q);
