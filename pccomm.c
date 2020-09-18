@@ -46,14 +46,6 @@ uint8_t pccomm_frame_ready(void)
 void pccomm_send_command(void)
 {
     uint8_t tx_buffer[128 + 5];
-    
-    // Workaround, length should be 2 at least otherwise new new patch doesnt load in ADAU 
-    if(transmit_command.length == 1)
-    {
-        transmit_command.length = 2;
-        transmit_command.payload[1] = 0;
-    }
-    
     tx_buffer[0] = 0xAA;
     tx_buffer[1] = 0xAA;
     tx_buffer[2] = 0xAA;
@@ -139,22 +131,22 @@ void pccomm_parse_command(void)
                         patch_current_set_name(received_command.payload + 2);
                         break;
                     case COMM_PATCH_GAIN:
-                        patch_current_set_gain(received_command.payload[2], SENDER_USER);                        
+                        patch_current_set_gain(received_command.payload[2]);                        
                         break;
                     case COMM_PATCH_LOW:
-                        patch_current_set_low(received_command.payload[2], SENDER_USER);
+                        patch_current_set_low(received_command.payload[2]);
                         break;
                     case COMM_PATCH_MID:
-                        patch_current_set_mid(received_command.payload[2], SENDER_USER);
+                        patch_current_set_mid(received_command.payload[2]);
                         break;
                     case COMM_PATCH_VOLUME:
-                        patch_current_set_volume(received_command.payload[2], SENDER_USER);
+                        patch_current_set_volume(received_command.payload[2]);
                         break;
                     case COMM_PATCH_HIGH:
-                        patch_current_set_high(received_command.payload[2], SENDER_USER);
+                        patch_current_set_high(received_command.payload[2]);
                         break;
                     case COMM_PATCH_PRES:
-                        patch_current_set_presence(received_command.payload[2], SENDER_USER);
+                        patch_current_set_presence(received_command.payload[2]);
                         break;
                     case COMM_PATCH_MODEL:
                         patch_current_set_model(received_command.payload[2]);
@@ -176,9 +168,6 @@ void pccomm_parse_command(void)
             {
                 switch(received_command.payload[1])
                 {
-                    case COMM_MODEL_NAME:
-                        model_current_set_name(received_command.payload + 2);
-                        break;
                     case COMM_MODEL_POSTGAIN_BYPASS:
                         model_current_set_postgain_bypass(received_command.payload[2]);
                         break;
@@ -186,19 +175,10 @@ void pccomm_parse_command(void)
                         model_current_set_dspdistortion_bypass(received_command.payload[2]);
                         break;
                     case COMM_MODEL_DSPDISTORTION_ALPHA:
-                        model_current_set_dspdistortion_alpha((double)received_command.payload[2] / 10);
+                        model_current_set_dspdistortion_alpha(received_command.payload[2]);
                         break;
-                    case COMM_MODEL_DSPDISTORTION_GAIN_MIN:
-                        //model_current_set_dspdistortion_gain((double)received_command.payload[2]);
-                        current_patch.model.dspdistortion_gain_min = (int8_t)received_command.payload[2];
-                        // Update
-                        patch_current_set_gain(current_patch.gain, SENDER_EXT);  
-                        break;
-                    case COMM_MODEL_DSPDISTORTION_GAIN_MAX:
-                        //model_current_set_dspdistortion_gain((double)received_command.payload[2]);
-                        current_patch.model.dspdistortion_gain_max = (int8_t)received_command.payload[2];
-                        // Update
-                        patch_current_set_gain(current_patch.gain, SENDER_EXT);  
+                    case COMM_MODEL_DSPDISTORTION_GAIN:
+                        model_current_set_dspdistortion_gain((double)received_command.payload[2]);
                         break;
                     case COMM_MODEL_DSPDISTORTION_VOLUME:
                         model_current_set_dspdistortion_volume(received_command.payload[2]);
@@ -209,7 +189,7 @@ void pccomm_parse_command(void)
                     case COMM_MODEL_ANALOG_BYPASS:
                         model_current_set_analog_bypass(received_command.payload[2]);
                         break;
-                    case COMM_MODEL_PREGAIN_LOWCUT_FREQ:
+                    case COMM_MODEL_PREGAIN_LOWCUT:
                         model_current_set_pregain_lowcut((received_command.payload[2] << 8) + received_command.payload[3]);
                         break;
                     case COMM_MODEL_POSTGAIN_MID_Q:                        
@@ -222,23 +202,15 @@ void pccomm_parse_command(void)
             }
             break;
         case COMMAND_STORE_CURRENT_MODEL:
-            model_current_store(current_patch.model_id);
+            model_store(current_patch.model_id);
             break;
             
         case COMMAND_STORE_CURRENT_PATCH:
-            patch_current_store(current_patch_no);
+            patch_store(current_patch_no);
             break;
             
         case COMMAND_SELECT_PATCH:
             patch_load(received_command.payload[0]);
-            break;
-            
-        case COMMAND_INITIALIZE_PATCHES:
-            patch_initialize(received_command.payload[0]);
-            break;
-            
-        case COMMAND_INITIALIZE_MODELS:
-            model_initialize(received_command.payload[0]);
             break;
     }
 }
@@ -284,44 +256,9 @@ void pccomm_set_patch_value_str(uint8_t property, char * value)
 void pccomm_select_patch(uint8_t patch_no)
 {
     transmit_command.command = COMMAND_SELECT_PATCH;
-    transmit_command.length = 1;// 1
+    transmit_command.length = 1;
     
     transmit_command.payload[0] = patch_no;
     
-    pccomm_send_command();
-}
-
-
-void pccomm_set_model_value(uint8_t property, int8_t value)
-{
-    transmit_command.command = COMMAND_SET_MODEL_VALUE;
-    transmit_command.length = 2;
-    
-    transmit_command.payload[0] = property;
-    transmit_command.payload[1] = value;
-    pccomm_send_command();
-}
-
-void pccomm_set_model_value_int(uint8_t property, uint16_t value)
-{
-    transmit_command.command = COMMAND_SET_MODEL_VALUE;
-    transmit_command.length = 3;
-    
-    transmit_command.payload[0] = property;
-    transmit_command.payload[1] = (value >> 8) & 0xFF;
-    transmit_command.payload[2] = value & 0xFF;
-    pccomm_send_command();
-}
-
-void pccomm_set_model_value_str(uint8_t property, char * value)
-{
-    transmit_command.command = COMMAND_SET_MODEL_VALUE;
-    transmit_command.length = 1 + strlen(value) + 1;
-    
-    transmit_command.payload[0] = property;
-    int i;
-    for(i = 0; i < strlen(value)+1; i++) transmit_command.payload[1+i] = value[i];
-    transmit_command.payload[i] = 0;
-    //value[i++] = 0;
     pccomm_send_command();
 }

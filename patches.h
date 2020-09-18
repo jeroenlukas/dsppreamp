@@ -34,7 +34,6 @@
 #include <xc.h> // include processor files - each processor file is guarded.  
 #include <stdint.h>
 #include "models.h"
-#include "24aa64.h"
 
 typedef struct patch 
 {
@@ -55,23 +54,19 @@ typedef struct patch
 patch_t current_patch;
 uint8_t current_patch_no;
 
-void patch_initialize(uint8_t code);
-
 void patch_load(uint8_t patch_no);
-void patch_current_store(uint8_t patch_no);
-void patch_store(uint8_t patch_no, eeprom_patch_t patch_data);
+void patch_store(uint8_t patch_no);
 
 void patch_current_set_model(uint8_t model_id);
 
 void patch_current_set_name(char * name);
 
-void patch_current_set_gain(uint8_t value, uint8_t sender);
-void patch_current_set_low(uint8_t value, uint8_t sender);
-void patch_current_set_mid(uint8_t value, uint8_t sender);
-void patch_current_set_volume(uint8_t value, uint8_t sender);
-void patch_current_set_high(uint8_t value, uint8_t sender);
-void patch_current_set_presence(uint8_t value, uint8_t sender);
-
+void patch_current_set_gain(uint8_t gain);
+void patch_current_set_low(uint8_t low);
+void patch_current_set_mid(uint8_t value);
+void patch_current_set_volume(uint8_t value);
+void patch_current_set_high(uint8_t value);
+void patch_current_set_presence(uint8_t value);
 int16_t patch_scale_value(int16_t min, int16_t max, int16_t perc);
 patch_t patch_get_current(void);
 

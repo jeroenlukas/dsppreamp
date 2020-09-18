@@ -327,38 +327,6 @@ void LCD_Write_Str_Padded_Right(const char *message, char len)
 
 }
 
-void LCD_Write_Str_Zero_Padded_Right(const char *message, char len)
-{
-    unsigned char *message_ptr = (unsigned char *) message;
-    unsigned char *find_ptr = (unsigned char *) message;
-    char left;
-    char strlen=0;
-    left = len;
-
-    while(*find_ptr)
-    {
-        strlen++;
-        *find_ptr++;
-    }
-    if(len > strlen)
-    {
-        left = len - strlen;
-        while(left > 0)
-        {
-            left--;
-            LCD_Write_Char('0');
-        }
-    }
-    
-    
-    while (*message_ptr)
-    {
-        //left--;
-        LCDdataWrite((unsigned char) (*message_ptr++));
-    }
-
-}
-
 void LCD_Clear(void){
     LCDcommandWrite(LCD_CLEAR_DISPLAY);// clear display, set cursor position to zero
 #ifdef USE_BUSY_FLAG
