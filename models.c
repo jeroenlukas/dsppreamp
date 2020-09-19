@@ -8,6 +8,7 @@
 
 #include "xc.h"
 #include <math.h>
+#include <string.h>
 #include "config.h"
 #include "models.h"
 #include "cd4052.h"
@@ -17,6 +18,7 @@
 #include "sigma/DSPPreamp_IC_1_PARAM.h"
 #include "patches.h"
 #include "pccomm.h"
+
 #include "misc_func.h"
 
 void model_read_model_from_eeprom(uint8_t model_id)
@@ -36,17 +38,81 @@ void model_apply_model(model_t model)
     
 }
 
-void model_store(uint8_t model_id)
+void model_initialize(uint8_t code)
 {
-    model_t model_data;
+    model_t model;
     
+    if(code == 0xBB)
+    {
+        model.channel = 0;
+        model.dspdistortion_alpha = 0.6;
+        model.dspdistortion_asymmetry = 0.03;
+        model.dspdistortion_bypass = 0;
+        model.dspdistortion_volume = -5;
+        model.dspdistortion_gain_min = 0;
+        model.dspdistortion_gain_max = 30;
+        model.pre_cutoff_freq = 80;
+        model.pre_order = 2;
+        model.pregain_bypass = 0;
+        model.post_low_cutoff_freq = 80;
+        model.post_low_order = 2;
+        model.post_low_gain_min = -10;
+        model.post_low_gain_max = 10;
+        model.post_mid_Q = 1.1;
+        model.post_mid_freq = 400;
+        model.post_mid_gain_min = -20;
+        model.post_mid_gain_max = 10;
+        model.post_high_gain_min = -10;
+        model.post_high_gain_max = 10;
+        model.post_presence_freq_min = 3000;
+        model.post_presence_freq_max = 8000;
+        model.zinput = 10;
+        
+        char str_num[16];
+        char str_model[10];
+        
+        pccomm_log_message("Initializing models...");
+        for(int i = 0; i < EEPROM_MODEL_NUM; i++)
+        {            
+            model.post_mid_freq++;
+            uitoa(i+1, str_num);
+            strcpy(model.name, "Mdl");
+            strcat(model.name, str_num);
+            model_store(i, model);
+        }
+        pccomm_log_message("Done.");
+    }
+}
+
+void model_current_store(uint8_t model_id)
+{
+    model_t model_data;    
   
     eeprom_write_multi(EEPROM_MODEL_START + (model_id * (sizeof current_patch.model)), &(current_patch.model), sizeof current_patch.model);
     
     pccomm_log_message("Model stored:");
     char strbuf[10];
-    uitoa(current_patch.model_id, strbuf);
+    uitoa(model_id, strbuf);
     pccomm_log_message(strbuf);
+}
+
+void model_store(uint8_t model_id, model_t model_data)
+{    
+    eeprom_write_multi(EEPROM_MODEL_START + (model_id * (sizeof model_data)), &(model_data), sizeof model_data);
+    
+    pccomm_log_message("Model stored:");
+    char strbuf[10];
+    uitoa(model_id, strbuf);
+    pccomm_log_message(strbuf);
+}
+
+void model_current_set_name(char * name)
+{
+    //for(int i = 0;)
+    if(strlen(name) < 9)
+    {
+        strcpy(current_patch.model.name, name);        
+    }
 }
 
 void model_current_set_postgain_bypass(uint8_t bypass)
@@ -191,18 +257,20 @@ void model_current_set_analog_bypass(uint8_t bypass)
     }
 }
 
-void model_current_set_dspdistortion_alpha(uint8_t alpha)
+void model_current_set_dspdistortion_alpha(double alpha)
 {
     // Alpha needs to be divided by 10. The actual alpha range is 0.1 - 10. Function input thus is 1-100
             
     uint16_t sigma_address[2];
     double sigma_data[2];
     
+    current_patch.model.dspdistortion_alpha = alpha;
+    
     sigma_address[0] = MOD_DSPDISTORTION_SOFTCLIP1_ALG0_SOFTCLIPALGG21ALPHA_ADDR;
     sigma_address[1] = MOD_DSPDISTORTION_SOFTCLIP1_ALG0_SOFTCLIPALGG21ALPHAM1_ADDR;
     
-    sigma_data[0] = (double)alpha / 10;
-    sigma_data[1] = 1/((double)alpha / 10);
+    sigma_data[0] = alpha ;
+    sigma_data[1] = 1/alpha;
     
     adau1701_write_multi(2, sigma_address, sigma_data);
 }
@@ -213,6 +281,8 @@ void model_current_set_dspdistortion_asymmetry(double asymm)
             
     uint16_t sigma_address[2];
     double sigma_data[2];
+    
+    current_patch.model.dspdistortion_asymmetry = asymm;
     
     sigma_address[0] = MOD_DSPDISTORTION_ASYMMETRY_DCINPALG1_ADDR;
     
@@ -239,7 +309,7 @@ void model_current_set_dspdistortion_gain(double gain_db)
     adau1701_write(MOD_DSPDISTORTION_GAIN3_GAIN1940ALGNS6_ADDR, gain);
 }
 
-void model_current_set_dspdistortion_volume(uint8_t gain_db)
+void model_current_set_dspdistortion_volume(int8_t gain_db)
 {
     // Gain in dB, but must be made negative!
     /*if(gain_db > 0)
@@ -248,7 +318,9 @@ void model_current_set_dspdistortion_volume(uint8_t gain_db)
     }*/
    // gain_db = gain_db * -1;
     
-    double gain = pow(10, (double)gain_db*-1 / 20);
+    current_patch.model.dspdistortion_volume = gain_db;
+    
+    double gain = pow(10, (double)gain_db / 20);
     
     adau1701_write(MOD_DSPDISTORTION_VOLUME_GAIN1940ALGNS4_ADDR, gain);    
 }
@@ -256,7 +328,7 @@ void model_current_set_dspdistortion_volume(uint8_t gain_db)
 
 void model_current_set_pregain_lowcut(uint16_t value)
 {    
-    
+    current_patch.model.pre_cutoff_freq = value;
     
     double A1 = pow(2.7, -2 * M_PI * ((double)value/48000.0));
     

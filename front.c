@@ -10,12 +10,10 @@
 #include "mcc_generated_files/mcc.h"
 #include "config.h"
 #include "74hc165.h"
-#include "stdbool.h"
+#include <stdbool.h>
 #include "front.h"
 #include "pccomm.h"
 #include "misc_func.h"
-#include "lcd_pcf8574.h"
-#include "patches.h"
 
 #define RE_GAIN     0   
 #define RE_LOW      1
@@ -55,76 +53,7 @@ volatile uint32_t shift_register_data = 0;
 
 uint8_t a_last = 1;
 uint8_t b_last = 1;
-/*
-void front_check_buttons(void)
-{
-    shift_register_data = sn74hc165_read();
-    
-   // if(shift_register_data != 0x037FFFFE) 
-    
-        //f_front_event = true;
-        rot_enc_gain.rot_enc = 0;
-        uint8_t a = (shift_register_data >> 2) & 1;
-        uint8_t b = (shift_register_data >> 1) & 1;
-        
-        /*if(a != a_last || b != b_last)
-        {
-            if(b > a)
-            {
-                pccomm_log_message("gain+");
-            }
-            else if(b <a )
-            {
-                pccomm_log_message("gain-");
-            }
-        }*/
-        /*if(a < a_last)
-        {
-            if(b == 1)
-            {
-               pccomm_log_message("gain+"); 
-            }
-        }
-        else if(b < b_last)
-        {
-            if(a == 1)
-            {
-                pccomm_log_message("gain-");
-            }
-        }
-            
-        a_last = a;
-        b_last = b;
 
-        
-        
-
-        
-    
-   // rot_enc_gain.prev_rot_enc = rot_enc_gain.rot_enc;
-    
-        
-    
-    // Poll other buttons (models, system and next )
-    if(front_btn_models_GetValue() < prev_btn_models)
-    {
-        f_front_btn_models_pressed = true;        
-    }
-    if(front_btn_system_GetValue() < prev_btn_system)
-    {
-        f_front_btn_system_pressed = true;        
-    }
-    if(front_btn_next_GetValue() < prev_btn_next)
-    {
-        f_front_btn_next_pressed = true;        
-    }
-        
-            
-    prev_btn_models = front_btn_models_GetValue();
-    prev_btn_system = front_btn_system_GetValue();
-    prev_btn_next = front_btn_next_GetValue();
-}
-*/
 uint8_t process_rotary_encoder(uint8_t encoder)
 {
     uint8_t ret = 0;
@@ -337,25 +266,4 @@ uint8_t front_rot_enc_increment(void)
         return ROT_ENC_INCREMENT_SLOW;
     }
     else return ROT_ENC_INCREMENT_FAST;
-}
-
-void lcd_display_basic_info(void)
-{
-    LCD_SetCursor(0, 1);
-    
-    char model[3];
-    uitoa(current_patch.model_id, model);
-    
-    LCD_Write_Char('M');
-    LCD_Write_Str_Zero_Padded_Right(model, 2);
-    LCD_Write_Str("|NG|");
-}
-
-void lcd_display_temporary(char * text)
-{
-    LCD_SetCursor(0, 1);
-    LCD_Write_Str_Padded(text, 12);
-    
-//    millis_front_display_return = millis() + 2000;
-    
 }

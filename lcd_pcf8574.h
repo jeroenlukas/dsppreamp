@@ -12,6 +12,7 @@ extern "C" {
   void LCD_Write_Str(const char *message);
   void LCD_Write_Str_Padded(const char *message, char len);
   void LCD_Write_Str_Padded_Right(const char *message, char len);
+  void LCD_Write_Str_Zero_Padded_Right(const char *message, char len);
   
   void LCD_Clear(void);
   void LCD_Home(void);

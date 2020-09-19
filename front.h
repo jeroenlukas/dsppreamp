@@ -28,11 +28,12 @@
 
 // This is a guard condition so that contents of this file are not included
 // more than once.  
-#ifndef FRONT_H
-#define	FRONT_H
+#ifndef XFRONT_H
+#define	XFRONT_H
+
+
 
 #include <xc.h> // include processor files - each processor file is guarded.  
-#include <stdint.h>
 
 volatile bool f_front_event = false;
 volatile bool f_front_btn_models_pressed = false;
@@ -54,14 +55,10 @@ bool f_rot_enc_vol_down = false;
 bool f_rot_enc_value_up = false;
 bool f_rot_enc_value_down = false;
 
-
-
-void lcd_display_basic_info(void);
-void lcd_display_temporary(char * text);
-
 void front_check_buttons(void);
 
 uint8_t front_rot_enc_increment(void);
+
 
 
 #endif	/* XC_HEADER_TEMPLATE_H */

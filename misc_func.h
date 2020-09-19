@@ -34,9 +34,16 @@
 #include <xc.h> // include processor files - each processor file is guarded.  
 #include <stdint.h>
 
+uint32_t millis_temporary_display;
+
+uint8_t temporary_display =  0;
+
 void uitoa(uint16_t Value, char * Buffer);
 uint32_t millis(void);
 void millis_inc(void);
+
+void lcd_display_temporary(char * str);
+void lcd_display_normal(void);
 
 // TODO Insert appropriate #include <>
 
