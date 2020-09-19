@@ -109,7 +109,10 @@ void main(void)
         if(fTimer0)
         {
             fTimer0 = false;   
-            
+//            if(millis() > millis_front_display_return)
+            {
+                lcd_display_basic_info();
+            }
         }
         
         if(f_tmr_slow)

@@ -72,7 +72,7 @@ void model_current_set_postgain_mid(int8_t boost, int16_t freq, double Q)
     boost = boost / 2;
     
     // Offset the boost, so we have a mid notch by default.
-    boost -= 10; 
+    boost -= 3; 
     
     if(boost == 0)
     {

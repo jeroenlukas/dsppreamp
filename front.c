@@ -14,6 +14,8 @@
 #include "front.h"
 #include "pccomm.h"
 #include "misc_func.h"
+#include "lcd_pcf8574.h"
+#include "patches.h"
 
 #define RE_GAIN     0   
 #define RE_LOW      1
@@ -335,4 +337,25 @@ uint8_t front_rot_enc_increment(void)
         return ROT_ENC_INCREMENT_SLOW;
     }
     else return ROT_ENC_INCREMENT_FAST;
+}
+
+void lcd_display_basic_info(void)
+{
+    LCD_SetCursor(0, 1);
+    
+    char model[3];
+    uitoa(current_patch.model_id, model);
+    
+    LCD_Write_Char('M');
+    LCD_Write_Str_Zero_Padded_Right(model, 2);
+    LCD_Write_Str("|NG|");
+}
+
+void lcd_display_temporary(char * text)
+{
+    LCD_SetCursor(0, 1);
+    LCD_Write_Str_Padded(text, 12);
+    
+//    millis_front_display_return = millis() + 2000;
+    
 }

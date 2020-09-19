@@ -8,6 +8,7 @@
 
 #include <xc.h>
 #include <string.h>
+#include <math.h>
 
 #include "patches.h"
 #include "models.h"
@@ -20,11 +21,8 @@
 #include "lcd_pcf8574.h"
 #include "misc_func.h"
 #include "sigma/DSPPreamp_IC_1_PARAM.h"
-#include <math.h>
+#include "front.h"
 
-
-
-//
 char strbuf[20];
 
 void patch_load(uint8_t patch_no)
@@ -201,13 +199,24 @@ void patch_current_set_gain(uint8_t value)
         LCD_Write_Char(value / 13);
     }
     
-    // Show on LCD
-    LCD_SetCursor(0, 1);
-    LCD_Write_Str("Gain: ");
-    LCD_SetCursor(6, 1);
-    uitoa(value, strbuf);
-    LCD_Write_Str_Padded_Right(strbuf, 3);
-    
+    if(sender == SENDER_USER)
+    {
+        // Show on LCD
+       /* LCD_SetCursor(0, 1);
+        LCD_Write_Str("Gain: ");
+        LCD_SetCursor(6, 1);
+        uitoa(value, strbuf);
+        LCD_Write_Str_Padded_Right(strbuf, 3);*/
+        
+        char info[16];
+        char value_str[6];
+        //uitoa(value, value_str);
+        
+        //strcpy(info, "Gain: ");
+        //strcat(info, value_str);
+        
+        //lcd_display_temporary(info);
+    }
     model_current_set_dspdistortion_gain((double)scaled_value);
 }
 
