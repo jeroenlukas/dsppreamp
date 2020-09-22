@@ -260,6 +260,7 @@ void patch_current_set_gain(uint8_t value, uint8_t sender)
     {
         value = 100;
     }
+    
     current_patch.gain = value;
     
     uint16_t scaled_value = patch_scale_value(current_patch.model.dspdistortion_gain_min, current_patch.model.dspdistortion_gain_max, value);

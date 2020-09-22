@@ -39,9 +39,20 @@ typedef struct rotary_encoder {
 
 volatile rotary_encoder_t rot_enc[7];
 
+bool prev_btn_gain = true;
+bool prev_btn_low = true;
+bool prev_btn_mid = true;
+bool prev_btn_high = true;
+bool prev_btn_pres = true;
+bool prev_btn_vol = true;
+bool prev_btn_value = true;
+
 bool prev_btn_models = true;
 bool prev_btn_system = true;
 bool prev_btn_next = true;
+bool prev_btn_exit = true;
+bool prev_btn_store = true;
+bool prev_btn_prev = true;
 
 uint32_t last_rot_enc_timestamp = 0;
 
@@ -252,8 +263,60 @@ void front_check_buttons(void)
     {
         f_front_btn_next_pressed = true;        
     }
-        
-            
+    
+    if(((shift_register_data >> 3) & 1) < prev_btn_gain)
+    {
+        f_front_btn_gain_pressed = true;
+    }
+    if(((shift_register_data >> 6) & 1) < prev_btn_low)
+    {
+        f_front_btn_low_pressed = true;
+    }
+    if(((shift_register_data >> 9) & 1) < prev_btn_mid)
+    {
+        f_front_btn_mid_pressed = true;
+    }
+    if(((shift_register_data >> 12) & 1) < prev_btn_high)
+    {
+        f_front_btn_high_pressed = true;
+    }
+    if(((shift_register_data >> 15) & 1) < prev_btn_pres)
+    {
+        f_front_btn_pres_pressed = true;
+    }
+    if(((shift_register_data >> 18) & 1) < prev_btn_vol)
+    {
+        f_front_btn_vol_pressed = true;
+    }
+    if(((shift_register_data >> 21) & 1) < prev_btn_value)
+    {
+        f_front_btn_value_pressed = true;
+    }
+    if(((shift_register_data >> 22) & 1) < prev_btn_exit)
+    {
+        f_front_btn_exit_pressed = true;
+    }
+    if(((shift_register_data >> 23) & 1) < prev_btn_store)
+    {
+        f_front_btn_store_pressed = true;
+    }
+    if(((shift_register_data >> 24) & 1) < prev_btn_prev)
+    {
+        f_front_btn_prev_pressed = true;
+    }       
+    
+    prev_btn_gain = (shift_register_data >> 3) & 1;    
+    prev_btn_low = (shift_register_data >> 6) & 1;
+    prev_btn_mid = (shift_register_data >> 9) & 1;
+    prev_btn_high = (shift_register_data >> 12) & 1;
+    prev_btn_pres = (shift_register_data >> 15) & 1;
+    prev_btn_vol = (shift_register_data >> 18) & 1;
+    prev_btn_value = (shift_register_data >> 21) & 1;
+    
+    prev_btn_exit = (shift_register_data >> 22) & 1;
+    prev_btn_store = (shift_register_data >> 23) & 1;
+    prev_btn_prev = (shift_register_data >> 24) & 1;
+    
     prev_btn_models = front_btn_models_GetValue();
     prev_btn_system = front_btn_system_GetValue();
     prev_btn_next = front_btn_next_GetValue();

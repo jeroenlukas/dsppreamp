@@ -129,7 +129,10 @@ void main(void)
         if(f_rot_enc_gain_down)
         {
             f_rot_enc_gain_down = false;
-            patch_current_set_gain(current_patch.gain - front_rot_enc_increment(), SENDER_USER);
+            if(current_patch.gain > front_rot_enc_increment())
+                patch_current_set_gain(current_patch.gain - front_rot_enc_increment(), SENDER_USER);
+            else 
+                patch_current_set_gain(0, SENDER_USER);
             pccomm_set_patch_value(COMM_PATCH_GAIN, current_patch.gain);
         }
         
@@ -142,7 +145,10 @@ void main(void)
         if(f_rot_enc_low_down)
         {
             f_rot_enc_low_down = false;
-            patch_current_set_low(current_patch.low - front_rot_enc_increment(), SENDER_USER);
+            if(current_patch.low > front_rot_enc_increment())
+                patch_current_set_low(current_patch.low - front_rot_enc_increment(), SENDER_USER);
+            else
+                patch_current_set_low(0, SENDER_USER);
             pccomm_set_patch_value(COMM_PATCH_LOW, current_patch.low);
         }
         
@@ -155,7 +161,10 @@ void main(void)
         if(f_rot_enc_mid_down)
         {
             f_rot_enc_mid_down = false;
-            patch_current_set_mid(current_patch.mid - front_rot_enc_increment(), SENDER_USER);
+            if(current_patch.mid > front_rot_enc_increment())
+                patch_current_set_mid(current_patch.mid - front_rot_enc_increment(), SENDER_USER);
+            else
+                patch_current_set_mid(0, SENDER_USER);
             pccomm_set_patch_value(COMM_PATCH_MID, current_patch.mid);
         }
         
@@ -168,7 +177,10 @@ void main(void)
         if(f_rot_enc_high_down)
         {
             f_rot_enc_high_down = false;
-            patch_current_set_high(current_patch.high - front_rot_enc_increment(), SENDER_USER);
+            if(current_patch.high > front_rot_enc_increment())
+                patch_current_set_high(current_patch.high - front_rot_enc_increment(), SENDER_USER);
+            else
+                patch_current_set_high(0, SENDER_USER);
             pccomm_set_patch_value(COMM_PATCH_HIGH, current_patch.high);
         }
         
@@ -181,7 +193,10 @@ void main(void)
         if(f_rot_enc_pres_down)
         {
             f_rot_enc_pres_down = false;
-            patch_current_set_presence(current_patch.presence - front_rot_enc_increment(), SENDER_USER);
+            if(current_patch.presence > front_rot_enc_increment())
+                patch_current_set_presence(current_patch.presence - front_rot_enc_increment(), SENDER_USER);
+            else
+                patch_current_set_presence(0, SENDER_USER);
             pccomm_set_patch_value(COMM_PATCH_PRES, current_patch.presence);
         }
         
@@ -194,7 +209,10 @@ void main(void)
         if(f_rot_enc_vol_down)
         {
             f_rot_enc_vol_down = false;
-            patch_current_set_volume(current_patch.volume - front_rot_enc_increment(), SENDER_USER);
+            if(current_patch.volume > front_rot_enc_increment())
+                patch_current_set_volume(current_patch.volume - front_rot_enc_increment(), SENDER_USER);
+            else
+                patch_current_set_volume(0, SENDER_USER);
             pccomm_set_patch_value(COMM_PATCH_VOLUME, current_patch.volume);
         }
         
@@ -216,28 +234,33 @@ void main(void)
             }
         }
         
+        if(f_front_btn_gain_pressed)
+        {
+            f_front_btn_gain_pressed = false;
+        }
+        if(f_front_btn_store_pressed)
+        {
+            f_front_btn_store_pressed = false;                        
+            patch_current_store(current_patch_no);
+        }
+        if(f_front_btn_exit_pressed)
+        {
+            f_front_btn_exit_pressed = false;
+        }
+        
         if(f_front_btn_models_pressed)
         {
-            f_front_btn_models_pressed = false;
-            //LCD_SetCursor(0, 1);
-            //LCD_Write_Str_Padded("Models", 8);
+            f_front_btn_models_pressed = false;            
             pccomm_log_message("Models menu");
         }
         if(f_front_btn_system_pressed)
         {
-            f_front_btn_system_pressed = false;
-            //LCD_SetCursor(0, 1);
-            //LCD_Write_Str_Padded("System", 8);
+            f_front_btn_system_pressed = false;            
             pccomm_log_message("System menu");
-            
-            // TEST
-            patch_current_store(current_patch_no);
         }
         if(f_front_btn_next_pressed)
         {
             f_front_btn_next_pressed = false;
-            //LCD_SetCursor(0, 1);
-            //LCD_Write_Str_Padded("Next", 8);
             pccomm_log_message("Next parameter");
         }
         

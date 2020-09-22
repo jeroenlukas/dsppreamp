@@ -36,6 +36,18 @@
 #include <xc.h> // include processor files - each processor file is guarded.  
 
 volatile bool f_front_event = false;
+volatile bool f_front_btn_gain_pressed = false;
+volatile bool f_front_btn_low_pressed = false;
+volatile bool f_front_btn_mid_pressed = false;
+volatile bool f_front_btn_high_pressed = false;
+volatile bool f_front_btn_pres_pressed = false;
+volatile bool f_front_btn_vol_pressed = false;
+volatile bool f_front_btn_value_pressed = false;
+
+volatile bool f_front_btn_exit_pressed = false;
+volatile bool f_front_btn_store_pressed = false;
+volatile bool f_front_btn_prev_pressed = false;
+
 volatile bool f_front_btn_models_pressed = false;
 volatile bool f_front_btn_system_pressed = false;
 volatile bool f_front_btn_next_pressed = false;
