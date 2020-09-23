@@ -40,8 +40,7 @@ void Tmr0Interrupt(void);
 
 void main(void) 
 {    
-    uint8_t adcVal;
-   
+    
     __delay_ms(50);
     
     // Initialize peripherals and system (configured by MCC)
@@ -54,8 +53,7 @@ void main(void)
     
     front_led_midi_SetHigh();
     __delay_ms(100);
-    front_led_midi_SetLow();        
-       
+    front_led_midi_SetLow();              
     
     LCD_Init();
     
@@ -65,6 +63,10 @@ void main(void)
     LCD_Write_Str("DSPPreamp!");
     
     pccomm_log_message("Startup");
+    
+    // Download firmware to ADAU1701
+    default_download_IC_1();    
+    pccomm_log_message("Algorithm loaded");
     
     __delay_ms(1000);
     LCD_Home();
@@ -84,16 +86,7 @@ void main(void)
     LCD_SetCursor(19, 1);
     LCD_Write_Char(LCD_CC_BAR_7);
     
-    // Download firmware to ADAU1701
-    default_download_IC_1();
-    
-    pccomm_log_message("Algorithm loaded");
-    
-    
-     __delay_ms(100);
-     
-    patch_load(0); 
-    
+    patch_load(0);     
     
     while(1)
     {            
@@ -294,18 +287,20 @@ void Tmr0Interrupt(void)
     
     // Readout shift registers on front panel
     front_check_buttons();
-
     
-    front_led_store_SetLow();
+    
     
     // Increase millisecond timer
     millis_inc();
     
     // slow timer
     tmr_slow++;
-    if(tmr_slow == 15)
+    if(tmr_slow == 50)
     {
         tmr_slow = 0;
+        front_check_level();
         f_tmr_slow = true;
     }
+    
+    front_led_store_SetLow();
 }

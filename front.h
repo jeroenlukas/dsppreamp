@@ -35,6 +35,12 @@
 
 #include <xc.h> // include processor files - each processor file is guarded.  
 
+#define LED_COLOR_OFF       0
+#define LED_COLOR_GREEN     1
+#define LED_COLOR_ORANGE    2
+#define LED_COLOR_RED       3
+
+
 volatile bool f_front_event = false;
 volatile bool f_front_btn_gain_pressed = false;
 volatile bool f_front_btn_low_pressed = false;
@@ -70,6 +76,9 @@ bool f_rot_enc_value_down = false;
 void front_check_buttons(void);
 
 uint8_t front_rot_enc_increment(void);
+
+void front_check_level(void);
+void front_set_signal_led(uint8_t color);
 
 
 
