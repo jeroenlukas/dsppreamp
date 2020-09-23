@@ -21,32 +21,32 @@
                 <Link pin="O_C26_A0_P1_out" dir="out" link="Link7" />
             </Algorithm>
             <Algorithm name="ICSigma100In1" friendlyname="170x\140x input" cell="Input1 ">
-                <Link pin="O_C0_A0_P1_out" dir="out" link="Link19" />
-                <Link pin="O_C0_A0_P2_out" dir="out" link="Link18" />
+                <Link pin="O_C0_A0_P1_out" dir="out" link="Link17" />
+                <Link pin="O_C0_A0_P2_out" dir="out" link="Link16" />
             </Algorithm>
             <Algorithm name="Gain1940AlgNS2" friendlyname="Gain (no slew)" cell="Gain2 ">
-                <Link pin="I_C52_A0_P1_in" dir="in" link="Link18" />
+                <Link pin="I_C52_A0_P1_in" dir="in" link="Link16" />
                 <Link pin="O_C52_A0_P2_out" dir="out" link="Link26" />
             </Algorithm>
             <Algorithm name="Gain1940AlgNS1" friendlyname="Gain (no slew)" cell="Gain1 ">
-                <Link pin="I_C14_A0_P1_in" dir="in" link="Link19" />
+                <Link pin="I_C14_A0_P1_in" dir="in" link="Link17" />
                 <Link pin="O_C14_A0_P2_out" dir="out" link="Link25" />
             </Algorithm>
             <Algorithm name="monomux1940ns1" friendlyname="Mono" cell="Nx1-1 ">
                 <Link pin="I_C16_A0_P2_in" dir="in" link="Link25" />
                 <Link pin="I_C16_A0_P3_in" dir="in" link="Link26" />
-                <Link pin="O_C16_A0_P1_out" dir="out" link="Link17" />
+                <Link pin="O_C16_A0_P1_out" dir="out" link="Link19" />
             </Algorithm>
-            <Algorithm name="MonoRunAvgDetectAlg1" friendlyname="Average Envelope" cell="AvgEnv1 ">
-                <Link pin="I_C11_A0_P1_in" dir="in" link="Link17" />
-                <Link pin="O_C11_A0_P2_out" dir="out" link="Link16" />
+            <Algorithm name="MonoEnvelopeAccuratePeakAlg1" friendlyname="Mono Envelope Peak (Accurate)" cell="PeakEnv1 ">
+                <Link pin="I_C112_A0_P1_in" dir="in" link="Link19" />
+                <Link pin="O_C112_A0_P2_out" dir="out" link="Link18" />
             </Algorithm>
             <Algorithm name="FistOrderSingle3" friendlyname="1st order filter" cell="PreGain.LOWCUT ">
                 <Link pin="I_C79_A0_P1_in" dir="in" link="Link25" />
                 <Link pin="O_C79_A0_P2_out" dir="out" link="Link13" />
             </Algorithm>
             <Algorithm name="ICSigma100Out3" friendlyname="170x\140x output" cell="Output3 ">
-                <Link pin="I_C72_A0_P1_in" dir="in" link="Link16" />
+                <Link pin="I_C72_A0_P1_in" dir="in" link="Link18" />
             </Algorithm>
             <Algorithm name="FistOrderSingle4" friendlyname="1st order filter" cell="PreGain.LOWCUT2 ">
                 <Link pin="I_C84_A0_P1_in" dir="in" link="Link13" />
