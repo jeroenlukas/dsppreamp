@@ -187,9 +187,9 @@ void front_check_level(void)
     uint16_t level = ADCC_GetConversionResult();  
     
     ADCC_StartConversion(0xC);
-    if(level > 455) front_set_signal_led(LED_COLOR_OFF);    
+    if(level > 450) front_set_signal_led(LED_COLOR_OFF);    
     else if(level  < 75) front_set_signal_led(LED_COLOR_RED);
-    else if(level < 150) front_set_signal_led(LED_COLOR_ORANGE);
+    else if(level < 125) front_set_signal_led(LED_COLOR_ORANGE);
     else front_set_signal_led(LED_COLOR_GREEN);
 }
 

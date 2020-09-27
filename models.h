@@ -70,6 +70,8 @@ typedef struct model
     int16_t post_presence_freq_min;
     int16_t post_presence_freq_max;
     
+    uint8_t post_presence_order;
+    
     //uint8_t post_pres_gain_min;
     
     
@@ -94,6 +96,10 @@ void model_current_set_dspdistortion_asymmetry(double asymm);
 void model_current_set_postgain_mid_Q(double Q);
 void model_current_set_postgain_mid_freq(int16_t freq);
 void model_current_set_postgain_mid_boost(int16_t boost);
+
+void model_current_set_postgain_pres_order(uint8_t order);
+void model_current_set_postgain_pres_freq_min(int16_t freq);
+void model_current_set_postgain_pres_freq_max(int16_t freq);
 
 //model_t models[10];
 

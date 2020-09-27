@@ -126,7 +126,7 @@ void patch_load(uint8_t patch_no)
     model_current_set_dspdistortion_alpha(current_patch.model.dspdistortion_alpha);
     model_current_set_dspdistortion_asymmetry(current_patch.model.dspdistortion_asymmetry);
     model_current_set_dspdistortion_volume(current_patch.model.dspdistortion_volume);
-    
+    model_current_set_postgain_pres_order(current_patch.model.post_presence_order);
     
     //model_current_set_postgain_mid_freq(current_patch.model.post_mid_freq);
     
@@ -179,7 +179,7 @@ void patch_load(uint8_t patch_no)
     
     pccomm_set_model_value_int(COMM_MODEL_POSTGAIN_PRES_FREQ_MIN, current_patch.model.post_presence_freq_min);
     pccomm_set_model_value_int(COMM_MODEL_POSTGAIN_PRES_FREQ_MAX, current_patch.model.post_presence_freq_max);
-    
+    pccomm_set_model_value(COMM_MODEL_POSTGAIN_PRES_ORDER, current_patch.model.post_presence_order);
     
     pccomm_set_patch_value_str(COMM_PATCH_NAME, current_patch.name);
     pccomm_set_patch_value(COMM_PATCH_MODEL, current_patch.model_id);
@@ -559,9 +559,9 @@ void patch_current_set_presence(uint8_t value, uint8_t sender)
     uint16_t sigma_address[5];
     double sigma_data[5];
     
-    sigma_address[0] = MOD_POSTGAIN_PO_PRESENCE_ALG0_PARAMB10_ADDR;
-    sigma_address[1] = MOD_POSTGAIN_PO_PRESENCE_ALG0_PARAMB00_ADDR;
-    sigma_address[2] = MOD_POSTGAIN_PO_PRESENCE_ALG0_PARAMA00_ADDR;
+    sigma_address[0] = MOD_PRES_PRESENCE_ALG0_PARAMB10_ADDR;
+    sigma_address[1] = MOD_PRES_PRESENCE_ALG0_PARAMB00_ADDR;
+    sigma_address[2] = MOD_PRES_PRESENCE_ALG0_PARAMA00_ADDR;
     
     sigma_data[0] = B1;
     sigma_data[1] = B0;
@@ -570,9 +570,16 @@ void patch_current_set_presence(uint8_t value, uint8_t sender)
     adau1701_write_multi(3, sigma_address, sigma_data);
     
     // Again, for the second presence filter
-    sigma_address[0] = MOD_POSTGAIN_PO_PRESENCE2_ALG0_PARAMB10_ADDR;
-    sigma_address[1] = MOD_POSTGAIN_PO_PRESENCE2_ALG0_PARAMB00_ADDR;
-    sigma_address[2] = MOD_POSTGAIN_PO_PRESENCE2_ALG0_PARAMA00_ADDR;    
+    sigma_address[0] = MOD_PRES_PRESENCE2_ALG0_PARAMB10_ADDR;
+    sigma_address[1] = MOD_PRES_PRESENCE2_ALG0_PARAMB00_ADDR;
+    sigma_address[2] = MOD_PRES_PRESENCE2_ALG0_PARAMA00_ADDR;    
+    
+    adau1701_write_multi(3, sigma_address, sigma_data);
+    
+     // Again, for the third presence filter
+    sigma_address[0] = MOD_PRES_PRESENCE3_ALG0_PARAMB10_ADDR;
+    sigma_address[1] = MOD_PRES_PRESENCE3_ALG0_PARAMB00_ADDR;
+    sigma_address[2] = MOD_PRES_PRESENCE3_ALG0_PARAMA00_ADDR;    
     
     adau1701_write_multi(3, sigma_address, sigma_data);
 }

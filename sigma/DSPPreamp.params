@@ -1,3 +1,93 @@
+Cell Name         = PostGain.PRES.PRESENCE
+Parameter Name    = FistOrderSingle101
+Parameter Address = 59
+Parameter Value   = 0.477996945381165
+Parameter Data :
+0x00 ,	0x3D ,	0x2F ,	0x01 ,	
+
+
+
+Cell Name         = PostGain.PRES.PRESENCE
+Parameter Name    = FistOrderSingle111
+Parameter Address = 60
+Parameter Value   = 0
+Parameter Data :
+0x00 ,	0x00 ,	0x00 ,	0x00 ,	
+
+
+
+Cell Name         = PostGain.PRES.PRESENCE
+Parameter Name    = FistOrderSingle121
+Parameter Address = 61
+Parameter Value   = 0.522003054618835
+Parameter Data :
+0x00 ,	0x42 ,	0xD0 ,	0xFF ,	
+
+
+
+Cell Name         = PostGain.PRES.PRESENCE2
+Parameter Name    = FistOrderSingle201
+Parameter Address = 62
+Parameter Value   = 0.477996945381165
+Parameter Data :
+0x00 ,	0x3D ,	0x2F ,	0x01 ,	
+
+
+
+Cell Name         = PostGain.PRES.PRESENCE2
+Parameter Name    = FistOrderSingle211
+Parameter Address = 63
+Parameter Value   = 0
+Parameter Data :
+0x00 ,	0x00 ,	0x00 ,	0x00 ,	
+
+
+
+Cell Name         = PostGain.PRES.PRESENCE2
+Parameter Name    = FistOrderSingle221
+Parameter Address = 64
+Parameter Value   = 0.522003054618835
+Parameter Data :
+0x00 ,	0x42 ,	0xD0 ,	0xFF ,	
+
+
+
+Cell Name         = PostGain.PRES.PRESENCE3
+Parameter Name    = FistOrderSingle501
+Parameter Address = 65
+Parameter Value   = 0.477996945381165
+Parameter Data :
+0x00 ,	0x3D ,	0x2F ,	0x01 ,	
+
+
+
+Cell Name         = PostGain.PRES.PRESENCE3
+Parameter Name    = FistOrderSingle511
+Parameter Address = 66
+Parameter Value   = 0
+Parameter Data :
+0x00 ,	0x00 ,	0x00 ,	0x00 ,	
+
+
+
+Cell Name         = PostGain.PRES.PRESENCE3
+Parameter Name    = FistOrderSingle521
+Parameter Address = 67
+Parameter Value   = 0.522003054618835
+Parameter Data :
+0x00 ,	0x42 ,	0xD0 ,	0xFF ,	
+
+
+
+Cell Name         = PostGain.PRES.ORDER
+Parameter Name    = monoMuxSwSlew3coeffname
+Parameter Address = 68
+Parameter Value   = 1
+Parameter Data :
+0x00, 0x00, 0x00, 0x01, 
+
+
+
 Cell Name         = PostGain.MID1
 Parameter Name    = EQ1940Single20B1
 Parameter Address = 44
@@ -135,7 +225,7 @@ Parameter Data :
 
 Cell Name         = PostGain.PO_BYPASS
 Parameter Name    = monomux1940ns3_0
-Parameter Address = 65
+Parameter Address = 69
 Parameter Value   = 1
 Parameter Data :
 0x00, 0x80, 0x00, 0x00, 
@@ -144,64 +234,10 @@ Parameter Data :
 
 Cell Name         = PostGain.PO_BYPASS
 Parameter Name    = monomux1940ns3_1
-Parameter Address = 66
+Parameter Address = 70
 Parameter Value   = 0
 Parameter Data :
 0x00, 0x00, 0x00, 0x00, 
-
-
-
-Cell Name         = PostGain.PO_PRESENCE
-Parameter Name    = FistOrderSingle101
-Parameter Address = 59
-Parameter Value   = 0.477996945381165
-Parameter Data :
-0x00 ,	0x3D ,	0x2F ,	0x01 ,	
-
-
-
-Cell Name         = PostGain.PO_PRESENCE
-Parameter Name    = FistOrderSingle111
-Parameter Address = 60
-Parameter Value   = 0
-Parameter Data :
-0x00 ,	0x00 ,	0x00 ,	0x00 ,	
-
-
-
-Cell Name         = PostGain.PO_PRESENCE
-Parameter Name    = FistOrderSingle121
-Parameter Address = 61
-Parameter Value   = 0.522003054618835
-Parameter Data :
-0x00 ,	0x42 ,	0xD0 ,	0xFF ,	
-
-
-
-Cell Name         = PostGain.PO_PRESENCE2
-Parameter Name    = FistOrderSingle201
-Parameter Address = 62
-Parameter Value   = 0.477996945381165
-Parameter Data :
-0x00 ,	0x3D ,	0x2F ,	0x01 ,	
-
-
-
-Cell Name         = PostGain.PO_PRESENCE2
-Parameter Name    = FistOrderSingle211
-Parameter Address = 63
-Parameter Value   = 0
-Parameter Data :
-0x00 ,	0x00 ,	0x00 ,	0x00 ,	
-
-
-
-Cell Name         = PostGain.PO_PRESENCE2
-Parameter Name    = FistOrderSingle221
-Parameter Address = 64
-Parameter Value   = 0.522003054618835
-Parameter Data :
-0x00 ,	0x42 ,	0xD0 ,	0xFF ,	
 
 
 
@@ -459,7 +495,7 @@ Parameter Data :
 
 Cell Name         = PO_VOLUME
 Parameter Name    = SWGain1940DBAlg2target
-Parameter Address = 67
+Parameter Address = 71
 Parameter Value   = 0.478630065917969
 Parameter Data :
 0x00 ,	0x3D ,	0x43 ,	0xC0 ,	
@@ -468,7 +504,7 @@ Parameter Data :
 
 Cell Name         = PO_VOLUME
 Parameter Name    = SWGain1940DBAlg2step
-Parameter Address = 68
+Parameter Address = 72
 Parameter Value   = 0.000244140625
 Parameter Data :
 0x00 ,	0x00 ,	0x08 ,	0x00 ,	
@@ -686,14 +722,14 @@ See also DSPPreamp.hex file
 0x00 , 	0x3D , 	0x2F , 	0x01 , 	
 0x00 , 	0x00 , 	0x00 , 	0x00 , 	
 0x00 , 	0x42 , 	0xD0 , 	0xFF , 	
+0x00 , 	0x3D , 	0x2F , 	0x01 , 	
+0x00 , 	0x00 , 	0x00 , 	0x00 , 	
+0x00 , 	0x42 , 	0xD0 , 	0xFF , 	
+0x00 , 	0x00 , 	0x00 , 	0x01 , 	
 0x00 , 	0x80 , 	0x00 , 	0x00 , 	
 0x00 , 	0x00 , 	0x00 , 	0x00 , 	
 0x00 , 	0x3D , 	0x43 , 	0xC0 , 	
 0x00 , 	0x00 , 	0x08 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x00 , 	
 0x00 , 	0x00 , 	0x00 , 	0x00 , 	
 0x00 , 	0x00 , 	0x00 , 	0x00 , 	
 0x00 , 	0x00 , 	0x00 , 	0x00 , 	
@@ -1712,14 +1748,14 @@ Parameter data for: IC 1 (Binary format starting at parameter address 0)
 00000000	00111101	00101111	00000001	
 00000000	00000000	00000000	00000000	
 00000000	01000010	11010000	11111111	
+00000000	00111101	00101111	00000001	
+00000000	00000000	00000000	00000000	
+00000000	01000010	11010000	11111111	
+00000000	00000000	00000000	00000001	
 00000000	10000000	00000000	00000000	
 00000000	00000000	00000000	00000000	
 00000000	00111101	01000011	11000000	
 00000000	00000000	00001000	00000000	
-00000000	00000000	00000000	00000000	
-00000000	00000000	00000000	00000000	
-00000000	00000000	00000000	00000000	
-00000000	00000000	00000000	00000000	
 00000000	00000000	00000000	00000000	
 00000000	00000000	00000000	00000000	
 00000000	00000000	00000000	00000000	

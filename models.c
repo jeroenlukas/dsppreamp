@@ -66,6 +66,7 @@ void model_initialize(uint8_t code)
         model.post_high_gain_max = 10;
         model.post_presence_freq_min = 3000;
         model.post_presence_freq_max = 8000;
+        model.post_presence_order = 2;
         model.zinput = 10;
         
         char str_num[16];
@@ -307,6 +308,24 @@ void model_current_set_dspdistortion_gain(double gain_db)
     adau1701_write(MOD_DSPDISTORTION_GAIN1_GAIN1940ALGNS3_ADDR, gain);    
     adau1701_write(MOD_DSPDISTORTION_GAIN2_GAIN1940ALGNS5_ADDR, gain);  
     adau1701_write(MOD_DSPDISTORTION_GAIN3_GAIN1940ALGNS6_ADDR, gain);
+}
+
+void model_current_set_postgain_pres_order(uint8_t order)
+{    
+    if(order > 0 && order < 4)
+    {
+        current_patch.model.post_presence_order = order;    
+        adau1701_write_fixed(MOD_PRES_ORDER_MONOSWSLEW_ADDR, (uint32_t)order-1);
+    }
+}
+
+void model_current_set_postgain_pres_freq_min(int16_t freq)
+{
+    current_patch.model.post_presence_freq_min = freq;
+}
+void model_current_set_postgain_pres_freq_max(int16_t freq)
+{
+    current_patch.model.post_presence_freq_max = freq;
 }
 
 void model_current_set_dspdistortion_volume(int8_t gain_db)
