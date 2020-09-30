@@ -28,14 +28,13 @@ uint32_t sn74hc165_read(void)
     if(front_MISO_GetValue()) shift_input++;
 	shift_input = shift_input << 1;
 
-	for(i = 0; i < 8 * 3; i++)
-	{
-		//P_SI_CP = HIGH;
+	for(i = 0; i < 24; i++)
+	{		
         front_SCK_SetHigh();
 		if(front_MISO_GetValue()) shift_input++;
-		if(i < 8 * 3) shift_input = shift_input << 1;
+		if(i < 24) shift_input = shift_input << 1;
 		front_SCK_SetLow();
-		//__delay_us(1);
+	
         _delay(1);
 	}
 	return shift_input;
