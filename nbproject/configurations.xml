@@ -41,6 +41,7 @@
       <itemPath>patches.h</itemPath>
       <itemPath>misc_func.h</itemPath>
       <itemPath>pccomm.h</itemPath>
+      <itemPath>midi.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -79,6 +80,7 @@
       <itemPath>patches.c</itemPath>
       <itemPath>misc_func.c</itemPath>
       <itemPath>pccomm.c</itemPath>
+      <itemPath>midi.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

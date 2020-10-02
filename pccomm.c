@@ -189,16 +189,12 @@ void pccomm_parse_command(void)
                     case COMM_MODEL_DSPDISTORTION_ALPHA:
                         model_current_set_dspdistortion_alpha((double)received_command.payload[2] / 10);
                         break;
-                    case COMM_MODEL_DSPDISTORTION_GAIN_MIN:
-                        //model_current_set_dspdistortion_gain((double)received_command.payload[2]);
+                    case COMM_MODEL_DSPDISTORTION_GAIN_MIN:                        
                         current_patch.model.dspdistortion_gain_min = (int8_t)received_command.payload[2];
-                        // Update
                         patch_current_set_gain(current_patch.gain, SENDER_EXT);  
                         break;
                     case COMM_MODEL_DSPDISTORTION_GAIN_MAX:
-                        //model_current_set_dspdistortion_gain((double)received_command.payload[2]);
                         current_patch.model.dspdistortion_gain_max = (int8_t)received_command.payload[2];
-                        // Update
                         patch_current_set_gain(current_patch.gain, SENDER_EXT);  
                         break;
                     case COMM_MODEL_DSPDISTORTION_VOLUME:
@@ -213,12 +209,44 @@ void pccomm_parse_command(void)
                     case COMM_MODEL_PREGAIN_LOWCUT_FREQ:
                         model_current_set_pregain_lowcut((received_command.payload[2] << 8) + received_command.payload[3]);
                         break;
+                        
+                    // Low
+                    case COMM_MODEL_POSTGAIN_LOW_GAIN_MIN:
+                        model_current_set_postgain_low_gain_min((int8_t)received_command.payload[2]);
+                        patch_current_set_low(current_patch.low, SENDER_EXT);
+                        break;
+                    case COMM_MODEL_POSTGAIN_LOW_GAIN_MAX:
+                        model_current_set_postgain_low_gain_max((int8_t)received_command.payload[2]);
+                        patch_current_set_low(current_patch.low, SENDER_EXT);
+                        break;
+                        
+                    // Mid
+                    case COMM_MODEL_POSTGAIN_MID_GAIN_MIN:
+                        model_current_set_postgain_mid_gain_min((int8_t)received_command.payload[2]);
+                        patch_current_set_mid(current_patch.mid, SENDER_EXT);
+                        break;
+                    case COMM_MODEL_POSTGAIN_MID_GAIN_MAX:
+                        model_current_set_postgain_mid_gain_max((int8_t)received_command.payload[2]);
+                        patch_current_set_mid(current_patch.mid, SENDER_EXT);
+                        break;
                     case COMM_MODEL_POSTGAIN_MID_Q:                        
                         model_current_set_postgain_mid_Q((double)received_command.payload[2] / 10); // range 0.1-25.5
                         break;
                     case COMM_MODEL_POSTGAIN_MID_FREQ:
                         model_current_set_postgain_mid_freq((received_command.payload[2] << 8) + received_command.payload[3]);
                         break;
+                        
+                    // High
+                    case COMM_MODEL_POSTGAIN_HIGH_GAIN_MIN:
+                        model_current_set_postgain_high_gain_min((int8_t)received_command.payload[2]);
+                        patch_current_set_high(current_patch.high, SENDER_EXT);
+                        break;
+                    case COMM_MODEL_POSTGAIN_HIGH_GAIN_MAX:
+                        model_current_set_postgain_high_gain_max((int8_t)received_command.payload[2]);
+                        patch_current_set_high(current_patch.high, SENDER_EXT);
+                        break;
+                        
+                    // Presence
                     case COMM_MODEL_POSTGAIN_PRES_ORDER:
                         model_current_set_postgain_pres_order(received_command.payload[2]);
                         break;
@@ -265,6 +293,28 @@ void pccomm_log_message(char * text)
         transmit_command.payload[i++] = *text++;
     }
     transmit_command.payload[i] = '\0';
+    pccomm_send_command();
+}
+
+void pccomm_log_midi_cc(uint8_t chan, uint8_t cc, uint8_t value)
+{
+    transmit_command.command = COMMAND_MIDI_RECEIVED;
+    transmit_command.length = 4;
+    transmit_command.payload[0] = chan;
+    transmit_command.payload[1] = 0x0B;
+    transmit_command.payload[2] = cc;
+    transmit_command.payload[3] = value;
+    pccomm_send_command();
+}
+
+void pccomm_log_midi_pc(uint8_t chan, uint8_t program)
+{
+    transmit_command.command = COMMAND_MIDI_RECEIVED;
+    transmit_command.length = 4;
+    transmit_command.payload[0] = chan;
+    transmit_command.payload[1] = 0x0C;
+    transmit_command.payload[2] = program;
+    transmit_command.payload[3] = 0;
     pccomm_send_command();
 }
 

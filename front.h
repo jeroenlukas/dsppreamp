@@ -34,6 +34,7 @@
 
 
 #include <xc.h> // include processor files - each processor file is guarded.  
+#include <stdbool.h>
 
 #define LED_COLOR_OFF       0
 #define LED_COLOR_GREEN     1

@@ -328,6 +328,35 @@ void model_current_set_postgain_pres_freq_max(int16_t freq)
     current_patch.model.post_presence_freq_max = freq;
 }
 
+void model_current_set_postgain_low_gain_min(int8_t gain_db)
+{
+    current_patch.model.post_low_gain_min = gain_db;
+}
+
+void model_current_set_postgain_low_gain_max(int8_t gain_db)
+{
+    current_patch.model.post_low_gain_max = gain_db;
+}
+
+void model_current_set_postgain_mid_gain_min(int8_t gain_db)
+{
+    current_patch.model.post_mid_gain_min = gain_db;
+}
+void model_current_set_postgain_mid_gain_max(int8_t gain_db)
+{
+    current_patch.model.post_mid_gain_max = gain_db;
+}
+
+void model_current_set_postgain_high_gain_min(int8_t gain_db)
+{
+    current_patch.model.post_high_gain_min = gain_db;
+}
+
+void model_current_set_postgain_high_gain_max(int8_t gain_db)
+{
+    current_patch.model.post_high_gain_max = gain_db;
+}
+
 void model_current_set_dspdistortion_volume(int8_t gain_db)
 {
     // Gain in dB, but must be made negative!

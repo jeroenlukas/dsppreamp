@@ -45,13 +45,14 @@
   Section: Included Files
 */
 #include "eusart1.h"
+#include "..\midi.h"
 
 /**
   Section: Macro Declarations
 */
 
-#define EUSART1_TX_BUFFER_SIZE 8
-#define EUSART1_RX_BUFFER_SIZE 8
+#define EUSART1_TX_BUFFER_SIZE 128
+#define EUSART1_RX_BUFFER_SIZE 128
 
 /**
   Section: Global Variables
@@ -180,12 +181,17 @@ void EUSART1_Receive_ISR(void)
     }
 
     // buffer overruns are ignored
-    eusart1RxBuffer[eusart1RxHead++] = RC1REG;
+    uint8_t data = RC1REG;
+    eusart1RxBuffer[eusart1RxHead++] = data;
+    
     if(sizeof(eusart1RxBuffer) <= eusart1RxHead)
     {
         eusart1RxHead = 0;
     }
     eusart1RxCount++;
+    
+    midi_byte_received(data);
+    
 }
 /**
   End of File

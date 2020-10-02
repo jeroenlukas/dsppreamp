@@ -93,9 +93,17 @@ void model_current_set_dspdistortion_gain(double gain_db);
 void model_current_set_dspdistortion_volume(int8_t gain_db);
 void model_current_set_analog_bypass(uint8_t bypass);
 void model_current_set_dspdistortion_asymmetry(double asymm);
+
+
+void model_current_set_postgain_low_gain_min(int8_t gain_db);
+void model_current_set_postgain_low_gain_max(int8_t gain_db);
+void model_current_set_postgain_mid_gain_min(int8_t gain_db);
+void model_current_set_postgain_mid_gain_max(int8_t gain_db);
 void model_current_set_postgain_mid_Q(double Q);
 void model_current_set_postgain_mid_freq(int16_t freq);
 void model_current_set_postgain_mid_boost(int16_t boost);
+void model_current_set_postgain_high_gain_min(int8_t gain_db);
+void model_current_set_postgain_high_gain_max(int8_t gain_db);
 
 void model_current_set_postgain_pres_order(uint8_t order);
 void model_current_set_postgain_pres_freq_min(int16_t freq);

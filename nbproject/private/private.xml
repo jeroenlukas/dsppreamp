@@ -4,22 +4,25 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Jeroen/OneDrive/DIY/Elektronica/DSPPreamp/software/firmware/front.h</file>
-            <file>file:/C:/Users/Jeroen/OneDrive/DIY/Elektronica/DSPPreamp/software/firmware/mcc_generated_files/adcc.c</file>
+            <file>file:/C:/Users/Jeroen/OneDrive/DIY/Elektronica/DSPPreamp/software/firmware/mcc_generated_files/eusart1.c</file>
             <file>file:/C:/Users/Jeroen/OneDrive/DIY/Elektronica/DSPPreamp/software/firmware/lcd_pcf8574.c</file>
-            <file>file:/C:/Users/Jeroen/OneDrive/DIY/Elektronica/DSPPreamp/software/firmware/mcc_generated_files/adcc.h</file>
+            <file>file:/C:/Users/Jeroen/OneDrive/DIY/Elektronica/DSPPreamp/software/firmware/mcc_generated_files/eusart2.c</file>
             <file>file:/C:/Users/Jeroen/OneDrive/DIY/Elektronica/DSPPreamp/software/firmware/adau1701.c</file>
+            <file>file:/C:/Users/Jeroen/OneDrive/DIY/Elektronica/DSPPreamp/software/firmware/i2c_simplifier.h</file>
             <file>file:/C:/Users/Jeroen/OneDrive/DIY/Elektronica/DSPPreamp/software/firmware/24aa64.h</file>
             <file>file:/C:/Users/Jeroen/OneDrive/DIY/Elektronica/DSPPreamp/software/firmware/models.c</file>
-            <file>file:/C:/Users/Jeroen/OneDrive/DIY/Elektronica/DSPPreamp/software/firmware/sigma/DSPPreamp_IC_1_PARAM.h</file>
-            <file>file:/C:/Users/Jeroen/OneDrive/DIY/Elektronica/DSPPreamp/software/firmware/mcc_generated_files/mcc.c</file>
             <file>file:/C:/Users/Jeroen/OneDrive/DIY/Elektronica/DSPPreamp/software/firmware/main.c</file>
             <file>file:/C:/Users/Jeroen/OneDrive/DIY/Elektronica/DSPPreamp/software/firmware/models.h</file>
+            <file>file:/C:/Users/Jeroen/OneDrive/DIY/Elektronica/DSPPreamp/software/firmware/74hc165.c</file>
+            <file>file:/C:/Users/Jeroen/OneDrive/DIY/Elektronica/DSPPreamp/software/firmware/midi.h</file>
             <file>file:/C:/Users/Jeroen/OneDrive/DIY/Elektronica/DSPPreamp/software/firmware/mcc_generated_files/pin_manager.h</file>
             <file>file:/C:/Users/Jeroen/OneDrive/DIY/Elektronica/DSPPreamp/software/firmware/pccomm.c</file>
             <file>file:/C:/Users/Jeroen/OneDrive/DIY/Elektronica/DSPPreamp/software/firmware/pccomm.h</file>
+            <file>file:/C:/Users/Jeroen/OneDrive/DIY/Elektronica/DSPPreamp/software/firmware/sigma/SigmaStudioFW.c</file>
             <file>file:/C:/Users/Jeroen/OneDrive/DIY/Elektronica/DSPPreamp/software/firmware/patches.c</file>
-            <file>file:/C:/Users/Jeroen/OneDrive/DIY/Elektronica/DSPPreamp/software/firmware/patches.h</file>
+            <file>file:/C:/Users/Jeroen/OneDrive/DIY/Elektronica/DSPPreamp/software/firmware/24aa64.c</file>
             <file>file:/C:/Users/Jeroen/OneDrive/DIY/Elektronica/DSPPreamp/software/firmware/front.c</file>
+            <file>file:/C:/Users/Jeroen/OneDrive/DIY/Elektronica/DSPPreamp/software/firmware/midi.c</file>
             <file>file:/C:/Users/Jeroen/OneDrive/DIY/Elektronica/DSPPreamp/software/firmware/config.h</file>
         </group>
     </open-files>

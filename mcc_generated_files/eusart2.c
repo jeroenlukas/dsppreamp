@@ -85,11 +85,11 @@ void EUSART2_Initialize(void)
     // TX9 8-bit; TX9D 0; SENDB sync_break_complete; TXEN enabled; SYNC asynchronous; BRGH hi_speed; CSRC slave; 
     TX2STA = 0x24;
 
-    // SP2BRGL 127; 
-    SP2BRGL = 0x7F;
+    // SP2BRGL 212; 
+    SP2BRGL = 0xD4;
 
-    // SP2BRGH 2; 
-    SP2BRGH = 0x02;
+    // SP2BRGH 0; 
+    SP2BRGH = 0x00;
 
 
     // initializing the driver state

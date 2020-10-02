@@ -197,7 +197,9 @@ void front_check_level(void)
 void front_check_buttons(void)
 {
     shift_register_data = sn74hc165_read();    
-   
+    
+    if(shift_register_data != prev_shift_register_data)
+    {
     switch(process_rotary_encoder(RE_GAIN))
     {
         case RE_UP:
@@ -282,7 +284,7 @@ void front_check_buttons(void)
             break;
     }    
         
-     
+    }
     // Poll other buttons (models, system and next )
     
     if(front_btn_models_GetValue() < prev_btn_models)

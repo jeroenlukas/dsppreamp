@@ -18,9 +18,11 @@ void SIGMA_WRITE_SAFELOAD(uint8_t safeLoadReg, uint16_t address, uint32_t data)
     data_broken[4] = (data) & 0xFF;
     
     SIGMA_WRITE_REGISTER_BLOCK(0x68, slar[safeLoadReg], 2, addr_broken); // Write the safeload ADDRESS (2 bytes)
-    __delay_ms(1);
+    __delay_us(100);
+    //__delay_ms(1);
     SIGMA_WRITE_REGISTER_BLOCK(0x68, sldr[safeLoadReg], 5, data_broken); // Write the safeload DATA
-    __delay_ms(1);
+    __delay_us(100);
+    //__delay_ms(1);
     SIGMA_WRITE_REGISTER_BLOCK(0x68, 2076, 2, slcc); // Flip IST bit
     
 }
@@ -47,10 +49,12 @@ void SIGMA_WRITE_SAFELOAD_MULTI(uint8_t count, uint16_t address[], uint32_t data
         data_broken[4] = (data[i]) & 0xFF;
 
         SIGMA_WRITE_REGISTER_BLOCK(0x68, slar[i], 2, addr_broken); // Write the safeload ADDRESS (2 bytes)
-        __delay_ms(1);
+        __delay_us(100);
+        //__delay_ms(1);
         SIGMA_WRITE_REGISTER_BLOCK(0x68, sldr[i], 5, data_broken); // Write the safeload DATA
     }
-    __delay_ms(1);
+    __delay_us(100);
+    //__delay_ms(1);
     SIGMA_WRITE_REGISTER_BLOCK(0x68, 2076, 2, slcc); // Flip IST bit
     
 }

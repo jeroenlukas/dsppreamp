@@ -18,6 +18,7 @@
 #include "24aa64.h"
 #include "pccomm.h"
 //#include "front.h"
+#include "mcc_generated_files/mcc.h"
 #include "lcd_pcf8574.h"
 #include "misc_func.h"
 #include "sigma/DSPPreamp_IC_1_PARAM.h"
@@ -83,7 +84,11 @@ void patch_load(uint8_t patch_no)
     
     eeprom_patch_t patch_data;
     
+    //front_led_store_SetHigh();
+    
     eeprom_read_multi(EEPROM_PATCH_START + (patch_no * sizeof patch_data), &patch_data, sizeof patch_data);            
+    
+    //front_led_store_SetLow(); // 5ms
     
     strcpy(current_patch.name, patch_data.name);
     current_patch.model_id = patch_data.model_id;
@@ -94,32 +99,11 @@ void patch_load(uint8_t patch_no)
     current_patch.presence = patch_data.presence;
     current_patch.volume = patch_data.volume;
     
-    //model_read_model_from_eeprom(current_patch.model_id);
+    
     eeprom_read_multi(EEPROM_MODEL_START + (current_patch.model_id * (sizeof current_patch.model)), &(current_patch.model), sizeof current_patch.model);      
     
-    // Override some settings
-    //current_patch.model.gain_min = 0;
-    //current_patch.model.gain_max = 50;
-    //current_patch.model.pre_cutoff_freq = 80;
-   // current_patch.model.post_low_gain_min = -15;
-   // current_patch.model.post_low_gain_max = 15;
-    //current_patch.model.post_high_gain_min = -15;
-    //current_patch.model.post_high_gain_max = 15;
-    //current_patch.model.post_presence_freq_min = 2000;
-    //current_patch.model.post_presence_freq_max = 10000;
-   // current_patch.model.post_mid_Q = 1;
-    //current_patch.model.post_mid_freq = 400;
-    //current_patch.model.post_mid_gain_min = -10;
-    //current_patch.model.post_mid_gain_max  = 10;  
+    // front_led_store_SetLow(); 22 ms
     
-/*   
-            
-    current_patch.gain = 20;
-    current_patch.low = 60;
-    current_patch.mid = 50;
-    current_patch.high = 50;
-    current_patch.presence = 60;
-    current_patch.volume = 60;*/
     
     model_current_set_dspdistortion_bypass(0);
     model_current_set_pregain_lowcut(current_patch.model.pre_cutoff_freq);
@@ -128,7 +112,7 @@ void patch_load(uint8_t patch_no)
     model_current_set_dspdistortion_volume(current_patch.model.dspdistortion_volume);
     model_current_set_postgain_pres_order(current_patch.model.post_presence_order);
     
-    //model_current_set_postgain_mid_freq(current_patch.model.post_mid_freq);
+    //front_led_store_SetLow(); // 70 ms    
     
     patch_current_set_volume(current_patch.volume, SENDER_EXT);    
     patch_current_set_gain(current_patch.gain, SENDER_EXT);
@@ -136,6 +120,8 @@ void patch_load(uint8_t patch_no)
     patch_current_set_mid(current_patch.mid, SENDER_EXT);
     patch_current_set_high(current_patch.high, SENDER_EXT);
     patch_current_set_presence(current_patch.presence, SENDER_EXT);
+    
+    //front_led_store_SetLow(); // 248ms
     
     // Update display
     LCD_SetCursor(0,0);
@@ -152,6 +138,8 @@ void patch_load(uint8_t patch_no)
     LCD_Write_Str_Zero_Padded_Right(strbuf, 2);
     */
     lcd_display_normal();
+    
+    // front_led_store_SetLow(); 276ms
     
     // Send info to PC
     pccomm_set_model_value_str(COMM_MODEL_NAME, current_patch.model.name);
@@ -190,6 +178,7 @@ void patch_load(uint8_t patch_no)
     pccomm_set_patch_value(COMM_PATCH_PRES, current_patch.presence);
     pccomm_set_patch_value(COMM_PATCH_VOLUME, current_patch.volume);
     
+    // front_led_store_SetLow(); //328ms
     
 }
 

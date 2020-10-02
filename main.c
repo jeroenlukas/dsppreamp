@@ -18,6 +18,7 @@
 #include "pccomm.h"
 #include "front.h"
 #include "24aa64.h"
+#include "midi.h"
 
 
 
@@ -229,6 +230,7 @@ void main(void)
         
         if(f_front_btn_gain_pressed)
         {
+            pccomm_log_message("Gain");
             f_front_btn_gain_pressed = false;
         }
         if(f_front_btn_store_pressed)
@@ -239,6 +241,7 @@ void main(void)
         if(f_front_btn_exit_pressed)
         {
             f_front_btn_exit_pressed = false;
+            pccomm_log_message("Exit");
         }
         
         if(f_front_btn_models_pressed)
@@ -257,21 +260,38 @@ void main(void)
             pccomm_log_message("Next parameter");
         }
         
-        if(EUSART1_DataReady)
+        if(eusart1RxCount > 0)
         {
             // MIDI data
-            EUSART1_Read();
+            //midi_byte_received(EUSART1_Read());
         }
-        
-        if(pccomm_frame_ready() == 1)
+        if(midi_pc_received())
         {
-            pccomm_parse_command();
+            f_midi_pc_received = false;
+            
+            
+            //pccomm_log_message("Midi PC received");
+            pccomm_log_midi_pc(midi_message.channel, midi_message.program);
+            patch_load(midi_message.program);
         }
+        if(midi_cc_received())
+        {
+            f_midi_cc_received = false;
+            
+            pccomm_log_midi_cc(midi_message.channel, midi_message.cc, midi_message.cc_value);
+        }        
+           
+        
         
         if(eusart2RxCount > 0)
         {
             // USB data
             pccomm_byte_received(EUSART2_Read());                        
+        }
+        
+        if(pccomm_frame_ready() == 1)
+        {
+            pccomm_parse_command();
         }
 
     }
@@ -283,7 +303,7 @@ void Tmr0Interrupt(void)
     //IO_LED1_Toggle();
     fTimer0 = true;
     
-    //front_led_store_SetHigh();
+    front_led_store_SetHigh();
     
     // Readout shift registers on front panel
     front_check_buttons();
@@ -302,5 +322,5 @@ void Tmr0Interrupt(void)
         f_tmr_slow = true;
     }
     
-    front_led_store_SetLow();
+    front_led_store_SetLow(); // total 464us
 }
