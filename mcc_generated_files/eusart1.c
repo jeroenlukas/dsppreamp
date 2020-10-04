@@ -190,7 +190,7 @@ void EUSART1_Receive_ISR(void)
     }
     eusart1RxCount++;
     
-    midi_byte_received(data);
+    //midi_byte_received(data);
     
 }
 /**

@@ -9,6 +9,7 @@
 
 #include <xc.h>
 #include <stdint.h>
+#include <stdio.h>
 #include "config.h"
 #include "mcc_generated_files/mcc.h"
 #include "lcd_pcf8574.h"
@@ -28,7 +29,7 @@ volatile bool fTimer0 = false;
 volatile bool f_tmr_slow = false;
 
 
-volatile char strbuff[32];
+volatile char strbuff[128];
 
 volatile uint8_t tmr_slow = 0;
 volatile uint8_t test_gain = 1;
@@ -67,7 +68,9 @@ void main(void)
     
     // Download firmware to ADAU1701
     default_download_IC_1();    
-    pccomm_log_message("Algorithm loaded");
+    
+    sprintf(strbuff, "Startup completed after %d ms", millis() + 50);
+    pccomm_log_message(strbuff);
     
     __delay_ms(1000);
     LCD_Home();
@@ -263,14 +266,13 @@ void main(void)
         if(eusart1RxCount > 0)
         {
             // MIDI data
-            //midi_byte_received(EUSART1_Read());
+            if(!f_midi_pc_received && !f_midi_cc_received) // Only read from buffer if there are no pending PC or CC messages to be processed
+                midi_byte_received(EUSART1_Read());
         }
         if(midi_pc_received())
         {
             f_midi_pc_received = false;
             
-            
-            //pccomm_log_message("Midi PC received");
             pccomm_log_midi_pc(midi_message.channel, midi_message.program);
             patch_load(midi_message.program);
         }
@@ -303,7 +305,7 @@ void Tmr0Interrupt(void)
     //IO_LED1_Toggle();
     fTimer0 = true;
     
-    front_led_store_SetHigh();
+    //front_led_store_SetHigh();
     
     // Readout shift registers on front panel
     front_check_buttons();
@@ -322,5 +324,5 @@ void Tmr0Interrupt(void)
         f_tmr_slow = true;
     }
     
-    front_led_store_SetLow(); // total 464us
+    //front_led_store_SetLow(); // total 464us
 }
