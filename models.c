@@ -9,6 +9,7 @@
 #include "xc.h"
 #include <math.h>
 #include <string.h>
+#include <stdio.h>
 #include "config.h"
 #include "models.h"
 #include "cd4052.h"
@@ -41,6 +42,7 @@ void model_apply_model(model_t model)
 void model_initialize(uint8_t code)
 {
     model_t model;
+    char strbuf[128];
     
     if(code == 0xBB)
     {
@@ -81,35 +83,32 @@ void model_initialize(uint8_t code)
             strcat(model.name, str_num);
             model_store(i, model);
         }
-        pccomm_log_message("Done.");
+        sprintf(strbuf, "Done. Struct size: %d Total size: %d", sizeof (model_t), sizeof (model_t) * EEPROM_MODEL_NUM);
+        pccomm_log_message(strbuf);
     }
 }
 
 void model_current_store(uint8_t model_id)
 {
     model_t model_data;    
-  
-    eeprom_write_multi(EEPROM_MODEL_START + (model_id * (sizeof current_patch.model)), &(current_patch.model), sizeof current_patch.model);
+    char strbuf[128];
     
-    pccomm_log_message("Model stored:");
-    char strbuf[10];
-    uitoa(model_id, strbuf);
-    pccomm_log_message(strbuf);
+    eeprom_write_multi(EEPROM_MODEL_START + (model_id * (sizeof current_patch.model)), &(current_patch.model), sizeof current_patch.model);
+    sprintf(strbuf, "Model %d (%s) stored.", model_id+1, current_patch.model.name);
+    pccomm_log_message(strbuf);    
 }
 
 void model_store(uint8_t model_id, model_t model_data)
 {    
+    char strbuf[128];
     eeprom_write_multi(EEPROM_MODEL_START + (model_id * (sizeof model_data)), &(model_data), sizeof model_data);
     
-    pccomm_log_message("Model stored:");
-    char strbuf[10];
-    uitoa(model_id, strbuf);
+    sprintf(strbuf, "Model %d (%s) stored.", model_id+1, model_data.name);
     pccomm_log_message(strbuf);
 }
 
 void model_current_set_name(char * name)
-{
-    //for(int i = 0;)
+{ 
     if(strlen(name) < 9)
     {
         strcpy(current_patch.model.name, name);        
