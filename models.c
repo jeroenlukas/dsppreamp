@@ -49,13 +49,12 @@ void model_initialize(uint8_t code)
         model.channel = 0;
         model.dspdistortion_alpha = 0.6;
         model.dspdistortion_asymmetry = 0.03;
-        model.dspdistortion_bypass = 0;
+        model.bypass = 0;
         model.dspdistortion_volume = -5;
         model.dspdistortion_gain_min = 0;
         model.dspdistortion_gain_max = 30;
         model.pre_cutoff_freq = 80;
-        model.pre_order = 2;
-        model.pregain_bypass = 0;
+        model.pre_order = 2;        
         model.post_low_cutoff_freq = 80;
         model.post_low_order = 2;
         model.post_low_gain_min = -10;
@@ -115,17 +114,51 @@ void model_current_set_name(char * name)
     }
 }
 
-void model_current_set_postgain_bypass(uint8_t bypass)
+void model_current_set_bypass(uint8_t bypass)
 {
-    if(bypass == 0) // Bypass off, normal operation
+    current_patch.model.bypass = bypass;
+    // Pregain
+    if(bypass & (1 << 3))
     {
-        adau1701_write_fixed(MOD_POSTGAIN_PO_BYPASS_ALG0_STAGE0_MONOSWITCHNOSLEW_ADDR, 0x00800000);
-        adau1701_write_fixed(MOD_POSTGAIN_PO_BYPASS_ALG0_STAGE1_MONOSWITCHNOSLEW_ADDR, 0x00000000);        
+        adau1701_write_fixed(MOD_PREGAIN_PREGAIN_BYPASS_ALG0_STAGE0_MONOSWITCHNOSLEW_ADDR, 0x00000000);
+        adau1701_write_fixed(MOD_PREGAIN_PREGAIN_BYPASS_ALG0_STAGE1_MONOSWITCHNOSLEW_ADDR, 0x00800000);            
     }
-    else // Bypass on
+    else
+    {
+        adau1701_write_fixed(MOD_PREGAIN_PREGAIN_BYPASS_ALG0_STAGE0_MONOSWITCHNOSLEW_ADDR, 0x00800000);
+        adau1701_write_fixed(MOD_PREGAIN_PREGAIN_BYPASS_ALG0_STAGE1_MONOSWITCHNOSLEW_ADDR, 0x00000000);   
+    }
+    
+    // Distortion
+    if(bypass & (1 << 2))
+    {
+        adau1701_write_fixed(MOD_DSPDISTORTION_BYPASS_MONOSWSLEW_ADDR, 1);        
+    }
+    else
+    {
+        adau1701_write_fixed(MOD_DSPDISTORTION_BYPASS_MONOSWSLEW_ADDR, 0);      
+    }
+    
+    // Analog
+    if(bypass & (1 << 1))
+    {
+        adau1701_write_fixed(MOD_ANALOG_BYPASS_MONOSWSLEW_ADDR, 0);        
+    }
+    else
+    {
+        adau1701_write_fixed(MOD_ANALOG_BYPASS_MONOSWSLEW_ADDR, 1);            
+    }
+    
+    // Postgain
+    if((bypass & 1))
     {
         adau1701_write_fixed(MOD_POSTGAIN_PO_BYPASS_ALG0_STAGE0_MONOSWITCHNOSLEW_ADDR, 0x00000000);
-        adau1701_write_fixed(MOD_POSTGAIN_PO_BYPASS_ALG0_STAGE1_MONOSWITCHNOSLEW_ADDR, 0x00800000);        
+        adau1701_write_fixed(MOD_POSTGAIN_PO_BYPASS_ALG0_STAGE1_MONOSWITCHNOSLEW_ADDR, 0x00800000);       
+    }
+    else 
+    {
+        adau1701_write_fixed(MOD_POSTGAIN_PO_BYPASS_ALG0_STAGE0_MONOSWITCHNOSLEW_ADDR, 0x00800000);
+        adau1701_write_fixed(MOD_POSTGAIN_PO_BYPASS_ALG0_STAGE1_MONOSWITCHNOSLEW_ADDR, 0x00000000);   
     }
 }
 
@@ -231,31 +264,6 @@ void model_current_set_postgain_mid_boost(int16_t boost)
     }
 }
 
-
-void model_current_set_dspdistortion_bypass(uint8_t bypass)
-{
-    if(bypass == 0)
-    {
-        adau1701_write_fixed(MOD_DSPDISTORTION_BYPASS_MONOSWSLEW_ADDR, 0);        
-    }
-    else
-    {
-        adau1701_write_fixed(MOD_DSPDISTORTION_BYPASS_MONOSWSLEW_ADDR, 1);        
-    }
-}
-
-
-void model_current_set_analog_bypass(uint8_t bypass)
-{
-    if(bypass == 0)
-    {
-        adau1701_write_fixed(MOD_ANALOG_BYPASS_MONOSWSLEW_ADDR, 1);        
-    }
-    else
-    {
-        adau1701_write_fixed(MOD_ANALOG_BYPASS_MONOSWSLEW_ADDR, 0);        
-    }
-}
 
 void model_current_set_dspdistortion_alpha(double alpha)
 {

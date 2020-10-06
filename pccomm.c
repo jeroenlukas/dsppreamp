@@ -180,12 +180,12 @@ void pccomm_parse_command(void)
                     case COMM_MODEL_NAME:
                         model_current_set_name(received_command.payload + 2);
                         break;
-                    case COMM_MODEL_POSTGAIN_BYPASS:
-                        model_current_set_postgain_bypass(received_command.payload[2]);
+                    case COMM_MODEL_BYPASS:
+                        model_current_set_bypass(received_command.payload[2]);
                         break;
-                    case COMM_MODEL_DSPDISTORTION_BYPASS:
-                        model_current_set_dspdistortion_bypass(received_command.payload[2]);
-                        break;
+                   // case COMM_MODEL_DSPDISTORTION_BYPASS:
+                    //    model_current_set_dspdistortion_bypass(received_command.payload[2]);
+                    //    break;
                     case COMM_MODEL_DSPDISTORTION_ALPHA:
                         model_current_set_dspdistortion_alpha((double)received_command.payload[2] / 10);
                         break;
@@ -203,9 +203,9 @@ void pccomm_parse_command(void)
                     case COMM_MODEL_DSPDISTORTION_ASYMMETRY:
                         model_current_set_dspdistortion_asymmetry((double)received_command.payload[2] / 100);
                         break;
-                    case COMM_MODEL_ANALOG_BYPASS:
-                        model_current_set_analog_bypass(received_command.payload[2]);
-                        break;
+                  //  case COMM_MODEL_ANALOG_BYPASS:
+                  //      model_current_set_analog_bypass(received_command.payload[2]);
+                  //      break;
                     case COMM_MODEL_PREGAIN_LOWCUT_FREQ:
                         model_current_set_pregain_lowcut((received_command.payload[2] << 8) + received_command.payload[3]);
                         break;

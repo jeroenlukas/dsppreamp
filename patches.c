@@ -105,7 +105,7 @@ void patch_load(uint8_t patch_no)
     // front_led_store_SetLow(); 22 ms
     
     
-    model_current_set_dspdistortion_bypass(0);
+    model_current_set_bypass(current_patch.model.bypass);
     model_current_set_pregain_lowcut(current_patch.model.pre_cutoff_freq);
     model_current_set_dspdistortion_alpha(current_patch.model.dspdistortion_alpha);
     model_current_set_dspdistortion_asymmetry(current_patch.model.dspdistortion_asymmetry);
@@ -143,11 +143,12 @@ void patch_load(uint8_t patch_no)
     
     // Send info to PC
     pccomm_set_model_value_str(COMM_MODEL_NAME, current_patch.model.name);
+    pccomm_set_model_value(COMM_MODEL_BYPASS, current_patch.model.bypass);
     pccomm_set_model_value_int(COMM_MODEL_PREGAIN_LOWCUT_FREQ, current_patch.model.pre_cutoff_freq);
     pccomm_set_model_value(COMM_MODEL_PREGAIN_LOWCUT_ORDER, current_patch.model.pre_order);
-    pccomm_set_model_value(COMM_MODEL_PREGAIN_BYPASS, current_patch.model.pregain_bypass);
+//    pccomm_set_model_value(COMM_MODEL_PREGAIN_BYPASS, current_patch.model.pregain_bypass);
     pccomm_set_model_value_int(COMM_MODEL_INPUT_Z, current_patch.model.zinput);
-    pccomm_set_model_value(COMM_MODEL_DSPDISTORTION_BYPASS, current_patch.model.dspdistortion_bypass);
+  //  pccomm_set_model_value(COMM_MODEL_DSPDISTORTION_BYPASS, current_patch.model.dspdistortion_bypass);
     pccomm_set_model_value(COMM_MODEL_DSPDISTORTION_GAIN_MIN, current_patch.model.dspdistortion_gain_min);
     pccomm_set_model_value(COMM_MODEL_DSPDISTORTION_GAIN_MAX, current_patch.model.dspdistortion_gain_max);
     pccomm_set_model_value(COMM_MODEL_DSPDISTORTION_ALPHA, current_patch.model.dspdistortion_alpha * 10);
@@ -441,7 +442,9 @@ void patch_current_set_volume(uint8_t value, uint8_t sender)
     current_patch.volume = value;
     
     double scaled_value;
-    scaled_value = (double)value / 100; // Should be logarithmic    
+       
+    if(value == 100) scaled_value = 1.0;
+    else scaled_value = (pow(100.0, (double)value / 100.0)) / 100.0;
     
     // Update bar
     LCD_SetCursor(19, 1);
@@ -459,7 +462,7 @@ void patch_current_set_volume(uint8_t value, uint8_t sender)
         // Show on LCD
         char value_str[12];
         strcpy(strbuf, "Vol: ");
-        uitoa(value, value_str);
+        uitoa(current_patch.volume, value_str);
         strcat(strbuf, value_str);        
         
         lcd_display_temporary(strbuf);

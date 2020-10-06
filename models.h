@@ -41,13 +41,14 @@ typedef struct model
     uint16_t zinput;
     
     
-    uint8_t pregain_bypass;
+    uint8_t bypass;
+    
     uint16_t pre_cutoff_freq;
     uint8_t pre_order;
     
     int8_t dspdistortion_gain_min;
     int8_t dspdistortion_gain_max;
-    uint8_t dspdistortion_bypass;
+    //uint8_t dspdistortion_bypass;
     double dspdistortion_alpha;
     double dspdistortion_asymmetry;
     int8_t dspdistortion_volume;
@@ -86,12 +87,12 @@ void model_initialize(uint8_t code);
 
 void model_current_set_name(char * name);
 void model_current_set_pregain_lowcut(uint16_t value);
-void model_current_set_postgain_bypass(uint8_t bypass);
+void model_current_set_bypass(uint8_t bypass);
 void model_current_set_dspdistortion_bypass(uint8_t bypass);
 void model_current_set_dspdistortion_alpha(double alpha);
 void model_current_set_dspdistortion_gain(double gain_db);
 void model_current_set_dspdistortion_volume(int8_t gain_db);
-void model_current_set_analog_bypass(uint8_t bypass);
+//void model_current_set_analog_bypass(uint8_t bypass);
 void model_current_set_dspdistortion_asymmetry(double asymm);
 
 
