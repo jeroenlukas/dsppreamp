@@ -120,23 +120,23 @@ void model_current_set_bypass(uint8_t bypass)
     // Pregain
     if(bypass & (1 << 3))
     {
-        adau1701_write_fixed(MOD_PREGAIN_PREGAIN_BYPASS_ALG0_STAGE0_MONOSWITCHNOSLEW_ADDR, 0x00000000);
-        adau1701_write_fixed(MOD_PREGAIN_PREGAIN_BYPASS_ALG0_STAGE1_MONOSWITCHNOSLEW_ADDR, 0x00800000);            
+        adau1701_write_fixed(MOD_PREGAIN_BYPASS_ALG0_STAGE0_MONOSWITCHNOSLEW_ADDR, 0x00000000);
+        adau1701_write_fixed(MOD_PREGAIN_BYPASS_ALG0_STAGE1_MONOSWITCHNOSLEW_ADDR, 0x00800000);            
     }
     else
     {
-        adau1701_write_fixed(MOD_PREGAIN_PREGAIN_BYPASS_ALG0_STAGE0_MONOSWITCHNOSLEW_ADDR, 0x00800000);
-        adau1701_write_fixed(MOD_PREGAIN_PREGAIN_BYPASS_ALG0_STAGE1_MONOSWITCHNOSLEW_ADDR, 0x00000000);   
+        adau1701_write_fixed(MOD_PREGAIN_BYPASS_ALG0_STAGE0_MONOSWITCHNOSLEW_ADDR, 0x00800000);
+        adau1701_write_fixed(MOD_PREGAIN_BYPASS_ALG0_STAGE1_MONOSWITCHNOSLEW_ADDR, 0x00000000);   
     }
     
     // Distortion
     if(bypass & (1 << 2))
     {
-        adau1701_write_fixed(MOD_DSPDISTORTION_BYPASS_MONOSWSLEW_ADDR, 1);        
+        adau1701_write_fixed(MOD_DSPDISTORTION_BYPASS_ALG0_MONOSWSLEW_ADDR, 1);        
     }
     else
     {
-        adau1701_write_fixed(MOD_DSPDISTORTION_BYPASS_MONOSWSLEW_ADDR, 0);      
+        adau1701_write_fixed(MOD_DSPDISTORTION_BYPASS_ALG0_MONOSWSLEW_ADDR, 0);      
     }
     
     // Analog
@@ -319,10 +319,10 @@ void model_current_set_dspdistortion_gain(double gain_db)
 
 void model_current_set_postgain_pres_order(uint8_t order)
 {    
-    if(order > 0 && order < 4)
+    if(order > 0 && order < 5)
     {
         current_patch.model.post_presence_order = order;    
-        adau1701_write_fixed(MOD_PRES_ORDER_MONOSWSLEW_ADDR, (uint32_t)order-1);
+        adau1701_write_fixed(MOD_PRES_ORDER_ALG0_MONOSWSLEW_ADDR, (uint32_t)order-1);
     }
 }
 
@@ -406,8 +406,32 @@ void model_current_set_pregain_lowcut(uint16_t value)
     // Again, for the second lowcut filter
     sigma_address[0] = MOD_PREGAIN_LOWCUT2_ALG0_PARAMB00_ADDR;
     sigma_address[1] = MOD_PREGAIN_LOWCUT2_ALG0_PARAMB10_ADDR;
-    sigma_address[2] = MOD_PREGAIN_LOWCUT2_ALG0_PARAMA00_ADDR;
+    sigma_address[2] = MOD_PREGAIN_LOWCUT2_ALG0_PARAMA00_ADDR;    
     
+    adau1701_write_multi(3, sigma_address, sigma_data);
+    
+    // Again, for the third lowcut filter
+    sigma_address[0] = MOD_PREGAIN_LOWCUT3_ALG0_PARAMB00_ADDR;
+    sigma_address[1] = MOD_PREGAIN_LOWCUT3_ALG0_PARAMB10_ADDR;
+    sigma_address[2] = MOD_PREGAIN_LOWCUT3_ALG0_PARAMA00_ADDR;    
+    
+    adau1701_write_multi(3, sigma_address, sigma_data);
+    
+    // Again, for the fourth lowcut filter
+    sigma_address[0] = MOD_PREGAIN_LOWCUT4_ALG0_PARAMB00_ADDR;
+    sigma_address[1] = MOD_PREGAIN_LOWCUT4_ALG0_PARAMB10_ADDR;
+    sigma_address[2] = MOD_PREGAIN_LOWCUT4_ALG0_PARAMA00_ADDR;    
     
     adau1701_write_multi(3, sigma_address, sigma_data);
 }
+
+void model_current_set_pregain_lowcut_order(uint8_t order)
+{
+    if(order > 0 && order < 5)
+    {
+        current_patch.model.pre_order = order;    
+        adau1701_write_fixed(MOD_PREGAIN_ORDER_ALG0_MONOSWSLEW_ADDR, (uint32_t)order-1);
+    }
+}
+
+

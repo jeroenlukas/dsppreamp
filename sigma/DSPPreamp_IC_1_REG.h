@@ -1,7 +1,7 @@
 /*
  * File:           C:\Users\Jeroen\OneDrive\DIY\Elektronica\DSPPreamp\software\firmware\sigma\DSPPreamp_IC_1_REG.h
  *
- * Created:        Sunday, September 27, 2020 12:57:55 PM
+ * Created:        Wednesday, October 7, 2020 8:59:28 PM
  * Description:    DSPPreamp:IC 1 control register definitions.
  *
  * This software is distributed in the hope that it will be useful,

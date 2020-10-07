@@ -107,6 +107,7 @@ void patch_load(uint8_t patch_no)
     
     model_current_set_bypass(current_patch.model.bypass);
     model_current_set_pregain_lowcut(current_patch.model.pre_cutoff_freq);
+    model_current_set_pregain_lowcut_order(current_patch.model.pre_order);
     model_current_set_dspdistortion_alpha(current_patch.model.dspdistortion_alpha);
     model_current_set_dspdistortion_asymmetry(current_patch.model.dspdistortion_asymmetry);
     model_current_set_dspdistortion_volume(current_patch.model.dspdistortion_volume);
@@ -572,6 +573,13 @@ void patch_current_set_presence(uint8_t value, uint8_t sender)
     sigma_address[0] = MOD_PRES_PRESENCE3_ALG0_PARAMB10_ADDR;
     sigma_address[1] = MOD_PRES_PRESENCE3_ALG0_PARAMB00_ADDR;
     sigma_address[2] = MOD_PRES_PRESENCE3_ALG0_PARAMA00_ADDR;    
+    
+    adau1701_write_multi(3, sigma_address, sigma_data);
+    
+     // Again, for the fourth presence filter
+    sigma_address[0] = MOD_PRES_PRESENCE4_ALG0_PARAMB10_ADDR;
+    sigma_address[1] = MOD_PRES_PRESENCE4_ALG0_PARAMB00_ADDR;
+    sigma_address[2] = MOD_PRES_PRESENCE4_ALG0_PARAMA00_ADDR;    
     
     adau1701_write_multi(3, sigma_address, sigma_data);
 }

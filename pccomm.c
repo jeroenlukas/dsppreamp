@@ -209,7 +209,9 @@ void pccomm_parse_command(void)
                     case COMM_MODEL_PREGAIN_LOWCUT_FREQ:
                         model_current_set_pregain_lowcut((received_command.payload[2] << 8) + received_command.payload[3]);
                         break;
-                        
+                    case COMM_MODEL_PREGAIN_LOWCUT_ORDER:
+                        model_current_set_pregain_lowcut_order(received_command.payload[2]);
+                        break;                        
                     // Low
                     case COMM_MODEL_POSTGAIN_LOW_GAIN_MIN:
                         model_current_set_postgain_low_gain_min((int8_t)received_command.payload[2]);
@@ -252,9 +254,11 @@ void pccomm_parse_command(void)
                         break;
                     case COMM_MODEL_POSTGAIN_PRES_FREQ_MIN:
                         model_current_set_postgain_pres_freq_min((received_command.payload[2] << 8) + received_command.payload[3]);
+                        patch_current_set_presence(current_patch.presence, SENDER_EXT);
                         break;
                     case COMM_MODEL_POSTGAIN_PRES_FREQ_MAX:
                         model_current_set_postgain_pres_freq_max((received_command.payload[2] << 8) + received_command.payload[3]);
+                        patch_current_set_presence(current_patch.presence, SENDER_EXT);
                         break;
                 }
             }

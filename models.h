@@ -87,6 +87,7 @@ void model_initialize(uint8_t code);
 
 void model_current_set_name(char * name);
 void model_current_set_pregain_lowcut(uint16_t value);
+void model_current_set_pregain_lowcut_order(uint8_t order);
 void model_current_set_bypass(uint8_t bypass);
 void model_current_set_dspdistortion_bypass(uint8_t bypass);
 void model_current_set_dspdistortion_alpha(double alpha);
