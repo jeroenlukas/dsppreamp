@@ -143,33 +143,31 @@ void patch_load(uint8_t patch_no)
     // front_led_store_SetLow(); 276ms
     
     // Send info to PC
-    pccomm_set_model_value_str(COMM_MODEL_NAME, current_patch.model.name);
-    pccomm_set_model_value(COMM_MODEL_BYPASS, current_patch.model.bypass);
-    pccomm_set_model_value_int(COMM_MODEL_PREGAIN_LOWCUT_FREQ, current_patch.model.pre_cutoff_freq);
-    pccomm_set_model_value(COMM_MODEL_PREGAIN_LOWCUT_ORDER, current_patch.model.pre_order);
-//    pccomm_set_model_value(COMM_MODEL_PREGAIN_BYPASS, current_patch.model.pregain_bypass);
-    pccomm_set_model_value_int(COMM_MODEL_INPUT_Z, current_patch.model.zinput);
-  //  pccomm_set_model_value(COMM_MODEL_DSPDISTORTION_BYPASS, current_patch.model.dspdistortion_bypass);
-    pccomm_set_model_value(COMM_MODEL_DSPDISTORTION_GAIN_MIN, current_patch.model.dspdistortion_gain_min);
-    pccomm_set_model_value(COMM_MODEL_DSPDISTORTION_GAIN_MAX, current_patch.model.dspdistortion_gain_max);
-    pccomm_set_model_value(COMM_MODEL_DSPDISTORTION_ALPHA, current_patch.model.dspdistortion_alpha * 10);
-    pccomm_set_model_value(COMM_MODEL_DSPDISTORTION_ASYMMETRY, current_patch.model.dspdistortion_asymmetry * 100);
-    pccomm_set_model_value(COMM_MODEL_DSPDISTORTION_VOLUME, current_patch.model.dspdistortion_volume);
+    pccomm_set_model_value_str(0xFF, COMM_MODEL_NAME, current_patch.model.name);
+    pccomm_set_model_value(0xFF, COMM_MODEL_BYPASS, current_patch.model.bypass);
+    pccomm_set_model_value_int(0xFF, COMM_MODEL_PREGAIN_LOWCUT_FREQ, current_patch.model.pre_cutoff_freq);
+    pccomm_set_model_value(0xFF, COMM_MODEL_PREGAIN_LOWCUT_ORDER, current_patch.model.pre_order);
+    pccomm_set_model_value_int(0xFF, COMM_MODEL_INPUT_Z, current_patch.model.zinput);
+    pccomm_set_model_value(0xFF, COMM_MODEL_DSPDISTORTION_GAIN_MIN, current_patch.model.dspdistortion_gain_min);
+    pccomm_set_model_value(0xFF, COMM_MODEL_DSPDISTORTION_GAIN_MAX, current_patch.model.dspdistortion_gain_max);
+    pccomm_set_model_value(0xFF, COMM_MODEL_DSPDISTORTION_ALPHA, current_patch.model.dspdistortion_alpha * 10);
+    pccomm_set_model_value(0xFF, COMM_MODEL_DSPDISTORTION_ASYMMETRY, current_patch.model.dspdistortion_asymmetry * 100);
+    pccomm_set_model_value(0xFF, COMM_MODEL_DSPDISTORTION_VOLUME, current_patch.model.dspdistortion_volume);
     
-    pccomm_set_model_value(COMM_MODEL_POSTGAIN_LOW_GAIN_MIN, current_patch.model.post_low_gain_min);
-    pccomm_set_model_value(COMM_MODEL_POSTGAIN_LOW_GAIN_MAX, current_patch.model.post_low_gain_max);    
+    pccomm_set_model_value(0xFF, COMM_MODEL_POSTGAIN_LOW_GAIN_MIN, current_patch.model.post_low_gain_min);
+    pccomm_set_model_value(0xFF, COMM_MODEL_POSTGAIN_LOW_GAIN_MAX, current_patch.model.post_low_gain_max);    
     
-    pccomm_set_model_value_int(COMM_MODEL_POSTGAIN_MID_FREQ, current_patch.model.post_mid_freq);
-    pccomm_set_model_value(COMM_MODEL_POSTGAIN_MID_Q, current_patch.model.post_mid_Q * 10);
-    pccomm_set_model_value(COMM_MODEL_POSTGAIN_MID_GAIN_MIN, current_patch.model.post_mid_gain_min);
-    pccomm_set_model_value(COMM_MODEL_POSTGAIN_MID_GAIN_MAX, current_patch.model.post_mid_gain_max);
+    pccomm_set_model_value_int(0xFF, COMM_MODEL_POSTGAIN_MID_FREQ, current_patch.model.post_mid_freq);
+    pccomm_set_model_value(0xFF, COMM_MODEL_POSTGAIN_MID_Q, current_patch.model.post_mid_Q * 10);
+    pccomm_set_model_value(0xFF, COMM_MODEL_POSTGAIN_MID_GAIN_MIN, current_patch.model.post_mid_gain_min);
+    pccomm_set_model_value(0xFF, COMM_MODEL_POSTGAIN_MID_GAIN_MAX, current_patch.model.post_mid_gain_max);
     
-    pccomm_set_model_value(COMM_MODEL_POSTGAIN_HIGH_GAIN_MIN, current_patch.model.post_high_gain_min);
-    pccomm_set_model_value(COMM_MODEL_POSTGAIN_HIGH_GAIN_MAX, current_patch.model.post_high_gain_max);
+    pccomm_set_model_value(0xFF, COMM_MODEL_POSTGAIN_HIGH_GAIN_MIN, current_patch.model.post_high_gain_min);
+    pccomm_set_model_value(0xFF, COMM_MODEL_POSTGAIN_HIGH_GAIN_MAX, current_patch.model.post_high_gain_max);
     
-    pccomm_set_model_value_int(COMM_MODEL_POSTGAIN_PRES_FREQ_MIN, current_patch.model.post_presence_freq_min);
-    pccomm_set_model_value_int(COMM_MODEL_POSTGAIN_PRES_FREQ_MAX, current_patch.model.post_presence_freq_max);
-    pccomm_set_model_value(COMM_MODEL_POSTGAIN_PRES_ORDER, current_patch.model.post_presence_order);
+    pccomm_set_model_value_int(0xFF, COMM_MODEL_POSTGAIN_PRES_FREQ_MIN, current_patch.model.post_presence_freq_min);
+    pccomm_set_model_value_int(0xFF, COMM_MODEL_POSTGAIN_PRES_FREQ_MAX, current_patch.model.post_presence_freq_max);
+    pccomm_set_model_value(0xFF, COMM_MODEL_POSTGAIN_PRES_ORDER, current_patch.model.post_presence_order);
     
     pccomm_set_patch_value_str(COMM_PATCH_NAME, current_patch.name);
     pccomm_set_patch_value(COMM_PATCH_MODEL, current_patch.model_id);

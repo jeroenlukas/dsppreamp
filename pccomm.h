@@ -64,9 +64,9 @@ void pccomm_log_midi_pc(uint8_t chan, uint8_t program);
 void pccomm_set_patch_value(uint8_t property, uint8_t value);
 void pccomm_select_patch(uint8_t patch_no);
 void pccomm_set_patch_value_str(uint8_t property, char * value);
-void pccomm_set_model_value(uint8_t property, int8_t value);
-void pccomm_set_model_value_str(uint8_t property, char * value);
-void pccomm_set_model_value_int(uint8_t property, uint16_t value);
+void pccomm_set_model_value(uint8_t model_id, uint8_t property, int8_t value);
+void pccomm_set_model_value_str(uint8_t model_id, uint8_t property, char * value);
+void pccomm_set_model_value_int(uint8_t model_id, uint8_t property, uint16_t value);
 
 #endif	
 

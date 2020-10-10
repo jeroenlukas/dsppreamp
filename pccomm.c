@@ -263,6 +263,16 @@ void pccomm_parse_command(void)
                 }
             }
             break;
+        case COMMAND_GET_MODEL_VALUE:
+            switch(received_command.payload[1])
+            {
+                case COMM_MODEL_NAME:
+                    pccomm_set_model_value_str(received_command.payload[0], COMM_MODEL_NAME, model_get_value_string(received_command.payload[0], COMM_MODEL_NAME));
+                    
+                    break;
+            }
+            break;
+            
         case COMMAND_STORE_CURRENT_MODEL:
             model_current_store(current_patch.model_id);
             break;
@@ -356,35 +366,38 @@ void pccomm_select_patch(uint8_t patch_no)
 }
 
 
-void pccomm_set_model_value(uint8_t property, int8_t value)
-{
-    transmit_command.command = COMMAND_SET_MODEL_VALUE;
-    transmit_command.length = 2;
-    
-    transmit_command.payload[0] = property;
-    transmit_command.payload[1] = value;
-    pccomm_send_command();
-}
-
-void pccomm_set_model_value_int(uint8_t property, uint16_t value)
+void pccomm_set_model_value(uint8_t model_id, uint8_t property, int8_t value)
 {
     transmit_command.command = COMMAND_SET_MODEL_VALUE;
     transmit_command.length = 3;
     
-    transmit_command.payload[0] = property;
-    transmit_command.payload[1] = (value >> 8) & 0xFF;
-    transmit_command.payload[2] = value & 0xFF;
+    transmit_command.payload[0] = model_id;
+    transmit_command.payload[1] = property;
+    transmit_command.payload[2] = value;
     pccomm_send_command();
 }
 
-void pccomm_set_model_value_str(uint8_t property, char * value)
+void pccomm_set_model_value_int(uint8_t model_id, uint8_t property, uint16_t value)
 {
     transmit_command.command = COMMAND_SET_MODEL_VALUE;
-    transmit_command.length = 1 + strlen(value) + 1;
+    transmit_command.length = 4;
     
-    transmit_command.payload[0] = property;
+    transmit_command.payload[0] = model_id;
+    transmit_command.payload[1] = property;
+    transmit_command.payload[2] = (value >> 8) & 0xFF;
+    transmit_command.payload[3] = value & 0xFF;
+    pccomm_send_command();
+}
+
+void pccomm_set_model_value_str(uint8_t model_id, uint8_t property, char * value)
+{
+    transmit_command.command = COMMAND_SET_MODEL_VALUE;
+    transmit_command.length = 2 + strlen(value) + 1;
+    
+    transmit_command.payload[0] = model_id;
+    transmit_command.payload[1] = property;
     int i;
-    for(i = 0; i < strlen(value)+1; i++) transmit_command.payload[1+i] = value[i];
+    for(i = 0; i < strlen(value)+2; i++) transmit_command.payload[2+i] = value[i];
     transmit_command.payload[i] = 0;
     //value[i++] = 0;
     pccomm_send_command();

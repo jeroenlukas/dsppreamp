@@ -111,6 +111,7 @@ void model_current_set_postgain_pres_order(uint8_t order);
 void model_current_set_postgain_pres_freq_min(int16_t freq);
 void model_current_set_postgain_pres_freq_max(int16_t freq);
 
+char * model_get_value_string(uint8_t model_id, uint8_t property);
 //model_t models[10];
 
 // TODO Insert appropriate #include <>

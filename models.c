@@ -114,6 +114,13 @@ void model_current_set_name(char * name)
     }
 }
 
+char * model_get_value_string(uint8_t model_id, uint8_t property)
+{
+    model_t model;
+    eeprom_read_multi(EEPROM_MODEL_START + (model_id * sizeof model), &model, sizeof model);  
+    return model.name;
+}
+
 void model_current_set_bypass(uint8_t bypass)
 {
     current_patch.model.bypass = bypass;
