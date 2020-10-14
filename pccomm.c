@@ -273,6 +273,15 @@ void pccomm_parse_command(void)
             }
             break;
             
+        case COMMAND_GET_PATCH_VALUE:
+            switch(received_command.payload[1])
+            {
+                case COMM_PATCH_NAME:
+                    pccomm_set_patch_value_str(received_command.payload[0], COMM_PATCH_NAME, patch_get_value_string(received_command.payload[0], COMM_MODEL_NAME));
+                    break;
+            }
+            break;
+            
         case COMMAND_STORE_CURRENT_MODEL:
             model_current_store(current_patch.model_id);
             break;
@@ -310,6 +319,14 @@ void pccomm_log_message(char * text)
     pccomm_send_command();
 }
 
+void pccomm_heartbeat(void)
+{
+    transmit_command.command = COMMAND_HEARTBEAT;
+    transmit_command.length = 1;
+    transmit_command.payload[0] = 0;
+    pccomm_send_command();
+}
+
 void pccomm_log_midi_cc(uint8_t chan, uint8_t cc, uint8_t value)
 {
     transmit_command.command = COMMAND_MIDI_RECEIVED;
@@ -332,25 +349,26 @@ void pccomm_log_midi_pc(uint8_t chan, uint8_t program)
     pccomm_send_command();
 }
 
-void pccomm_set_patch_value(uint8_t property, uint8_t value)
+void pccomm_set_patch_value(uint8_t patch_id, uint8_t property, uint8_t value)
 {
     transmit_command.command = COMMAND_SET_PATCH_VALUE;
-    transmit_command.length = 2;
+    transmit_command.length = 3;
     
-    transmit_command.payload[0] = property;
-    transmit_command.payload[1] = value;
+    transmit_command.payload[0] = patch_id;
+    transmit_command.payload[1] = property;
+    transmit_command.payload[2] = value;
     pccomm_send_command();
 }
 
-void pccomm_set_patch_value_str(uint8_t property, char * value)
+void pccomm_set_patch_value_str(uint8_t patch_id, uint8_t property, char * value)
 {
     transmit_command.command = COMMAND_SET_PATCH_VALUE;
-    transmit_command.length = 1 + strlen(value) + 1;
-    
-    transmit_command.payload[0] = property;
+    transmit_command.length = 2 + strlen(value) + 1;
+    transmit_command.payload[0] = patch_id;
+    transmit_command.payload[1] = property;
     int i;
-    for(i = 0; i < strlen(value)+1; i++) transmit_command.payload[1+i] = value[i];
-    transmit_command.payload[i] = 0;
+    for(i = 0; i < strlen(value)+1; i++) transmit_command.payload[2+i] = value[i];
+    transmit_command.payload[1+i] = 0;
     //value[i++] = 0;
     pccomm_send_command();
 }

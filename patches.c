@@ -169,17 +169,24 @@ void patch_load(uint8_t patch_no)
     pccomm_set_model_value_int(0xFF, COMM_MODEL_POSTGAIN_PRES_FREQ_MAX, current_patch.model.post_presence_freq_max);
     pccomm_set_model_value(0xFF, COMM_MODEL_POSTGAIN_PRES_ORDER, current_patch.model.post_presence_order);
     
-    pccomm_set_patch_value_str(COMM_PATCH_NAME, current_patch.name);
-    pccomm_set_patch_value(COMM_PATCH_MODEL, current_patch.model_id);
-    pccomm_set_patch_value(COMM_PATCH_GAIN, current_patch.gain);
-    pccomm_set_patch_value(COMM_PATCH_LOW, current_patch.low);
-    pccomm_set_patch_value(COMM_PATCH_MID, current_patch.mid);
-    pccomm_set_patch_value(COMM_PATCH_HIGH, current_patch.high);
-    pccomm_set_patch_value(COMM_PATCH_PRES, current_patch.presence);
-    pccomm_set_patch_value(COMM_PATCH_VOLUME, current_patch.volume);
+    pccomm_set_patch_value_str(0xFF, COMM_PATCH_NAME, current_patch.name);
+    pccomm_set_patch_value(0xFF, COMM_PATCH_MODEL, current_patch.model_id);
+    pccomm_set_patch_value(0xFF, COMM_PATCH_GAIN, current_patch.gain);
+    pccomm_set_patch_value(0xFF, COMM_PATCH_LOW, current_patch.low);
+    pccomm_set_patch_value(0xFF, COMM_PATCH_MID, current_patch.mid);
+    pccomm_set_patch_value(0xFF, COMM_PATCH_HIGH, current_patch.high);
+    pccomm_set_patch_value(0xFF, COMM_PATCH_PRES, current_patch.presence);
+    pccomm_set_patch_value(0xFF, COMM_PATCH_VOLUME, current_patch.volume);
     
     // front_led_store_SetLow(); //328ms
     
+}
+
+char * patch_get_value_string(uint8_t patch_id, uint8_t property)
+{
+    eeprom_patch_t patch_data;    
+    eeprom_read_multi(EEPROM_PATCH_START + (patch_id * sizeof patch_data), &patch_data, sizeof patch_data);     
+    return patch_data.name;
 }
 
 void patch_current_set_name(char * name)

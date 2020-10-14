@@ -27,11 +27,12 @@
 volatile bool fTimer0 = false;
 
 volatile bool f_tmr_slow = false;
-
+volatile bool f_tmr_1s = false;
 
 volatile char strbuff[128];
 
 volatile uint8_t tmr_slow = 0;
+volatile uint16_t tmr_1s = 0;
 volatile uint8_t test_gain = 1;
 
 /* Interrupt callbacks */
@@ -101,7 +102,11 @@ void main(void)
             // ..
         }
         
-      
+        if(f_tmr_1s)
+        {
+            f_tmr_1s = false;
+            pccomm_heartbeat();
+        }
         
         if(fTimer0)
         {
@@ -121,7 +126,7 @@ void main(void)
         {
             f_rot_enc_gain_up = false;
             patch_current_set_gain(current_patch.gain + front_rot_enc_increment(), SENDER_USER);
-            pccomm_set_patch_value(COMM_PATCH_GAIN, current_patch.gain);
+            pccomm_set_patch_value(0xFF, COMM_PATCH_GAIN, current_patch.gain);
         }
         if(f_rot_enc_gain_down)
         {
@@ -130,14 +135,14 @@ void main(void)
                 patch_current_set_gain(current_patch.gain - front_rot_enc_increment(), SENDER_USER);
             else 
                 patch_current_set_gain(0, SENDER_USER);
-            pccomm_set_patch_value(COMM_PATCH_GAIN, current_patch.gain);
+            pccomm_set_patch_value(0xFF, COMM_PATCH_GAIN, current_patch.gain);
         }
         
         if(f_rot_enc_low_up)
         {
             f_rot_enc_low_up = false;
             patch_current_set_low(current_patch.low + front_rot_enc_increment(), SENDER_USER);
-            pccomm_set_patch_value(COMM_PATCH_LOW, current_patch.low);
+            pccomm_set_patch_value(0xFF, COMM_PATCH_LOW, current_patch.low);
         }
         if(f_rot_enc_low_down)
         {
@@ -146,14 +151,14 @@ void main(void)
                 patch_current_set_low(current_patch.low - front_rot_enc_increment(), SENDER_USER);
             else
                 patch_current_set_low(0, SENDER_USER);
-            pccomm_set_patch_value(COMM_PATCH_LOW, current_patch.low);
+            pccomm_set_patch_value(0xFF, COMM_PATCH_LOW, current_patch.low);
         }
         
         if(f_rot_enc_mid_up)
         {
             f_rot_enc_mid_up = false;
             patch_current_set_mid(current_patch.mid + front_rot_enc_increment(), SENDER_USER);
-            pccomm_set_patch_value(COMM_PATCH_MID, current_patch.mid);
+            pccomm_set_patch_value(0xFF, COMM_PATCH_MID, current_patch.mid);
         }
         if(f_rot_enc_mid_down)
         {
@@ -162,14 +167,14 @@ void main(void)
                 patch_current_set_mid(current_patch.mid - front_rot_enc_increment(), SENDER_USER);
             else
                 patch_current_set_mid(0, SENDER_USER);
-            pccomm_set_patch_value(COMM_PATCH_MID, current_patch.mid);
+            pccomm_set_patch_value(0xFF, COMM_PATCH_MID, current_patch.mid);
         }
         
         if(f_rot_enc_high_up)
         {
             f_rot_enc_high_up = false;
             patch_current_set_high(current_patch.high + front_rot_enc_increment(), SENDER_USER);
-            pccomm_set_patch_value(COMM_PATCH_HIGH, current_patch.high);
+            pccomm_set_patch_value(0xFF, COMM_PATCH_HIGH, current_patch.high);
         }
         if(f_rot_enc_high_down)
         {
@@ -178,14 +183,14 @@ void main(void)
                 patch_current_set_high(current_patch.high - front_rot_enc_increment(), SENDER_USER);
             else
                 patch_current_set_high(0, SENDER_USER);
-            pccomm_set_patch_value(COMM_PATCH_HIGH, current_patch.high);
+            pccomm_set_patch_value(0xFF, COMM_PATCH_HIGH, current_patch.high);
         }
         
         if(f_rot_enc_pres_up)
         {
             f_rot_enc_pres_up = false;
             patch_current_set_presence(current_patch.presence + front_rot_enc_increment(), SENDER_USER);
-            pccomm_set_patch_value(COMM_PATCH_PRES, current_patch.presence);
+            pccomm_set_patch_value(0xFF, COMM_PATCH_PRES, current_patch.presence);
         }
         if(f_rot_enc_pres_down)
         {
@@ -194,14 +199,14 @@ void main(void)
                 patch_current_set_presence(current_patch.presence - front_rot_enc_increment(), SENDER_USER);
             else
                 patch_current_set_presence(0, SENDER_USER);
-            pccomm_set_patch_value(COMM_PATCH_PRES, current_patch.presence);
+            pccomm_set_patch_value(0xFF, COMM_PATCH_PRES, current_patch.presence);
         }
         
         if(f_rot_enc_vol_up)
         {
             f_rot_enc_vol_up = false;
             patch_current_set_volume(current_patch.volume + front_rot_enc_increment(), SENDER_USER);
-            pccomm_set_patch_value(COMM_PATCH_VOLUME, current_patch.volume);
+            pccomm_set_patch_value(0xFF, COMM_PATCH_VOLUME, current_patch.volume);
         }
         if(f_rot_enc_vol_down)
         {
@@ -210,7 +215,7 @@ void main(void)
                 patch_current_set_volume(current_patch.volume - front_rot_enc_increment(), SENDER_USER);
             else
                 patch_current_set_volume(0, SENDER_USER);
-            pccomm_set_patch_value(COMM_PATCH_VOLUME, current_patch.volume);
+            pccomm_set_patch_value(0xFF, COMM_PATCH_VOLUME, current_patch.volume);
         }
         
         if(f_rot_enc_value_up)
@@ -275,6 +280,7 @@ void main(void)
             
             pccomm_log_midi_pc(midi_message.channel, midi_message.program);
             patch_load(midi_message.program);
+            pccomm_select_patch(current_patch_no);
         }
         if(midi_cc_received())
         {
@@ -323,6 +329,14 @@ void Tmr0Interrupt(void)
         front_check_level();
         f_tmr_slow = true;
     }
+    
+    tmr_1s++;
+    if(tmr_1s == 1000)
+    {
+        tmr_1s = 0;
+        f_tmr_1s = true;
+    }
+          
     
     //front_led_store_SetLow(); // total 464us
 }

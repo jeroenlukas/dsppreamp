@@ -42,6 +42,7 @@
 #define COMMAND_MIDI_RECEIVED       8
 #define COMMAND_LOG_MESSAGE         9
 #define COMMAND_SELECT_PATCH        10
+#define COMMAND_HEARTBEAT           11
 
 #define COMMAND_INITIALIZE_PATCHES  124
 #define COMMAND_INITIALIZE_MODELS   125
@@ -61,9 +62,13 @@ uint8_t pccomm_frame_ready(void);
 void pccomm_log_message(char * text);
 void pccomm_log_midi_cc(uint8_t chan, uint8_t cc, uint8_t value);
 void pccomm_log_midi_pc(uint8_t chan, uint8_t program);
-void pccomm_set_patch_value(uint8_t property, uint8_t value);
+void pccomm_heartbeat(void);
+
+void pccomm_set_patch_value(uint8_t patch_id, uint8_t property, uint8_t value);
+void pccomm_set_patch_value_str(uint8_t patch_id, uint8_t property, char * value);
+
 void pccomm_select_patch(uint8_t patch_no);
-void pccomm_set_patch_value_str(uint8_t property, char * value);
+
 void pccomm_set_model_value(uint8_t model_id, uint8_t property, int8_t value);
 void pccomm_set_model_value_str(uint8_t model_id, uint8_t property, char * value);
 void pccomm_set_model_value_int(uint8_t model_id, uint8_t property, uint16_t value);

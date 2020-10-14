@@ -75,6 +75,8 @@ void patch_current_set_presence(uint8_t value, uint8_t sender);
 int16_t patch_scale_value(int16_t min, int16_t max, int16_t perc);
 patch_t patch_get_current(void);
 
+char * patch_get_value_string(uint8_t patch_id, uint8_t property);
+
 void patch_current_set_tonecontrol_center_frequency(double frequency);
 // TODO Insert appropriate #include <>
 
